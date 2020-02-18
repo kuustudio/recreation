@@ -3,5 +3,7 @@
 *.iml
 **.iml
 .idea
+.xml
+.yml
 */target/**
 */*/target/**
