@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh">
+<script src="/skin/js/jquery.jqprint-0.3.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+    <title th:text="${T(com.royal.recreation.util.Constant).SYSTEM_NAME}">小票打印</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .print_container {
+            padding: 5px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body style="background-color:#fff;width: 100%">
+<div class="print_container">
+    <div th:each="item:${list}" style="padding-bottom: 25px;">
+        <h1 th:text="${T(com.royal.recreation.util.Constant).SYSTEM_NAME}" style="font-size: 20px">游戏广场</h1>
+        <span>****************************************************</span>
+        <div class="section2" style="font-size: 12px">
+            <p th:text="${'彩种：'+item.typeName}">百度外卖</p>
+            <p th:text="${'玩法：'+item.playedName}">在线支付预约</p>
+        </div>
+        <span>****************************************************</span>
+        <div class="section5" style="font-size: 12px">
+            <p th:text="${'期号：'+item.actionNo}">订单备注：1111</p>
+            <p th:text="${'时间：'+item.createDateTimeShow()}">期望送达时间：5678</p>
+            <p th:text="${'单号：'+item.orderNo}">订单编号：567890</p>
+            <p th:text="${'投注号码：'+item.actionData}">姓名：小花</p>
+            <p>验真码：</p>
+            <p th:text="${item.validateCode.substring(0,16)}">姓名：小花</p>
+            <p th:text="${item.validateCode.substring(16)}">姓名：小花</p>
+        </div>
+        <span>****************************************************</span>
+        <div style="border-bottom: 2px solid #DADADA;">
+            <table style="width: 100%;">
+                <tbody>
+                <tr>
+                    <td>倍数</td>
+                    <td th:text="${item.beiShu}">2</td>
+                </tr>
+                <tr>
+                    <td>注数</td>
+                    <td th:text="${item.actionNum}">2</td>
+                </tr>
+                <tr>
+                    <td>投注</td>
+                    <td th:text="${item.usePoint}">2</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <p>奖金：<span th:text="${item.bonusPropMoney}" style="font-size: 20px"></span></p>
+        </div>
+    </div>
+    <span>****************************************************</span>
+    <div style="padding-bottom: 25px;">
+        <p>订单数：<span th:text="${list.size()}"></span></p>
+        <p>投注合计：<span th:text="${countUsePoint}"></span></p>
+    </div>
+</div>
+</div>
+<script>
+    print();
+
+    function print() {
+        $(".print_container").jqprint({
+            debug: false,
+            importCSS: true,
+            printContainer: true,
+            operaSupport: false
+        });
+    }
+</script>
+</body>
+</html>

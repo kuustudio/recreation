@@ -1,0 +1,726 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="zh">
+<script scr="/skin/main/new_new.js"  type="text/javascript">	</script>
+
+
+<input type="hidden" name="playedGroup" value="120" />
+
+    <input type="hidden" name="type" th:value="${typeId}" />
+
+<script type="text/javascript" th:inline="javascript">
+    $(function(){
+        var a = $("#bet_tab");
+        a.find(".name,.odds,.amount").on("click",
+            function (e) {
+
+                var g = $(this).attr("id");
+                if (!g) {
+                    return
+                }
+                var b = g.split("_")[2];
+                var f = $(this).parent().find('td[id$="' + b + '"]');
+                var c = f.filter(".amount");
+                f.toggleClass("bg_yellow");
+                if (c.hasClass("bg_yellow")) {
+
+                    c.find("input").val($("#bet_money1").val())
+                } else {
+                    c.find("input").val("")
+                }
+            }).on("mouseover",
+            function () {
+
+                var c = $(this).attr("id");
+                if (!c) {
+                    return
+                }
+                var b = c.split("_")[2];
+                $(this).parent().find('td[id$="' + b + '"]').addClass("hover")
+            }).on("mouseout",
+            function () {
+
+                var c = $(this).attr("id");
+                if (!c) {
+                    return
+                }
+                var b = c.split("_")[2];
+                $(this).parent().find('td[id$="' + b + '"]').removeClass("hover")
+            });
+        a.find(".amount > input").on("click",
+            function (b) {
+
+                if ($(this).parent().hasClass("bg_yellow")) {
+                    b.stopPropagation()
+                }
+            });
+
+        var betMoney = $.cookie("user_bet_money");
+        var b = $("#bet_tab");
+        var a = $(".bet-money");
+        a.val(betMoney);
+        a.keyup(function () {
+            betMoney = $(this).val();
+            a.val(betMoney);
+            b.find(".bg_yellow > input:text").val(betMoney)
+        });
+        a.blur(function () {
+            $.cookie("user_bet_money", betMoney)
+        });
+
+        $("#bet_tab input[type='text']").removeAttr("disabled");
+        var ii=0;
+
+        // var a1=1.9,a2=9.5,a3=9.5,a4=95,a5=15.05,a6=2.5,a7=2,a8=2,a9=2.5;
+        var a1 = [[${bonusSetting.a1}]];
+        var a2 = [[${bonusSetting.a2}]];
+        var a3 = [[${bonusSetting.a3}]];
+        var a4 = [[${bonusSetting.a4}]];
+        var a5 = [[${bonusSetting.a5}]];
+        var a6 = [[${bonusSetting.a6}]];
+        var a7 = [[${bonusSetting.a7}]];
+        var a9 = [[${bonusSetting.a9}]];
+        $("#bet_tab .odds").each(function (b, e) {
+            e = $(e);
+            ii++;
+            if(ii>0&&ii<5)
+                e.find("span").html(a1);
+            else if(ii>4&&ii<15)
+                e.find("span").html(a2);
+            else if(ii>14&&ii<19)
+                e.find("span").html(a1);
+            else if(ii>18&&ii<29)
+                e.find("span").html(a2);
+
+            else if(ii>28&&ii<33)
+                e.find("span").html(a1);
+            else if(ii>32&&ii<43)
+                e.find("span").html(a2);
+            else if(ii>42&&ii<47)
+                e.find("span").html(a1);
+            else if(ii>46&&ii<57)
+                e.find("span").html(a2);
+            else if(ii>56&&ii<61)
+                e.find("span").html(a1);
+            else if(ii>60&&ii<71)
+                e.find("span").html(a2);
+            else if(ii>70&&ii<75)
+                e.find("span").html(a1);
+            else if(ii>74&&ii<77)
+                e.find("span").html(a7);
+            else if(ii==77)
+                e.find("span").html(a3);
+            else if(ii==78)
+                e.find("span").html(a4);
+            else if(ii==79)
+                e.find("span").html(a5);
+            else if(ii==80)
+                e.find("span").html(a9);
+            else if(ii>80&&ii<83)
+                e.find("span").html(a6);
+            else if(ii==83)
+                e.find("span").html(a4);
+            else if(ii==84)
+                e.find("span").html(a5);
+            else if(ii==85)
+                e.find("span").html(a9);
+            else if(ii>85&&ii<88)
+                e.find("span").html(a6);
+            else if(ii==88)
+                e.find("span").html(a4);
+            else if(ii==89)
+                e.find("span").html(a5);
+            else if(ii==90)
+                e.find("span").html(a9);
+            else if(ii>90&&ii<93)
+                e.find("span").html(a6);
+        });
+    });
+
+</script>
+
+
+<div id="bet_tab" action="tzCombineSelect" length="2" random="combineRandom">
+    <table cellspacing="10px" cellpadding="10px" class="cont-list1">
+        <tr>
+            <td>
+                <table class="u-table2 play_tab_2" style="width:155px">
+                    <thead>
+                    <tr>
+                        <th colspan="3">第一球</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td id="play_name_44810" class="name">大</td>
+                        <td id="play_odds_44810" class="odds" ><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_44810" class="amount"><input type="text" onkeyup="this.value=this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_44811" class="name">小</td>
+                        <td id="play_odds_44811" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_44811" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_44812" class="name">单</td>
+                        <td id="play_odds_44812" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_44812" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_44813" class="name">双</td>
+                        <td id="play_odds_44813" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_44813" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45300" class="name"><span class="ball c-g2 ">0</span></td>
+                        <td id="play_odds_45300" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45300" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45301" class="name"><span class="ball c-g2 ">1</span></td>
+                        <td id="play_odds_45301" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45301" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45302" class="name"><span class="ball c-g2 ">2</span></td>
+                        <td id="play_odds_45302" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45302" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45303" class="name"><span class="ball c-g2 ">3</span></td>
+                        <td id="play_odds_45303" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45303" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45304" class="name"><span class="ball c-g2 ">4</span></td>
+                        <td id="play_odds_45304" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45304" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45305" class="name"><span class="ball c-g2 ">5</span></td>
+                        <td id="play_odds_45305" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45305" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45306" class="name"><span class="ball c-g2 ">6</span></td>
+                        <td id="play_odds_45306" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45306" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45307" class="name"><span class="ball c-g2 ">7</span></td>
+                        <td id="play_odds_45307" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45307" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45308" class="name"><span class="ball c-g2 ">8</span></td>
+                        <td id="play_odds_45308" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45308" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45309" class="name"><span class="ball c-g2 ">9</span></td>
+                        <td id="play_odds_45309" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45309" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+
+            <td>
+                <table class="u-table2 play_tab_3" style="width:155px">
+                    <thead>
+                    <tr>
+                        <th colspan="3">第二球</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td id="play_name_44910" class="name">大</td>
+                        <td id="play_odds_44910" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_44910" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_44911" class="name">小</td>
+                        <td id="play_odds_44911" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_44911" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_44912" class="name">单</td>
+                        <td id="play_odds_44912" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_44912" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_44913" class="name">双</td>
+                        <td id="play_odds_44913" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_44913" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45400" class="name"><span class="ball c-g2 ">0</span></td>
+                        <td id="play_odds_45400" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45400" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45401" class="name"><span class="ball c-g2 ">1</span></td>
+                        <td id="play_odds_45401" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45401" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45402" class="name"><span class="ball c-g2 ">2</span></td>
+                        <td id="play_odds_45402" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45402" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45403" class="name"><span class="ball c-g2 ">3</span></td>
+                        <td id="play_odds_45403" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45403" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45404" class="name"><span class="ball c-g2 ">4</span></td>
+                        <td id="play_odds_45404" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45404" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45405" class="name"><span class="ball c-g2 ">5</span></td>
+                        <td id="play_odds_45405" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45405" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45406" class="name"><span class="ball c-g2 ">6</span></td>
+                        <td id="play_odds_45406" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45406" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45407" class="name"><span class="ball c-g2 ">7</span></td>
+                        <td id="play_odds_45407" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45407" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45408" class="name"><span class="ball c-g2 ">8</span></td>
+                        <td id="play_odds_45408" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45408" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45409" class="name"><span class="ball c-g2 ">9</span></td>
+                        <td id="play_odds_45409" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45409" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+
+            <td>
+                <table class="u-table2 play_tab_4" style="width:155px">
+                    <thead>
+                    <tr>
+                        <th colspan="3">第三球</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td ></td>
+                        <td  ></td>
+                        <td id="play_text_4500" class=""><input type="text" style="display:none" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45010" class="name">大</td>
+                        <td id="play_odds_45010" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45010" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45011" class="name">小</td>
+                        <td id="play_odds_45011" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45011" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45012" class="name">单</td>
+                        <td id="play_odds_45012" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45012" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45013" class="name">双</td>
+                        <td id="play_odds_45013" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45013" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45500" class="name"><span class="ball c-g2 ">0</span></td>
+                        <td id="play_odds_45500" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45500" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45501" class="name"><span class="ball c-g2 ">1</span></td>
+                        <td id="play_odds_45501" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45501" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45502" class="name"><span class="ball c-g2 ">2</span></td>
+                        <td id="play_odds_45502" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45502" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45503" class="name"><span class="ball c-g2 ">3</span></td>
+                        <td id="play_odds_45503" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45503" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45504" class="name"><span class="ball c-g2 ">4</span></td>
+                        <td id="play_odds_45504" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45504" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45505" class="name"><span class="ball c-g2 ">5</span></td>
+                        <td id="play_odds_45505" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45505" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45506" class="name"><span class="ball c-g2 ">6</span></td>
+                        <td id="play_odds_45506" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45506" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45507" class="name"><span class="ball c-g2 ">7</span></td>
+                        <td id="play_odds_45507" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45507" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45508" class="name"><span class="ball c-g2 ">8</span></td>
+                        <td id="play_odds_45508" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45508" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45509" class="name"><span class="ball c-g2 ">9</span></td>
+                        <td id="play_odds_45509" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45509" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+
+            <td>
+                <table class="u-table2 play_tab_5" style="width:155px">
+                    <thead>
+                    <tr>
+                        <th colspan="3">第四球</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td id="play_name_45110" class="name">大</td>
+                        <td id="play_odds_45110" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45110" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45111" class="name">小</td>
+                        <td id="play_odds_45111" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45111" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45112" class="name">单</td>
+                        <td id="play_odds_45112" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45112" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45113" class="name">双</td>
+                        <td id="play_odds_45113" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45113" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45600" class="name"><span class="ball c-g2 ">0</span></td>
+                        <td id="play_odds_45600" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45600" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45601" class="name"><span class="ball c-g2 ">1</span></td>
+                        <td id="play_odds_45601" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45601" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45602" class="name"><span class="ball c-g2 ">2</span></td>
+                        <td id="play_odds_45602" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45602" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45603" class="name"><span class="ball c-g2 ">3</span></td>
+                        <td id="play_odds_45603" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45603" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45604" class="name"><span class="ball c-g2 ">4</span></td>
+                        <td id="play_odds_45604" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45604" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45605" class="name"><span class="ball c-g2 ">5</span></td>
+                        <td id="play_odds_45605" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45605" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45606" class="name"><span class="ball c-g2 ">6</span></td>
+                        <td id="play_odds_45606" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45606" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45607" class="name"><span class="ball c-g2 ">7</span></td>
+                        <td id="play_odds_45607" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45607" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45608" class="name"><span class="ball c-g2 ">8</span></td>
+                        <td id="play_odds_45608" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45608" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45609" class="name"><span class="ball c-g2 ">9</span></td>
+                        <td id="play_odds_45609" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45609" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+
+            <td>
+                <table class="u-table2 play_tab_6" style="width:155px">
+                    <thead>
+                    <tr>
+                        <th colspan="3">第五球</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td id="play_name_45210" class="name">大</td>
+                        <td id="play_odds_45210" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45210" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45211" class="name">小</td>
+                        <td id="play_odds_45211" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45211" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45212" class="name">单</td>
+                        <td id="play_odds_45212" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45212" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45213" class="name">双</td>
+                        <td id="play_odds_45213" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45213" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45700" class="name"><span class="ball c-g2 ">0</span></td>
+                        <td id="play_odds_45700" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45700" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45701" class="name"><span  class="ball c-g2 ">1</span></td>
+                        <td id="play_odds_45701" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45701" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45702" class="name"><span class="ball c-g2 ">2</span></td>
+                        <td id="play_odds_45702" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45702" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45703" class="name"><span class="ball c-g2 ">3</span></td>
+                        <td id="play_odds_45703" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45703" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45704" class="name"><span class="ball c-g2 ">4</span></td>
+                        <td id="play_odds_45704" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45704" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45705" class="name"><span class="ball c-g2 ">5</span></td>
+                        <td id="play_odds_45705" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45705" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45706" class="name"><span class="ball c-g2 ">6</span></td>
+                        <td id="play_odds_45706" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45706" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45707" class="name"><span class="ball c-g2 ">7</span></td>
+                        <td id="play_odds_45707" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45707" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45708" class="name"><span class="ball c-g2 ">8</span></td>
+                        <td id="play_odds_45708" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45708" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45709" class="name"><span class="ball c-g2 ">9</span></td>
+                        <td id="play_odds_45709" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45709" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+
+            <td style="vertical-align:top;">
+                <table class="u-table2 play_tab_1" style="width:155px">
+                    <thead>
+                    <tr>
+                        <th colspan="3">总和龙虎和</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td ></td>
+                        <td  ></td>
+                        <td id="play_text_450000" class=""><input type="text" style="display:none" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45801" class="name">总和大</td>
+                        <td id="play_odds_45801" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45801" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td></tr><tr>
+
+                        <td id="play_name_45802" class="name">总和小</td>
+                        <td id="play_odds_45802" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45802" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td></tr><tr>
+
+                        <td id="play_name_45803" class="name">总和单</td>
+                        <td id="play_odds_45803" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45803" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td></tr><tr>
+
+                        <td id="play_name_45804" class="name">总和双</td>
+                        <td id="play_odds_45804" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45804" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+                    </tr>
+                    <tr>
+                        <td id="play_name_45805" class="name">龙</td>
+                        <td id="play_odds_45805" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45805" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td> </tr><tr>
+
+                        <td id="play_name_45806" class="name">虎</td>
+                        <td id="play_odds_45806" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45806" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td> </tr><tr>
+
+                        <td id="play_name_45907" class="name">和</td>
+                        <td id="play_odds_45907" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+                        <td id="play_text_45907" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+
+
+                    </tr>
+                    <tr><td colspan="3">
+
+                        <div class="cont-col3-box2"> <br>
+                            <!--<span class='xkjee'>快选积分</span><br>-->
+                            积分 <input id="bet_money1" type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" class="bet-money" />
+                            <br>
+                            <p><button style=" background: url(/images/nsc/lottery/tjtz.png) no-repeat; width: 98px; height: 32px; border: none; cursor: pointer; text-align: center; font-size: 16px; color: #fff; font-weight: bold;  font-family:'Microsoft Yahei';"  onclick="ResetCodes()" >&nbsp;重   置&nbsp;</button></p>
+
+                            <p><button style=" background: url(/images/nsc/lottery/tjtz.png) no-repeat; width: 98px; height: 32px; border: none; cursor: pointer; text-align: center; font-size: 16px; color: #fff; font-weight: bold;  font-family:'Microsoft Yahei';" onclick="gameActionAddCodes();" >立即投注</button></p>
+
+
+                            <!--
+                        <p><button style=" background: url(/images/nsc/lottery/tjtz.png) no-repeat; width: 98px; height: 32px; border: none; cursor: pointer; text-align: center; font-size: 16px; color: #fff; font-weight: bold;  font-family:'Microsoft Yahei';" onclick="gameActionAddCodes();" >立即投注</button></p>
+
+                        <p><button style=" background: url(/images/nsc/lottery/tjtz.png) no-repeat; width: 98px; height: 32px; border: none; cursor: pointer; text-align: center; font-size: 16px; color: #fff; font-weight: bold;  font-family:'Microsoft Yahei';" onclick="gameActionAddCodess();" >添加投注</button></p>
+                            -->
+
+
+                        </div>
+                    </td></tr>
+                    </tbody>
+                </table> </td>
+        </tr>
+    </table>
+
+    <!&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp; 前三中三后三 &nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;>
+    <table class="u-table2 play_tab_7" style="margin-top: 10px;" >
+        <thead>
+        <tr>
+            <th colspan="15">前三</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td id="play_name_46001" class="name">豹子</td>
+            <td id="play_odds_46001" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+            <td id="play_text_46001" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+
+            <td id="play_name_46302" class="name">顺子</td>
+            <td id="play_odds_46302" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+            <td id="play_text_46302" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+
+            <td id="play_name_46603" class="name">对子</td>
+            <td id="play_odds_46603" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+            <td id="play_text_46603" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+
+            <td id="play_name_46604" class="name">半顺</td>
+            <td id="play_odds_46604" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+            <td id="play_text_46604" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+
+            <td id="play_name_46605" class="name">杂六</td>
+            <td id="play_odds_46605" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+            <td id="play_text_46605" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+        </tr>
+        </tbody>
+    </table>
+    <table class="u-table2 play_tab_8" style="margin-top: 10px;">
+        <thead>
+        <tr>
+            <th colspan="15">中三</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td id="play_name_46101" class="name">豹子</td>
+            <td id="play_odds_46101" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+            <td id="play_text_46101" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+
+            <td id="play_name_46402" class="name">顺子</td>
+            <td id="play_odds_46402" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+            <td id="play_text_46402" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+
+            <td id="play_name_46703" class="name">对子</td>
+            <td id="play_odds_46703" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+            <td id="play_text_46703" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+
+            <td id="play_name_46704" class="name">半顺</td>
+            <td id="play_odds_46704" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+            <td id="play_text_46704" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+
+            <td id="play_name_46705" class="name">杂六</td>
+            <td id="play_odds_46705" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+            <td id="play_text_46705" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+        </tr>
+        </tbody>
+    </table>
+    <table class="u-table2 play_tab_9" style="margin-top: 10px;" >
+        <thead>
+        <tr>
+            <th colspan="15">后三</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td id="play_name_46201" class="name">豹子</td>
+            <td id="play_odds_46201" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+            <td id="play_text_46201" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+
+            <td id="play_name_46502" class="name">顺子</td>
+            <td id="play_odds_46502" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+            <td id="play_text_46502" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+
+            <td id="play_name_46803" class="name">对子</td>
+            <td id="play_odds_46803" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+            <td id="play_text_46803" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+
+            <td id="play_name_46804" class="name">半顺</td>
+            <td id="play_odds_46804" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+            <td id="play_text_46804" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+
+            <td id="play_name_46805" class="name">杂六</td>
+            <td id="play_odds_46805" class="odds"><span class=" c-txt4">&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;</span></td>
+            <td id="play_text_46805" class="amount"><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'');limitInput(this);" onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+    $(function(){
+        gameSetPl({"bonusProp":"14.00","bonusPropBase":"14.00"},true);
+        $("#game-dom").hide();
+    })
+</script>

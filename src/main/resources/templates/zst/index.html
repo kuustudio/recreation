@@ -1,0 +1,266 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:esun="" style="font-size: 15.525px;"><head>
+    <title>皇城 -官方网站</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,user-scalable=no,maximum-scale=1.0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <link rel="stylesheet" href="/css/nsc_m/list.css?v=1.17.2.1">
+    <link rel="stylesheet" href="css/line.css" type="text/css">
+    <link rel="stylesheet" href="/css/nsc_m/res.css?v=1.17.2.1">
+    <link href="/css/nsc_m/m-lottery.css?v=1.17.2.1" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="/js/nsc/jquery-1.7.min.js?v=1.17.2.1"></script>
+    <script language="javascript" type="text/javascript" src="js/line.js"></script>
+
+
+    <script type="text/javascript" src="/js/nsc_m/layer.js?v=1.17.2.1"></script><link href="/js/nsc_m/need/layer.css?2.0" type="text/css" rel="styleSheet" id="layermcss">
+    <script type="text/javascript" src="/js/nsc/common.js?v=1.17.2.1"></script>
+    <link rel="stylesheet" href="/js/common/calendar/css/calendar-blue.css?v=1.17.2.1" type="text/css">
+    <style type="text/css">
+
+        html {overflow:-moz-scrollbars-vertical; overflow-y:scroll;}
+    </style>
+
+    <script type="text/javascript">
+        $(function(){
+            //切换漏号分析
+            $('.lhfx_tit').click(function(e){
+                $('.lhfx_lotterylist').toggle();
+                $(document).on('click',function(){
+                    $('.lhfx_lotterylist').hide();
+                });
+                e.stopPropagation();
+
+            });
+            $('.lhfx_lotterylist').on('click',function(e){
+                e.stopPropagation();
+            });
+        })
+    </script>
+
+</head>
+<body>
+<div id="body">
+    <header class="header">
+        <a class="m-return" href="javascript:window.history.back(-1);">返回</a>
+        <div class="lhfx_tit"><span class="showAll">澳洲幸运5--历史开奖</span></div>
+        <span class="btn-slide-bar"></span>
+        <!-- <h1 class="page-title">header</h1> -->
+    </header>
+    <!--侧导航 -->
+    <section class="slide-bar">
+        <ul class="tree">
+            <li class="tree_list"><h3 class="one_nav_list home"><a href="/?index.php">首页</a></h3>
+                <div class="m_nav_line"></div>
+            </li>
+            <li class="tree_list">
+                <h3 class="one_nav_list uc_icon_r"><a href="/safe/Personal">用户中心</a></h3>
+                <div class="m_nav_line"></div>
+            </li>
+            <li class="tree_box tree_list">
+                <h3 class="one_nav_list  game_icon tree_box">彩票游戏<i class="lnstruction-top"></i></h3>
+                <ul class="tree_one" style="display:block">
+                    <li class="lotter_list_game">
+                        <div class="m_nav_line"></div>
+                        <dl>
+                            <dt>高频彩</dt>
+                            <dd>
+                                <ul class="lot_list">
+                                    <li><a href="/index/game/1/2/12">重庆时时彩<i>H</i></a> </li>
+
+                                    <li><a href="/index/game/20">北京PK拾<i class="m-yellow">N</i></a> </li>
+
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+                <div class="m_nav_line"></div>
+            </li>
+            <li class="tree_box tree_list">
+                <h3 class="one_nav_list account_icon">账户管理<i class="lnstruction-top"></i></h3>
+                <ul class="tree_one">
+                    <li class="lotter_list_game">
+                        <div class="m_nav_line"></div>
+                        <dl class="lnstruction">
+                            <dd>
+                                <ul class="lot_list">
+                                    <li class="tree_list"> <a href="/record/search">投注记录</a></li>
+                                    <li class="tree_list"> <a href="/report/coin">帐变记录</a></li>
+                                    <li class="tree_list"> <a href="/report/count">盈亏报表</a></li>
+                                    <!--	<li class="tree_list"><a href="/safe/info">绑定卡号 </a></li>-->
+                                    <li class="tree_list"><a href="/safe/loginpasswd">登入密码</a></li>
+                                    <!--	<li class="tree_list"><a href="/safe/passwd">下分 密码</a></li>-->
+                                </ul>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+                <div class="m_nav_line"></div>
+            </li>
+            <li class="tree_box tree_list">
+                <h3 class="one_nav_list account_icon">上分 提现<i class="lnstruction-top"></i></h3>
+                <ul class="tree_one">
+                    <li class="lotter_list_game">
+                        <div class="m_nav_line"></div>
+                        <dl class="lnstruction">
+                            <dd>
+                                <ul class="lot_list">
+                                    <!--<li class="tree_list"> <a href="/cash/recharge">上分 </a></li>-->
+                                    <li class="tree_list"> <a href="/cash/toCash">提现</a></li>
+                                    <!--	<li class="tree_list"> <a href="/cash/rechargeLog">上分 记录</a></li>-->
+                                    <li class="tree_list"><a href="/cash/toCashLog">提现记录 </a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+                <div class="m_nav_line"></div>
+            </li>
+            <!--<li class="tree_box tree_list">
+                <h3 class="one_nav_list activity_icon">优惠活动<i class="lnstruction-top"></i></h3>
+                <ul class="tree_one">
+                    <li class="lotter_list_game">
+                        <div class="m_nav_line"></div>
+                            <dl class="lnstruction">
+                                <dd>
+                                    <ul class="lot_list">
+                                        <li class="tree_list"><a href="/score/lucky">幸运抽奖</a></li>
+                                        <li class="tree_list"><a href="/cash/card">卡密上分 </a></li>
+                                        <!--<li class="tree_list"><a href="/lottery/hemai">合买中心</a></li>--!>
+            <li class="tree_list"><a class="notice" href="/notice/info">系统公告</a></li>
+        </ul>
+        </dd>
+        </dl>
+        </li>
+        </ul>
+        <div class="m_nav_line"></div>
+        </li>	-->
+        </ul>
+    </section>
+    <div class="home_b">
+        <div class="m_nav_line"></div>
+        <a class="one_nav_list conpt_icon" href="/?v=2">电脑版</a>
+        <a class="one_nav_list retreat_icon" href="javascript:m_loginout()">安全退出</a>
+    </div>
+    <div class="shady"></div>
+    <section class="wraper-page">
+        <div id="right_01">
+            <div class="right_01_01"></div>
+        </div>
+        <script language="javascript">
+            fw.onReady(function(){
+                Chart.init();
+                DrawLine.bind("chartsTable","has_line");
+
+                DrawLine.color('#499495');
+                DrawLine.add((parseInt(0)*10+5+1),2,10,0);
+                DrawLine.color('#E4A8A8');
+                DrawLine.add((parseInt(1)*10+5+1),2,10,0);
+                DrawLine.color('#499495');
+                DrawLine.add((parseInt(2)*10+5+1),2,10,0);
+                DrawLine.color('#E4A8A8');
+                DrawLine.add((parseInt(3)*10+5+1),2,10,0);
+                DrawLine.color('#499495');
+                DrawLine.add((parseInt(4)*10+5+1),2,10,0);
+                DrawLine.draw(Chart.ini.default_has_line);
+                // if($("#chartsTable").width()>$('body').width())
+                {
+                    // $('body').width($("#chartsTable").width() + "px");
+                }
+                // $("#container").height($("#chartsTable").height() + "px");
+                // $("#missedTable").width($("#chartsTable").width() + "px");
+                resize();
+
+
+
+                //最近多少期高亮
+                var _num = "",_href;
+                _href = window.location.href;
+                _num = _href.match(/issuecount=(\d+)/);
+
+
+            });
+            function resize(){
+                window.onresize = func;
+                function func(){
+                    window.location.href=window.location.href;
+                }
+            }
+            function daysBetween(start, end){
+                var startY = start.substring(0, start.indexOf('-'));
+                var startM = start.substring(start.indexOf('-')+1, start.lastIndexOf('-'));
+                var startD = start.substring(start.lastIndexOf('-')+1, start.length);
+
+                var endY = end.substring(0, end.indexOf('-'));
+                var endM = end.substring(end.indexOf('-')+1, end.lastIndexOf('-'));
+                var endD = end.substring(end.lastIndexOf('-')+1, end.length);
+
+                var val = (Date.parse(endY+'/'+endM+'/'+endD)-Date.parse(startY+'/'+startM+'/'+startD))/86400000;
+                return Math.abs(val);
+            }
+            function toggleMiss(){
+                $('#missedTable').toggle();
+            }
+        </script>
+        <style>
+            esun\:*{behavior:url(#default#VML)}
+        </style>
+
+        <div id="searchBox" style="background: #f8f8f8; padding:10px 0;">
+            <!-- <div class="lhfx_search_time">
+            <form method="POST">
+            <input type="hidden" name="controller" value="game">
+            <input type="hidden" name="action" value="bonuscode">时间范围：<input type="text" value="" name="starttime" id="starttime" class="time_input"><span class="image"></span><label>至</label><input type="text" value="" name="endtime" id="endtime" class="time_input">
+            <span class="image"></span><input type="submit" value="查询" id="showissue1" class="time_btn">
+            </form>
+        </div> -->
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="wo_choose" style="display:none"><span>标注形式选择</span><input type="checkbox" name="checkbox2" value="checkbox" id="has_line" class="no_bk-bg"><label for="has_line">显示走势折线</label>
+            <!--<input type="checkbox" name="checkbox" value="checkbox" id="no_miss" onclick="toggleMiss();" /><span><b><label for="no_miss">不带遗漏数据</label></b></span>--></div>
+
+        <div style=" min-height:430px;" id="container">
+            <table id="chartsTable" width="100%" cellpadding="0" cellspacing="0" border="0" style="display: table;">
+
+                <tbody>
+                <tr id="title">
+                    <td style="width:20%;"><strong>期号</strong></td>
+                    <td colspan="5" class="redtext"><strong>开奖号码</strong></td>
+                </tr>
+
+                <tr><td id="title">50641293</td><td class="wdh" align="center"><div class="ball02">8</div></td><td class="wdh" align="center"><div class="ball02">4</div></td><td class="wdh" align="center"><div class="ball02">8</div></td><td class="wdh" align="center"><div class="ball02">2</div></td><td class="wdh" align="center"><div class="ball02">5</div></td>
+                </tr>
+
+                </tbody></table>
+        </div>
+        <!-- <div id="quickbuy"><a href="">购买重庆时时彩</a></div> //-->
+        <div class="lhfx_lotterylist_bg"></div>
+
+        <div class="m_footer_annotation">
+            <br>
+            Copyright © HugC  皇城  版权所有
+            <!-- <a href="#" class="m_f_top"></a> -->
+        </div>
+
+    </section>
+</div>
+<script type="text/javascript" src="/js/nsc_m/res.js?v=1.17.2.1"></script>
+<script type="text/javascript">
+    $(function(){
+        var riable=0;
+        $(".nfdprize_text").click(function(){
+            if(riable==0){
+                riable=1;
+                $(".m-lott-methodBox .nfdprize_text b").addClass('cur')
+            }else{
+                riable =0;
+                $(".m-lott-methodBox .nfdprize_text b").removeClass('cur')
+            }
+            $(".m-lott-methodBox-list").toggle();
+        });
+    }())
+
+</script>
+
+</body>
+</html>

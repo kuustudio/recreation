@@ -1,0 +1,84 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="biao-cont">
+    <!--下注列表-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="0" class="grayTable">
+        <thead>
+        <tr class="table_b_th">
+            <td>时间</td>
+            <td>帐变类型</td>
+            <td>变动</td>
+            <td>积分余额</td>
+            <td>备注</td>
+        </tr>
+        </thead>
+        <tbody class="table_b_tr" th:if="${list.isEmpty()}">
+        <tr><td colspan="12">暂无投注信息</td></tr>
+        </tbody>
+        <tbody class="table_b_tr" th:if="${!list.isEmpty()}">
+        <tr th:each="item:${list}">
+            <td th:text="${item.createDateTimeShow()}">时间</td>
+            <td th:text="${item.pointRecordType.desc}">帐变类型</td>
+            <td th:text="${item.value}">金额</td>
+            <td th:text="${item.balance}">余额</td>
+            <td th:text="${item.remark}">备注</td>
+        </tr>
+        </tbody>
+
+
+    </table>
+    <div class="bottompage">
+        <a th:if="${page==1}" class="disabled">首页</a>
+        <a th:if="${page!=1}" th:href="${queryString+(-page+1)}">首页</a>
+        <a th:if="${page==1}" class="disabled">上一页</a>
+        <a th:if="${page!=1}" th:href="${queryString+(-1)}">上一页</a>
+        <a th:if="${page==pages}" class="disabled">下一页</a>
+        <a th:if="${page!=pages}" th:href="${queryString+(1)}">下一页</a>
+        <a th:if="${page==pages}" class="disabled">尾页</a>
+        <a th:if="${page!=pages}" th:href="${queryString}+${-page+pages}">尾页</a>
+        <span class="disabled" th:text="${'第'+page+'页/共'+pages+'页'}">第1页/共1页</span>
+    </div>
+    <script type="text/javascript">
+        function ddxq(num){
+            layer.open({
+                type: 2,
+                area: ['800px', '600px'],
+                zIndex:1888,
+                //fixed: false, //不固定
+                title:'订单详情',
+                scrollbar: false,//屏蔽滚动条
+                //maxmin: true,
+                content:'/record/betInfo/'+num
+            });
+            return false;
+        }
+
+        function czxx(num){
+            layer.open({
+                type: 2,
+                area: ['400px', '500px'],
+                zIndex:1888,
+                //fixed: false, //不固定
+                title:'上分 信息',
+                scrollbar: false,//屏蔽滚动条
+                //maxmin: true,
+                content:'/cash/rechargeModal/'+num
+            });
+            return false;
+        }
+        function txxx(num){
+            layer.open({
+                type: 2,
+                area: ['400px', '500px'],
+                zIndex:1888,
+                //fixed: false, //不固定
+                title:'提现信息',
+                scrollbar: false,//屏蔽滚动条
+                //maxmin: true,
+                content:'/cash/cashModal/'+num
+            });
+            return false;
+        }
+    </script>
+    <!--下注列表 end -->
+</div>

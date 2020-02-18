@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta content="IE=EmulateIE8" http-equiv="X-UA-Compatible" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title th:text="${T(com.royal.recreation.util.Constant).SYSTEM_NAME}"></title>
+    <link rel="stylesheet" href="/css/layui/css/layui.css"  media="all">
+    <link href="/css/nsc/lottery.css" rel="stylesheet" type="text/css" />
+    <link href='/skin/main/bl_ococ.css' rel="stylesheet" type="text/css" />
+    <link type="text/css" rel="stylesheet" href="/skin/js/jqueryui/jquery-ui-1.8.23.custom.css">
+    <script type="text/javascript" src="/skin/js/jquery-1.8.3.min.js"></script>
+
+    <script>var TIP=true;</script>
+    <script type="text/javascript" src="/skin/main/onload.js"></script>
+    <script type="text/javascript" src="/skin/main/function.js"></script>
+    <script type="text/javascript" src="/skin/js/jqueryui/jquery-ui-1.8.23.custom.min.js"></script>
+
+    <script type="text/javascript" src="/js/nsc/main.js"></script>
+
+    <link rel="stylesheet" href="/css/nsc/foot.css">
+
+    <script src="/js/nsc/zr-script.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/js/nsc/soundBox.js"></script>
+    <script type="text/javascript" src="/js/nsc/lottery/youxi_lang_zh.js"></script>
+    <script type="text/javascript" src="/js/nsc/lottery/jquery.youxi.main.js"></script>
+    <script type="text/javascript" src="/js/nsc/lottery/jquery.youxi.selectarea.js"></script>
+    <script type="text/javascript" src="/js/nsc/lottery/jquery.youxi.trace.js"></script>
+    <script type="text/javascript" src="/skin/layer/layer.js"></script>
+    <script type="text/javascript" src="/css/layui/layui.js"></script>
+    <!-- slidebar -->
+    <link href="/css/jquery.nouislider.css" rel="stylesheet">
+    <link href="/css/nouislider.min.css" rel="stylesheet">
+    <script src="/css/nouislider.min.js"></script>
+    <style>
+        #basic_slider{ width:120px;height:10px;}
+
+        #basic_slider .noUi-origin{
+            background:#079fb1;
+            height: initial !important;
+            width: initial !important;
+        }
+
+        #basic_slider .noUi-handle{
+            width:14px;
+            height:14px;
+        }javascript:;
+    </style>
+    <!-- slidebar end -->
+    <meta name="keywords" content="" />
+    <meta nam ="description" content="" />
+    <meta name="renderer" content="webkit">
+
+    <link rel="stylesheet" href="/css/nsc/home/reset.css">
+    <link rel="stylesheet" href="/css/nsc/home/theme.css">
+    <link href="/css/nsc/plugin/dialogUI/dialogUI.css" media="all" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/nsc/dialogUI/jquery.dialogUI.js"></script>
+
+</head>
+<body style="background:#E8E8E8">
+<div class="header">
+    <div class="top">
+
+        <div class="navbar navChoose"  style="background:#c43a4b;">
+            <div class="content">
+                <div class="nav navList" >
+                    <ul class="layui-nav" style="background:#c43a4b;" lay-filter="">
+
+                        <li class="layui-nav-item">
+                            <a  href="/">首页</a>
+                        </li>
+
+                        <li class="layui-nav-item ">
+                            <a href="javascript:void(0);">账户管理</a>
+                            <dl class="layui-nav-child">
+                                <!-- 二级菜单 -->
+                                <dd><a href="/report/counts" icon="yxbb">个人月报</a></dd>
+                                <dd><a href="/safe/passwd" data="T-mmaq" icon="mmaq">密码安全</a></dd>
+                                <dd><a href="/record/search" icon="yxbb">投注记录</a></dd>
+                                <dd><a href="/report/coin" data="T-bdkh" icon="bdkh">帐变记录</a></dd>
+                                <dd><a href="/report/count" data="T-czxx" icon="czxx">盈亏报表</a></dd>
+                                <dd><a href="/report/teamReport" data="T-czxx" icon="czxx">团队报表</a></dd>
+                            </dl>
+                        </li>
+                        <li class="layui-nav-item " sec:authorize="hasAuthority('AGENT')">
+                            <a href="javascript:void(0);">团队管理</a>
+                            <dl class="layui-nav-child">
+                                <!-- 二级菜单 -->
+                                <dd><a href="/team/userList" icon="yxbb">团队列表</a></dd>
+                                <dd sec:authorize="hasAuthority('ADMIN')"><a href="/team/settingList" icon="yxbb">规则列表</a></dd>
+                                <dd><a href="/team/addUser" data="T-mmaq" icon="mmaq">添加会员</a></dd>
+                            </dl>
+                        </li>
+                    </ul>
+                    <script>
+                        layui.use('element', function() {
+                            var $ = layui.jquery,
+                                element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+                        });
+                    </script>
+                </div>
+
+                <div class="content" >
+
+                    <div class="fr t_menu" style="margin-top:-40px;color:#000">
+                        <div class="ftop user_info" align="right">
+                            <table  style="color:#000"><tr><td>
+                                账号 ，
+                                <span class="username" th:text="${user.username}">未设昵称</span>
+                                <a href="/Boxs/receive" class="ui_message">
+                                    <i class="ic-message"></i>
+                                    <span class="ui_msgnum">(﻿   <span id="msg" style="margin-left: -4px;">0</span>)</span>
+                                </a>
+                            </td><td>
+
+                                <a href="javascript:loginout()" class="button button-primary button-pill button-small" style="color:black">退出</a>
+                            </td><td>
+                                <div class="money-left">
+                                    <span>积分：</span>
+                                    <span class="t_money rounded" th:title="${'可用积分：'+user.point}">
+                        <div class="show-money">￥<span id="refff" th:text="${user.point}">0.000</span></div>
+                        <div class="hide-money">￥<span><b>************</b></span></div>
+                    </span>
+                                </div>
+                                <a href="javascript:void(0);" class="shuaxin" id="refreshmoney" title="刷新积分">
+                                    <i class="ic-refresh"></i>
+                                </a>
+                                <a href="javascript:;" title="隐藏积分">
+                                    <i class="ic-unlook"></i>
+                                </a>
+<!--                                <a href="javascript:void(0);" onclick="czpay();" class="t_btn">上分 </a>-->
+<!--                                <a href="javascript:void(0);" onclick="topay();" class="t_btn">下分 </a>-->
+<!--                                <a href="javascript:void(0)" onclick="zxkf();" title="在线客服" class="t_kefu">-->
+
+                        </div>
+                        </td></tr></table>
+
+                    </div>
+                    <div class="fbottom">
+
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+            <div class="fr"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="v-dalog" class="v-dalog">
+    <div class="v-bg"></div>
+    <span class="v-cn">近期开放，敬请期待
+	</span>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        //没有开放导航弹窗提示
+        var NoDagin = true;
+        $(".v-NoDagin").click(function(){
+            if(NoDagin){
+                NoDagin = false;
+                $("#v-dalog").fadeIn(200,function(){
+                }).delay(2000).fadeOut(200,function(){
+                    NoDagin = true;
+                });
+            }
+        });
+
+    });
+</script>
