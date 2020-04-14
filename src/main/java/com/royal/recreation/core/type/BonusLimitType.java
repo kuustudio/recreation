@@ -1,5 +1,7 @@
 package com.royal.recreation.core.type;
 
+import com.royal.recreation.util.Constant;
+
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +27,7 @@ public enum BonusLimitType {
     L_17(17, "对子", BigDecimal.valueOf(5_0000)),
     L_18(18, "半顺", BigDecimal.valueOf(5_0000)),
     L_19(19, "杂六", BigDecimal.valueOf(5_0000)),
-    L_ALL(19, "全部", BigDecimal.valueOf(20_0000)),
+    L_ALL(20, "全部", BigDecimal.valueOf(20_0000)),
 
     ;
     private static final Map<Integer, BonusLimitType> DATA;
@@ -38,9 +40,9 @@ public enum BonusLimitType {
     }
 
 
-    private int id;
-    private String name;
-    private BigDecimal limit;
+    private final int id;
+    private final String name;
+    private final BigDecimal limit;
 
     BonusLimitType(int id, String name, BigDecimal limit) {
         this.id = id;
@@ -58,6 +60,10 @@ public enum BonusLimitType {
 
     public BigDecimal getLimit() {
         return limit;
+    }
+
+    public BigDecimal getRealLimit() {
+        return Constant.SYSTEM_LIMIT.get(this);
     }
 
     public static BonusLimitType find(Integer id) {

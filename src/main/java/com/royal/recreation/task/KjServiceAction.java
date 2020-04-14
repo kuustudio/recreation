@@ -40,10 +40,10 @@ class KjServiceAction {
             BigDecimal originBonus = orderInfo.getBonusPropMoney().multiply(BigDecimal.valueOf(hit));
             BigDecimal bonusPropMoney = originBonus;
             if (orderInfo.getBonusLimitType() != null) {
-                BigDecimal oneLimit = limitMap.computeIfAbsent(orderInfo.getBonusLimitType(), BonusLimitType::getLimit);
+                BigDecimal oneLimit = limitMap.computeIfAbsent(orderInfo.getBonusLimitType(), BonusLimitType::getRealLimit);
                 bonusPropMoney = bonusPropMoney.compareTo(oneLimit) > 0 ? oneLimit : bonusPropMoney;
             }
-            BigDecimal allLimit = limitMap.computeIfAbsent(L_ALL, BonusLimitType::getLimit);
+            BigDecimal allLimit = limitMap.computeIfAbsent(L_ALL, BonusLimitType::getRealLimit);
             bonusPropMoney = bonusPropMoney.compareTo(allLimit) > 0 ? allLimit : bonusPropMoney;
 
             BigDecimal finalBonusPropMoney = bonusPropMoney;

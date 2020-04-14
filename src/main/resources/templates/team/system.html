@@ -1,29 +1,30 @@
-<html xmlns:th="http://www.thymeleaf.org" lang="zh" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:th="http://www.thymeleaf.org" lang="zh"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <div th:replace="head"></div>
 <div id="nsc_subContent" style="border:0">
     <script type="text/javascript">
 
-        $(function() {
-            $( ".menus-li li").click(function(){
-                $( ".menus-li li").removeClass("on");
+        $(function () {
+            $(".menus-li li").click(function () {
+                $(".menus-li li").removeClass("on");
                 $(this).addClass("on");
-                $("#tabs-1,#tabs-2,#tabs-3").hide();
-                $("#tabs-"+($(this).index()+1)).show();
+                $("#tabs-1,#tabs-2,#tabs-3,#tabs-4").hide();
+                $("#tabs-" + ($(this).index() + 1)).show();
             });
         })
     </script>
 
     <div id="siderbar">
         <ul class="list clearfix">
-            <li ><a href="/team/userList">团队列表</a></li>
+            <li><a href="/team/userList">团队列表</a></li>
             <li sec:authorize="hasAuthority('ADMIN')"><a href="/team/settingList">规则列表</a></li>
-            <li ><a href="/team/addUser">添加会员</a></li>
+            <li><a href="/team/addUser">添加会员</a></li>
             <li sec:authorize="hasAuthority('ADMIN')" class="current"><a href="/team/toSystem">系统设置</a></li>
         </ul>
     </div>
-    <link rel="stylesheet" href="/css/nsc/reset.css" />
-    <link rel="stylesheet" href="/css/nsc/list.css" />
-    <link rel="stylesheet" href="/css/nsc/activity.css" />
+    <link rel="stylesheet" href="/css/nsc/reset.css"/>
+    <link rel="stylesheet" href="/css/nsc/list.css"/>
+    <link rel="stylesheet" href="/css/nsc/activity.css"/>
 
     </head>
     <body>
@@ -35,7 +36,7 @@
         <script src="/js/jqueryui/ui/jquery.ui.tabs.js"></script>
         <script language="javascript" type="text/javascript" src="/js/common/jquery.md5.js"></script>
         <script type="text/javascript" src="/js/keypad/jquery.keypad.js"></script>
-        <link rel="stylesheet" type="text/css" media="all" href="/js/keypad/keypad.css"  />
+        <link rel="stylesheet" type="text/css" media="all" href="/js/keypad/keypad.css"/>
         <!--消息框代码结束-->
 
         <div id="changeloginpass">
@@ -44,23 +45,33 @@
                     <li class="on">系统信息</li>
                     <li>数据操作(请慎重)</li>
                     <li style="display: none">资金池</li>
+                    <li>封注设置</li>
                 </ul>
 
                 <div id="tabs-1" style="width: 100%">
                     <form action="/team/setting" method="post" target="ajax" call="safeSetPwd">
                         <table width="100%" border="0" cellspacing="1" cellpadding="5">
                             <tr>
-                                <td class="tdz3_left">系统名称：</td><td class="tdz3_right"><input type="text" name="systemName" th:value="${T(com.royal.recreation.util.Constant).SYSTEM_NAME}"/></td>
+                                <td class="tdz3_left">系统名称：</td>
+                                <td class="tdz3_right"><input type="text" name="systemName"
+                                                              th:value="${T(com.royal.recreation.util.Constant).SYSTEM_NAME}"/>
+                                </td>
                             </tr>
                             <tr>
-                                <td class="tdz3_left">最大投注：</td><td class="tdz3_right"><input type="text" name="systemMaxBetPoint" th:value="${T(com.royal.recreation.util.Constant).SYSTEM_MAX_BET_POINT}"/></td>
+                                <td class="tdz3_left">最大投注：</td>
+                                <td class="tdz3_right"><input type="text" name="systemMaxBetPoint"
+                                                              th:value="${T(com.royal.recreation.util.Constant).SYSTEM_MAX_BET_POINT}"/>
+                                </td>
                             </tr>
                             <tr>
-                                <td class="tdz3_left">系统公告：</td><td class="tdz3_right"><textarea  name="systemNotice" th:text="${T(com.royal.recreation.util.Constant).SYSTEM_NOTICE}" rows="20"></textarea></td>
+                                <td class="tdz3_left">系统公告：</td>
+                                <td class="tdz3_right"><textarea name="systemNotice"
+                                                                 th:text="${T(com.royal.recreation.util.Constant).SYSTEM_NOTICE}"
+                                                                 rows="20"></textarea></td>
                             </tr>
                         </table>
                         <div class="list_btn_box">
-                            <input id="setpass" type="submit"  value="确定"  class="formChange" />
+                            <input id="setpass" type="submit" value="确定" class="formChange"/>
                         </div>
                     </form>
                 </div>
@@ -71,30 +82,38 @@
                                 <td class="tdz3_left">时间：
                                 </td>
                                 <td class="tdz3_right">
-                                    <input type="text" class="input150" value="" name="fromTime" id="datetimepicker" /><span class="image"></span>
-                                    <input type="text" class="input150" value="" id="datetimepicker4" name="toTime" /> <span class="image" ></span>
+                                    <input type="text" class="input150" value="" name="fromTime"
+                                           id="datetimepicker"/><span class="image"></span>
+                                    <input type="text" class="input150" value="" id="datetimepicker4" name="toTime"/>
+                                    <span class="image"></span>
                                 </td>
                             </tr>
                         </table>
                         <div class="list_btn_box">
-                            <input type="button" onclick="window.open('/team/export?fromTime='+$('#datetimepicker').val()+'&toTime='+$('#datetimepicker4').val(), '_blank');" value="导出数据" class="formChange"/>
-                            <input id="setcoinP" type="submit" style="display: none" value="清空数据"  class="formChange" />
+                            <input type="button"
+                                   onclick="window.open('/team/export?fromTime='+$('#datetimepicker').val()+'&toTime='+$('#datetimepicker4').val(), '_blank');"
+                                   value="导出数据" class="formChange"/>
+                            <input id="setcoinP" type="submit" style="display: none" value="清空数据" class="formChange"/>
                         </div>
                     </form>
                 </div>
                 <div id="tabs-3" style="display: none;width: 100%">
                     <table width="100%" border="0" cellspacing="1" cellpadding="5">
                         <tr>
-                            <td class="tdz3_left">余额：</td><td class="tdz3_right" th:text="${pool.currentValue}"></td>
+                            <td class="tdz3_left">余额：</td>
+                            <td class="tdz3_right" th:text="${pool.currentValue}"></td>
                         </tr>
                         <tr>
-                            <td class="tdz3_left">充值总额：</td><td class="tdz3_right" th:text="${pool.rechargeValue}"></td>
+                            <td class="tdz3_left">充值总额：</td>
+                            <td class="tdz3_right" th:text="${pool.rechargeValue}"></td>
                         </tr>
                         <tr>
-                            <td class="tdz3_left">撤资总额：</td><td class="tdz3_right" th:text="${pool.cashOutValue}"></td>
+                            <td class="tdz3_left">撤资总额：</td>
+                            <td class="tdz3_right" th:text="${pool.cashOutValue}"></td>
                         </tr>
                         <tr th:each="item:${pool.detailMap}">
-                            <td class="tdz3_left" th:text="${item.key.desc}">撤资总额：</td><td class="tdz3_right" th:text="${item.value}"></td>
+                            <td class="tdz3_left" th:text="${item.key.desc}">撤资总额：</td>
+                            <td class="tdz3_right" th:text="${item.value}"></td>
                         </tr>
                     </table>
                     <div class="list_btn_box">
@@ -102,50 +121,182 @@
                         <input type="button" onclick="cashOut()" value="撤资资金池" class="formChange"/>
                     </div>
                 </div>
+                <div id="tabs-4" style="display: none;width: 100%">
+                    <form action="/team/bonusLimit" method="post" target="ajax" call="safeSetPwd">
+                        <table width="100%" border="0" cellspacing="1" cellpadding="5">
+                            <tr>
+                                <td class="tdz3_left">豹子：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_1]"
+                                                              th:value="${bonusLimitType.L_1}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">顺子：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_2]"
+                                                              th:value="${bonusLimitType.L_2}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">大：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_3]"
+                                                              th:value="${bonusLimitType.L_3}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">小：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_4]"
+                                                              th:value="${bonusLimitType.L_4}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">单：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_5]"
+                                                              th:value="${bonusLimitType.L_5}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">双：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_6]"
+                                                              th:value="${bonusLimitType.L_6}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">二码定位：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_7]"
+                                                              th:value="${bonusLimitType.L_7}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">三码定位：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_8]"
+                                                              th:value="${bonusLimitType.L_8}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">二码不定位：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_9]"
+                                                              th:value="${bonusLimitType.L_9}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">三码不定位：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_10]"
+                                                              th:value="${bonusLimitType.L_10}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">一帆风顺：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_11]"
+                                                              th:value="${bonusLimitType.L_11}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">好事成双：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_12]"
+                                                              th:value="${bonusLimitType.L_12}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">三星报喜：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_13]"
+                                                              th:value="${bonusLimitType.L_13}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">龙：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_14]"
+                                                              th:value="${bonusLimitType.L_14}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">虎：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_15]"
+                                                              th:value="${bonusLimitType.L_15}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">和：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_16]"
+                                                              th:value="${bonusLimitType.L_16}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">对子：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_17]"
+                                                              th:value="${bonusLimitType.L_17}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">半顺：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_18]"
+                                                              th:value="${bonusLimitType.L_18}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">杂六：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_19]"
+                                                              th:value="${bonusLimitType.L_19}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">全部：</td>
+                                <td class="tdz3_right"><input type="text" name="bonusLimitType[L_ALL]"
+                                                              th:value="${bonusLimitType.L_ALL}"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="list_btn_box">
+                            <input id="setpass" type="submit" value="确定" class="formChange"/>
+                        </div>
+                    </form>
+                </div>
             </div>
 
-        </div></div></div></div></div>
+        </div>
+    </div>
+</div>
+</div></div>
 <div th:replace="foot"></div>
 <div id="wanjinDialog"></div>
 <link rel="stylesheet" type="text/css" href="/js/riqi/jquery.datetimepicker.css"/>
 <script src="/js/riqi/jquery.datetimepicker.js"></script>
 <script>
 
-    function recharge(){
-        var obj=$(this);
-        var tipString='充值资金池金额:<input type="text" id="input">';
-        var wjDialog=$('#wanjinDialog').html(tipString).dialog({
-            title:'充值资金池金额',
+    function recharge() {
+        var obj = $(this);
+        var tipString = '充值资金池金额:<input type="text" id="input">';
+        var wjDialog = $('#wanjinDialog').html(tipString).dialog({
+            title: '充值资金池金额',
             resizable: false,
-            width:450,
-            minHeight:180,
+            width: 450,
+            minHeight: 180,
             modal: true,
             buttons: {
-                "确定": function() {
-                    $( this ).dialog( "close" );
-                    obj.attr("onajax","");
+                "确定": function () {
+                    $(this).dialog("close");
+                    obj.attr("onajax", "");
                     obj.click();
                     var input = $("#input").val();
                     $.ajax('/team/rechargePool', {
-                        data:{
+                        data: {
                             input: input
                         },
-                        type:'post',
-                        dataType:'json',
-                        error:function(xhr, textStatus, errorThrown){
-                            $.alert(errorThrown||textStatus);
+                        type: 'post',
+                        dataType: 'json',
+                        error: function (xhr, textStatus, errorThrown) {
+                            $.alert(errorThrown || textStatus);
                         },
-                        success:function(data, textStatus, xhr){
+                        success: function (data, textStatus, xhr) {
                             window.reload();
                         },
-                        complete:function(xhr, textStatus){
-                            var errorMessage=xhr.getResponseHeader('X-Error-Message');
-                            if(errorMessage) gamePostedCode(decodeURIComponent(errorMessage));
+                        complete: function (xhr, textStatus) {
+                            var errorMessage = xhr.getResponseHeader('X-Error-Message');
+                            if (errorMessage) gamePostedCode(decodeURIComponent(errorMessage));
                         }
                     });
                 },
-                "取消": function() {
-                    $( this ).dialog( "close" );
+                "取消": function () {
+                    $(this).dialog("close");
 
                 }
 
@@ -153,41 +304,42 @@
         });//dialog end
         return false;
     }
-    function cashOut(){
-        var obj=$(this);
-        var tipString='撤资资金池金额:<input type="text" id="input">';
-        var wjDialog=$('#wanjinDialog').html(tipString).dialog({
-            title:'撤资资金池金额',
+
+    function cashOut() {
+        var obj = $(this);
+        var tipString = '撤资资金池金额:<input type="text" id="input">';
+        var wjDialog = $('#wanjinDialog').html(tipString).dialog({
+            title: '撤资资金池金额',
             resizable: false,
-            width:450,
-            minHeight:180,
+            width: 450,
+            minHeight: 180,
             modal: true,
             buttons: {
-                "确定": function() {
-                    $( this ).dialog( "close" );
-                    obj.attr("onajax","");
+                "确定": function () {
+                    $(this).dialog("close");
+                    obj.attr("onajax", "");
                     obj.click();
                     var input = $("#input").val();
                     $.ajax('/team/cashOutPool', {
-                        data:{
+                        data: {
                             input: input
                         },
-                        type:'post',
-                        dataType:'json',
-                        error:function(xhr, textStatus, errorThrown){
-                            $.alert(errorThrown||textStatus);
+                        type: 'post',
+                        dataType: 'json',
+                        error: function (xhr, textStatus, errorThrown) {
+                            $.alert(errorThrown || textStatus);
                         },
-                        success:function(data, textStatus, xhr){
+                        success: function (data, textStatus, xhr) {
                             window.reload();
                         },
-                        complete:function(xhr, textStatus){
-                            var errorMessage=xhr.getResponseHeader('X-Error-Message');
-                            if(errorMessage) gamePostedCode(decodeURIComponent(errorMessage));
+                        complete: function (xhr, textStatus) {
+                            var errorMessage = xhr.getResponseHeader('X-Error-Message');
+                            if (errorMessage) gamePostedCode(decodeURIComponent(errorMessage));
                         }
                     });
                 },
-                "取消": function() {
-                    $( this ).dialog( "close" );
+                "取消": function () {
+                    $(this).dialog("close");
 
                 }
 
@@ -197,86 +349,86 @@
     }
 
     $('#datetimepicker10').datetimepicker({
-        step:5,
-        inline:true
+        step: 5,
+        inline: true
     });
     $('#datetimepicker_mask').datetimepicker({
-        mask:'9999/19/39 29:59'
+        mask: '9999/19/39 29:59'
     });
     $('#datetimepicker').datetimepicker();
     //$('#datetimepicker').datetimepicker({value:'2014/04/25 03:00',step:10});
     //$('#datetimepicker4').datetimepicker({value:'2014/04/26 03:00',step:10});
     $('#datetimepicker1').datetimepicker({
-        datepicker:false,
-        format:'H:i',
-        step:5
+        datepicker: false,
+        format: 'H:i',
+        step: 5
     });
     $('#datetimepicker2').datetimepicker({
-        yearOffset:222,
-        lang:'ch',
-        timepicker:false,
-        format:'d/m/Y',
-        formatDate:'Y/m/d',
-        minDate:'-1970/01/02', // yesterday is minimum date
-        maxDate:'+1970/01/02' // and tommorow is maximum date calendar
+        yearOffset: 222,
+        lang: 'ch',
+        timepicker: false,
+        format: 'd/m/Y',
+        formatDate: 'Y/m/d',
+        minDate: '-1970/01/02', // yesterday is minimum date
+        maxDate: '+1970/01/02' // and tommorow is maximum date calendar
     });
     $('#datetimepicker3').datetimepicker({
-        inline:true
+        inline: true
     });
     $('#datetimepicker4').datetimepicker();
-    $('#open').click(function(){
+    $('#open').click(function () {
         $('#datetimepicker4').datetimepicker('show');
     });
-    $('#close').click(function(){
+    $('#close').click(function () {
         $('#datetimepicker4').datetimepicker('hide');
     });
-    $('#reset').click(function(){
+    $('#reset').click(function () {
         $('#datetimepicker4').datetimepicker('reset');
     });
     $('#datetimepicker5').datetimepicker({
-        datepicker:false,
-        allowTimes:['12:00','13:00','15:00','17:00','17:05','17:20','19:00','20:00']
+        datepicker: false,
+        allowTimes: ['12:00', '13:00', '15:00', '17:00', '17:05', '17:20', '19:00', '20:00']
     });
     $('#datetimepicker6').datetimepicker();
-    $('#destroy').click(function(){
-        if( $('#datetimepicker6').data('xdsoft_datetimepicker') ){
+    $('#destroy').click(function () {
+        if ($('#datetimepicker6').data('xdsoft_datetimepicker')) {
             $('#datetimepicker6').datetimepicker('destroy');
             this.value = 'create';
-        }else{
+        } else {
             $('#datetimepicker6').datetimepicker();
             this.value = 'destroy';
         }
     });
-    var logic = function( currentDateTime ){
-        if( currentDateTime.getDay()==6 ){
+    var logic = function (currentDateTime) {
+        if (currentDateTime.getDay() == 6) {
             this.setOptions({
-                minTime:'11:00'
+                minTime: '11:00'
             });
-        }else
+        } else
             this.setOptions({
-                minTime:'8:00'
+                minTime: '8:00'
             });
     };
     $('#datetimepicker7').datetimepicker({
-        onChangeDateTime:logic,
-        onShow:logic
+        onChangeDateTime: logic,
+        onShow: logic
     });
     $('#datetimepicker8').datetimepicker({
-        onGenerate:function( ct ){
+        onGenerate: function (ct) {
             $(this).find('.xdsoft_date')
                 .toggleClass('xdsoft_disabled');
         },
-        minDate:'-1970/01/2',
-        maxDate:'+1970/01/2',
-        timepicker:false
+        minDate: '-1970/01/2',
+        maxDate: '+1970/01/2',
+        timepicker: false
     });
     $('#datetimepicker9').datetimepicker({
-        onGenerate:function( ct ){
+        onGenerate: function (ct) {
             $(this).find('.xdsoft_date.xdsoft_weekend')
                 .addClass('xdsoft_disabled');
         },
-        weekends:['01.01.2014','02.01.2014','03.01.2014','04.01.2014','05.01.2014','06.01.2014'],
-        timepicker:false
+        weekends: ['01.01.2014', '02.01.2014', '03.01.2014', '04.01.2014', '05.01.2014', '06.01.2014'],
+        timepicker: false
     });
 </script>
 

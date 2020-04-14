@@ -3,6 +3,7 @@ package com.royal.recreation;
 import com.royal.recreation.core.entity.BonusSetting;
 import com.royal.recreation.core.entity.CapitalPool;
 import com.royal.recreation.core.entity.UserInfo;
+import com.royal.recreation.core.type.BonusLimitType;
 import com.royal.recreation.core.type.UserType;
 import com.royal.recreation.spring.mongo.Mongo;
 import com.royal.recreation.util.Constant;
@@ -11,8 +12,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 
 @SpringBootApplication
 public class RecreationApplication implements CommandLineRunner {
@@ -68,8 +71,19 @@ public class RecreationApplication implements CommandLineRunner {
             pool = new CapitalPool();
             Mongo.buildMongo().insert(pool);
         }
+        if (CollectionUtils.isEmpty(pool.getSystemLimit())) {
+            Mongo.buildMongo().id(pool.getId()).updateFirst(update -> {
+                update.set("systemLimit", new HashMap<BonusLimitType, BigDecimal>() {{
+                    for (BonusLimitType value : BonusLimitType.values()) {
+                        put(value, value.getLimit());
+                    }
+                }});
+            }, CapitalPool.class);
+        }
+        pool = Mongo.buildMongo().findOne(CapitalPool.class);
         Constant.SYSTEM_NAME = pool.getSystemName();
         Constant.SYSTEM_MAX_BET_POINT = pool.getSystemMaxBetPoint();
         Constant.SYSTEM_NOTICE = pool.getSystemNotice();
+        Constant.SYSTEM_LIMIT = pool.getSystemLimit();
     }
 }

@@ -5,12 +5,14 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class PostCodeQuery {
 
     private JSONObject para;
     private List<JSONObject> code;
+    private Map<String, BigDecimal> bonusLimitType;
 
     @Data
     public static class Code {

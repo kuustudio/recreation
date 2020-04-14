@@ -1,6 +1,9 @@
 package com.royal.recreation.util;
 
+import com.royal.recreation.core.type.BonusLimitType;
+
 import java.math.BigDecimal;
+import java.util.Map;
 
 public class Constant {
 
@@ -9,6 +12,8 @@ public class Constant {
     public static Integer SYSTEM_MAX_BET_POINT = 1000;
 
     public static String SYSTEM_NOTICE = "";
+
+    public static Map<BonusLimitType, BigDecimal> SYSTEM_LIMIT;
 
     public static final int kjdTime = 30;
 

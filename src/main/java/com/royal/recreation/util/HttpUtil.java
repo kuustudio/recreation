@@ -16,7 +16,12 @@ public class HttpUtil {
 
     public static String httpGet(String url) {
         HttpGet get = new HttpGet(url);
-        get.setConfig(RequestConfig.custom().setCookieSpec(CookieSpecs.STANDARD).build());
+        get.setConfig(RequestConfig.custom()
+                .setCookieSpec(CookieSpecs.STANDARD)
+                .setConnectTimeout(5000)
+                .setConnectionRequestTimeout(1000)
+                .setSocketTimeout(5000)
+                .build());
         return getResult(get);
     }
 

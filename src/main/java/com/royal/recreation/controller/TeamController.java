@@ -4,6 +4,7 @@ import com.royal.recreation.config.bean.MyUserDetails;
 import com.royal.recreation.controller.base.BaseController;
 import com.royal.recreation.controller.base.BaseQuery;
 import com.royal.recreation.core.entity.*;
+import com.royal.recreation.core.type.BonusLimitType;
 import com.royal.recreation.core.type.PointRecordType;
 import com.royal.recreation.core.type.Status;
 import com.royal.recreation.core.type.UserType;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -74,7 +76,28 @@ public class TeamController extends BaseController {
         CapitalPool pool = Mongo.buildMongo().findOne(CapitalPool.class);
         model.addAttribute("user", user);
         model.addAttribute("pool", pool);
+        Map<BonusLimitType, BigDecimal> systemLimit = pool.getSystemLimit();
+        model.addAttribute("bonusLimitType", new HashMap<String, Object>() {{
+            systemLimit.forEach((k, v) -> put(k.toString(), v));
+        }});
         return "team/system";
+    }
+
+    @RequestMapping("/bonusLimit")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @ResponseBody
+    public Object bonusLimit(HttpServletRequest request, PostCodeQuery query) {
+        Map<BonusLimitType, BigDecimal> result = new HashMap<BonusLimitType, BigDecimal>() {{
+            Map<String, BigDecimal> limitType = query.getBonusLimitType();
+            for (String value : limitType.keySet()) {
+                put(BonusLimitType.valueOf(value), limitType.get(value));
+            }
+        }};
+        Mongo.buildMongo().updateFirst(update -> {
+            update.set("systemLimit", result);
+        }, CapitalPool.class);
+        Constant.SYSTEM_LIMIT = result;
+        return Collections.singletonMap("msg", "修改成功");
     }
 
     @RequestMapping("/setting")

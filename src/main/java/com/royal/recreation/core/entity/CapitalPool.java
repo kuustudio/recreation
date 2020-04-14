@@ -1,6 +1,7 @@
 package com.royal.recreation.core.entity;
 
 import com.royal.recreation.core.entity.base.Domain;
+import com.royal.recreation.core.type.BonusLimitType;
 import com.royal.recreation.core.type.PointRecordType;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -25,7 +26,8 @@ public class CapitalPool extends Domain {
     private BigDecimal rechargeValue = BigDecimal.ZERO;
     // 撤资总额
     private BigDecimal cashOutValue = BigDecimal.ZERO;
-
+    // 限制
+    public Map<BonusLimitType, BigDecimal> systemLimit;
     // 奖金池变换累计
     private Map<PointRecordType, BigDecimal> detailMap = new HashMap<>();
 
