@@ -300,6 +300,16 @@ public class TeamController extends BaseController {
         return "team/userListBiao";
     }
 
+    @RequestMapping("/deleteU")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public void deleteU(@AuthenticationPrincipal MyUserDetails userDetails, String id, HttpServletResponse response) {
+        Mongo query = Mongo.buildMongo();
+        if (userDetails.getUserType() == UserType.AGENT) {
+            query.eq("pId", userDetails.getId());
+        }
+        query.id(id).updateFirst(update -> update.set("deleted", Boolean.TRUE), UserInfo.class);
+    }
+
     @RequestMapping("/changeStatus")
     public void changeStatus(@AuthenticationPrincipal MyUserDetails userDetails, Status status, String id, HttpServletResponse response) {
         Mongo query = Mongo.buildMongo();

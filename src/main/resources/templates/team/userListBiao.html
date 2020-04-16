@@ -36,6 +36,7 @@
                     <a th:href="${'javascript:editUser(''' + item.id +''');'}">编辑</a>
                     <a th:href="${'javascript:recharge(''' + item.id +''');'}" th:text="${item.userType.toString() eq 'ADMIN'?'充值':'上分'}">上分</a>
                     <a th:if="${item.userType.toString() ne 'ADMIN'}" th:href="${'javascript:cashOut(''' + item.id +''');'}">下分</a>
+                    <a th:href="${'javascript:deleteU(''' + item.id +''');'}">删除用户</a>
                 </td>
                 <td sec:authorize="!hasAuthority('ADMIN')">
                     <a th:href="${'/report/counts?username='+item.username}">查看</a>
@@ -198,6 +199,48 @@
                         data:{
                             id:id,
                             input: input
+                        },
+                        type:'post',
+                        dataType:'json',
+                        error:function(xhr, textStatus, errorThrown){
+                            $.alert(errorThrown||textStatus);
+                        },
+                        success:function(data, textStatus, xhr){
+                            reloadList();
+                        },
+                        complete:function(xhr, textStatus){
+                            var errorMessage=xhr.getResponseHeader('X-Error-Message');
+                            if(errorMessage) gamePostedCode(decodeURIComponent(errorMessage));
+                        }
+                    });
+                },
+                "取消": function() {
+                    $( this ).dialog( "close" );
+
+                }
+
+            }
+        });//dialog end
+        return false;
+    }
+
+    function deleteU(id){
+        var obj=$(this);
+        var tipString='<span class="ui-wjicon-confirm"></span>是否确定删除该用户？';
+        var wjDialog=$('#wanjinDialog').html(tipString).dialog({
+            title:'温馨提示',
+            resizable: false,
+            width:450,
+            minHeight:180,
+            modal: true,
+            buttons: {
+                "确定": function() {
+                    $( this ).dialog( "close" );
+                    obj.attr("onajax","");
+                    obj.click();
+                    $.ajax('/team/deleteU', {
+                        data:{
+                            id:id,
                         },
                         type:'post',
                         dataType:'json',

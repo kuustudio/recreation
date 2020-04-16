@@ -342,6 +342,7 @@ public class Mongo extends MongoQuery {
     }
 
     public <T> List<T> find(Class<T> clazz) {
+        ne("deleted", Boolean.TRUE);
         return mongoOperations.find(query, clazz, collectionName(clazz));
     }
 
@@ -449,6 +450,7 @@ public class Mongo extends MongoQuery {
     }
 
     public <T> T findOne(Class<T> clazz) {
+        ne("deleted", Boolean.TRUE);
         return mongoOperations.findOne(query, clazz, collectionName(clazz));
     }
 
