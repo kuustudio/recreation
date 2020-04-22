@@ -353,7 +353,7 @@ th.fc {
 .bottompage a{display:inline-block; width:50px; height:22px; line-height:22px;/* background:none repeat scroll 0 0 #c32828; */color:#FFFFFF; padding: 3px 0px;border: 1px solid #e6e6e6;background: #f6f6f6;color: #666666;text-align:center;font-family: \u5b8b\u4f53,Arial;}
 .bottompage a:hover{/* background:none repeat scroll 0 0 #e33f3f; *//* color:#B7B7BB; */}
 .bottompage a.disabled{background:none repeat scroll 0 0 #e6e6e6;color:#666;}
-.bottompage a.pagecurrent{background: none repeat scroll 0 0 #ffb347 ;color:#FFFFFF;}
+.bottompage a.pagecurrent{background: none repeat scroll 0 0 #4476a8 ;color:#FFFFFF;}
 .bottompage span.disabled{margin-left:10px; font-size:14px; color:#666;}
 
 /*分页结束*/

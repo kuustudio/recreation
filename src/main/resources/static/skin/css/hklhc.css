@@ -413,16 +413,16 @@
     background-position: -100px -200px;
 }
 .dGameStatus .sBallRed{
-    background: #ffb347  ;
+    background: #4476a8  ;
 }
 .dGameStatus .sBallBlue{
-    background: #ffb347  ;
+    background: #4476a8  ;
 }
 .dGameStatus .sBallGreen{
-    background: #ffb347  ;
+    background: #4476a8  ;
 }
 .dGameStatus .sGameStatusItem{
-    background: #ffb347  ;
+    background: #4476a8  ;
     /* width: 55px; */
 }
 .dGameStatus .sGameStatusItem, .dGameStatus .sBallRed, .dGameStatus .sBallBlue, .dGameStatus .sBallGreen{

@@ -240,7 +240,7 @@
 	position: relative;
 }
 .game-main .game-btn .ul-li.current {
-border-bottom: 2px solid #745a8e;      font-weight: bold;      color: #ffb347 ;}
+border-bottom: 2px solid #745a8e;      font-weight: bold;      color: #4476a8 ;}
 .game-main .game-btn .ul-li .content {
 	cursor: pointer;
 	font-size: 14px;
@@ -282,7 +282,7 @@ border-bottom: 2px solid #745a8e;      font-weight: bold;      color: #ffb347 ;}
 }
 .game-main .game-cont .game-btn2 .ul-li:hover a {
 	background-position: left -610px;
-	color: #ffb347  ;
+	color: #4476a8  ;
 }
 .game-main .game-cont .game-btn2 .ul-li.current {
 	/* background: url(/images/common/menu_bg.jpg) no-repeat right -200px; */
@@ -293,8 +293,8 @@ border-bottom: 2px solid #745a8e;      font-weight: bold;      color: #ffb347 ;}
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
-	border: 1px solid #ffb347  ;
-	color: #ffb347  ;
+	border: 1px solid #4476a8  ;
+	color: #4476a8  ;
 }
 .game-main .game-cont .game-btn2 #game-helptips{margin-top:2px; padding-left:10px;}
 
@@ -411,7 +411,7 @@ border-bottom: 2px solid #745a8e;      font-weight: bold;      color: #ffb347 ;}
 	text-align: center;
 	margin-right: 5px;
 }
-.game .pp input.action:hover,.game .pp input.action.on{color: #ffb347  ;}
+.game .pp input.action:hover,.game .pp input.action.on{color: #4476a8  ;}
 
 .game-main .game-cont .num-table .fandian{height:32px;line-height:32px; margin-top:6px;}
 .game-main .game-cont .num-table .fandian span{float:left;}
@@ -493,12 +493,12 @@ label{ cursor:pointer;}
 .orderNow1 { overflow: hidden; padding:10px 20px;background:#fff;}
 .chooseAllMsg { font-size: 14px; color: #737373; margin-top: 15px; float: left; display: inline; }
 .chooseAllMsg .num { font-weight: bold; font-size: 18px; color: #737373; }
-.chooseAllMsg .orange { color: #ffb347  ; }
+.chooseAllMsg .orange { color: #4476a8  ; }
 .chooseAllMsg p { display: inline-block; margin-right: 15px; }
 .sendChoose { /* margin-right: 200px; */ /* float: right; */ /* display: inline; */ }
 .sendChoose a,.sendChoose a:hover {background: url(/images/nsc/lottery/tz.png) no-repeat; display: block; width: 149px; height: 46px; line-height: 46px; text-align: center; color: #fff; font-size: 20px; }
 .sendChoose a.sendBtnDisabled,.sendChoose a.sendBtnDisabled:hover { background: url(/images/nsc/lottery/tz_disabled.png) no-repeat; cursor: default; }
-.checkZhui {height: 22px; color: #ffb347  ; font-size: 13px; }
+.checkZhui {height: 22px; color: #4476a8  ; font-size: 13px; }
 
 .checkZhui span {display: inline; margin-top: 2px; width: 13px; height: 13px; float: left; margin-right: 2px; cursor: pointer; background: url(/images/nsc/lottery/checkbox.png) no-repeat; }
 .checkZhui span.uncheck { background: url(/images/nsc/lottery/checkbox.png) left -13px no-repeat; }
@@ -518,10 +518,10 @@ label{ cursor:pointer;}
     float: left;
     display: inline;}
 .tz-tongji .num{font-weight: bold;font-size: 18px; color: #737373;}
-.tz-tongji .orange{color: #ffb347  ;}
+.tz-tongji .orange{color: #4476a8  ;}
 .checkZhui b:hover { color:#898989;}
 .touzhu-cont{min-height: 40px; max-height: 192px;overflow: auto;border-bottom: 1px solid #c7c7c7;background: #fff;}
-.line table tr th {height: 32px;background: #ffb347 ;color: #fff;font-size: 14px;text-align: center;font-weight: normal;}
+.line table tr th {height: 32px;background: #4476a8 ;color: #fff;font-size: 14px;text-align: center;font-weight: normal;}
 .tz-true-btn{
     background: url(/images/nsc/lottery/tz.png) no-repeat;
     display: block;
@@ -546,7 +546,7 @@ label{ cursor:pointer;}
     height: 39px;
     text-align: center;
     font-size: 14px;
-    color: #ffb347 ;
+    color: #4476a8 ;
     }
 	
 	

@@ -32,12 +32,12 @@ a:hover { color: #000; text-decoration: none; }
 .money-left{float:left;}
 .t_menu { font-size: 18px; color: #4c4a4d; font-family: 'Microsoft YaHei';}
 .t_menu a,.t_menu span { display:inline-block;}
-.t_money { padding:0;line-height:23px;color: #ffb347 ;position:relative;top:1px;}
+.t_money { padding:0;line-height:23px;color: #4476a8 ;position:relative;top:1px;}
 .t_money #refff{margin-right:5px;}
 .t_money b{font-weight:normal;letter-spacing:1.5px;vertical-align:-4px;}
 .t_money .hide-money{display:none;}
 .t_menu .t_btn {font-size:14px;color:#fff;padding: 4px 13px 5px; background:#009933; border-radius: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;margin-left: 8px;}
-.t_menu .t_btn:hover { background-color:#ffb347 ;color:#fff;}
+.t_menu .t_btn:hover { background-color:#4476a8 ;color:#fff;}
 .t_menu .t_kefu {font-size:14px;margin-left: 8px; display:inline-block;}
 .t_menu .t_kefu span,.t_menu .t_skin span{border-bottom:1px solid #B2ACAC;padding-bottom:0.5px;}
 .t_menu .t_kefu:hover { text-decoration: underline; }

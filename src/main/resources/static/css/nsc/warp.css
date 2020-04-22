@@ -267,7 +267,7 @@
 .horse_ul li.horse10 { background: url("/images/nsc/lottery/jssm/lottery_num.png") no-repeat 0px -1px!important;}
 
 /*上分 、下分 、投注记录*/
-.tools { width: 210px; background: #ffb347 ; height: 90px; }
+.tools { width: 210px; background: #4476a8 ; height: 90px; }
 .yu_e { margin: 10px 0 0 10px; padding-bottom: 10px; font-size: 13px; color: #fff; border-bottom: 1px solid #9d8197; position: relative; height: 19px; line-height: 19px; }
 .yu_e .ic-unlook{background-position:-103px -117px;}
 .yu_e .ic-unlook.hide{background-position:-23px -116px;}
@@ -302,9 +302,9 @@
 .lotteryHistory .orange { color: #f26634 !important; }
 .lotteryHistoryBody {  min-height:0px; max-height: 242px; overflow: hidden; }
 .lotteryHistoryBody a { color:#91317b;}
-.lotteryHistoryBody a:hover { color:#ffb347  ;}
+.lotteryHistoryBody a:hover { color:#4476a8  ;}
 .getMore { height: 42px; background: #fff; text-align: center; border-top: 1px solid #d3d2d2; margin-top: -1px;position:relative;z-index:1;}
-.getMore a { display:inline-block; border-bottom:1px solid #ffb347  ; font-size: 16px; color: #ffb347  ; line-height:18px; height:18px; margin-top:10px;}
+.getMore a { display:inline-block; border-bottom:1px solid #4476a8  ; font-size: 16px; color: #4476a8  ; line-height:18px; height:18px; margin-top:10px;}
 .getMore a:hover { color:#646361; text-decoration:none; border:0;}
 
 /*iframe区域*/
@@ -312,9 +312,9 @@
 .lottery_iframe iframe { width: 980px; }
 
 /*投注记录中的详情*/
-.task_div { right:auto!important; font-family: "Microsoft Yahei"; background-color: #ffb347 ; border: 1px solid #ffb347 ; color: #FFF; position: absolute; width: 290px!important; line-height: 24px;z-index:9;}
+.task_div { right:auto!important; font-family: "Microsoft Yahei"; background-color: #4476a8 ; border: 1px solid #4476a8 ; color: #FFF; position: absolute; width: 290px!important; line-height: 24px;z-index:9;}
 .task_div a,.task_div a:hover {color: #fff!important; margin-left:10px; }
-.task_div textarea {width: 99%; font-size: 14px; text-align: center; font-weight: 700; color: #ffb347 ; border: 0!important; padding: 1px; min-height: 100px; resize: vertical; white-space: normal;}
+.task_div textarea {width: 99%; font-size: 14px; text-align: center; font-weight: 700; color: #4476a8 ; border: 0!important; padding: 1px; min-height: 100px; resize: vertical; white-space: normal;}
 
 .no-open_award { width:100%; height:200px; padding-top:200px; margin-bottom:12px; text-align:center; font-size:24px; color:#3f3e3e; font-weight:bold; background:#fff url(/images/nsc/icon_no-open_award.png) no-repeat center 120px; 
 -moz-box-shadow: 0px 0px 5px #ddd; -webkit-box-shadow: 0px 0px 5px #ddd; box-shadow: 0px 0px 5px #ddd; }
@@ -325,4 +325,4 @@
 
 /* 推送二期优化*/
 .push_issue span { width:115px; display:block; white-space: nowrap; overflow:hidden; text-overflow:ellipsis; text-align:center; margin:0 auto;}
-.lotteryHistory table .push_issue span.active{position:absolute;width:202px; white-space: normal; text-align:center;top:2px;background:#ffb347 ;padding:5px 15px;border-radius:8px;-webkit-border-radius:8px;-moz-border-radius:8px;z-index:88; color:#FFFFFF;}
+.lotteryHistory table .push_issue span.active{position:absolute;width:202px; white-space: normal; text-align:center;top:2px;background:#4476a8 ;padding:5px 15px;border-radius:8px;-webkit-border-radius:8px;-moz-border-radius:8px;z-index:88; color:#FFFFFF;}

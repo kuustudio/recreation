@@ -388,8 +388,8 @@ table { border-collapse: collapse; border-spacing: 0; }
 .open_form { /*background-image:url(images/ag_menue_bg.png);background-repeat:repeat-x;*/ /*min-height:500px;*/ }
 .open_form .sub_left { width: 190px; float: left; }
 .open_form .sub_left h1 { background: url(images/ag_left_menue_bg.jpg) no-repeat; height: 48px; line-height: 48px; color: #ffe400; font-size: 18px; margin-left: -15px; text-align: center; }
-.open_form .sub_left .titlebody { background: #c43a4b; width: 160px; padding: 0 10px 15px; }
-.open_form .sub_left .titlebody2 { background: #c43a4b; width: 160px; padding: 15px 10px 15px; }
+.open_form .sub_left .titlebody { background: #4476a8; width: 160px; padding: 0 10px 15px; }
+.open_form .sub_left .titlebody2 { background: #4476a8; width: 160px; padding: 15px 10px 15px; }
 .open_form .sub_left .titlebody h3, .titlebody2 h3 { background: url(images/sub_tab_bg.png) no-repeat; height: 44px; line-height: 40px; font-size: 18px; color: #fff; text-align: center; cursor: pointer; }
 .open_form .sub_left .titlebody h3 a { color: #fff; }
 .open_form .sub_left .content ul li, .content02 ul li { line-height: 36px; margin-bottom: 10px; overflow: hidden; }

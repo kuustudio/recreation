@@ -29,7 +29,7 @@ li { list-style: none;}
 .activity_title .check_btn2 { background:#8a8a8a; width:140px; height:40px; line-height:40px; text-align:center; font-size:16px; color:#fff; display:block; position:absolute; top:8px; right:10px; box-shadow: 2px 2px 2px #a4a2a3; cursor:default;}
 .countdown { font-size:14px; position:absolute; top:0px; right:320px; color:#9e608b;}
 .countdown span { font-weight:bold; font-size:18px; margin:0 3px;}
-.check_btn_signIn { background:#ffb347  ; width:140px; height:40px; line-height:40px; text-align:center; font-size:16px; color:#fff; display:block; position:absolute; top:8px; right:160px; box-shadow: 2px 2px 2px #a4a2a3;}
+.check_btn_signIn { background:#4476a8  ; width:140px; height:40px; line-height:40px; text-align:center; font-size:16px; color:#fff; display:block; position:absolute; top:8px; right:160px; box-shadow: 2px 2px 2px #a4a2a3;}
 .check_btn_signIn:hover { background:#ef3f00; color:#fff;}
 
 .activity_nr { padding:0 25px 10px;}

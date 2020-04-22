@@ -5,7 +5,7 @@
 .skin-mask { display: none; position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: 399;opacity:0.6;filter:alpha(opacity=60); background: #000;}
 .skin-box { display: none; width: 714px; height: 460px; position:fixed; margin: -230px 0 0 -357px; left: 50%; top: 50%; background: #f9f9f9; z-index: 400;}
 .skin-box .close_box {background: url("/images/nsc/exchange-skin_imgbg.png") no-repeat -52px 0; width: 15px; height: 15px; display: inline-block; position: absolute; top: 12px; right: 14px; cursor: pointer;}
-.skin_tit { padding:0 14px 0 10px; background: url("/images/nsc/exchange-skin_titbg.png") repeat-x; border-bottom:1px solid #ffb347 ; height: 40px; line-height: 40px; font-size: 16px; color: #fff; overflow: hidden;}
+.skin_tit { padding:0 14px 0 10px; background: url("/images/nsc/exchange-skin_titbg.png") repeat-x; border-bottom:1px solid #4476a8 ; height: 40px; line-height: 40px; font-size: 16px; color: #fff; overflow: hidden;}
 .skin_tit i { background: url("/images/nsc/exchange-skin_imgbg.png") no-repeat; width: 32px; height: 32px; display: inline-block; vertical-align: -10px; margin-right: 5px;}
 
 .skin_ulbox { padding: 30px 0 0 35px;}

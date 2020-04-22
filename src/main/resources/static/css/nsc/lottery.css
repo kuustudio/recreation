@@ -1,7 +1,7 @@
 body { background:#ebebed;}
 .floatL { float: left; }
-.orange { color:#ffb347  ;}
-a:hover { color: #ffb347  ; }
+.orange { color:#4476a8  ;}
+a:hover { color: #4476a8  ; }
 .new { background: url(/images/nsc/home/ico-new.png) no-repeat; width:13px; height:13px;  display: inline-block; vertical-align:middle;}
 /*容器*/
 .lotteryBody { margin-bottom: 10px; }
@@ -11,23 +11,23 @@ a:hover { color: #ffb347  ; }
 .lotteryGroup { height: 42px; overflow: hidden; position: relative;}
 .lotteryGroup ul { display: inline; float: left; }
 .lotteryGroup ul li { cursor: pointer; font-size: 14px; color:#898989; display: inline; float: left; height: 40px; line-height: 40px; padding: 0px 13px; border-bottom: 2px solid #fff;border-right: 1px solid #f3f3f3; position:relative;}
-.lotteryGroup ul li:hover { color:#ffb347 ; font-weight:bold;}
-.lotteryGroup ul li.hover {border-bottom: 2px solid #745a8e; font-weight:bold; color:#ffb347 ; }
+.lotteryGroup ul li:hover { color:#4476a8 ; font-weight:bold;}
+.lotteryGroup ul li.hover {border-bottom: 2px solid #745a8e; font-weight:bold; color:#4476a8 ; }
 .lotteryGroup .ren { padding-right: 15px; display: inline; float: right; height: 40px; line-height: 40px; }
 .lotteryGroup .ren a { background: url(/images/nsc/lottery/ren.png) no-repeat left center; display: block; padding-left: 18px; font-size: 14px; color:#2e2b2b; }
-.lotteryGroup .ren a:hover {color:#ffb347 ; font-weight:bold;}
+.lotteryGroup .ren a:hover {color:#4476a8 ; font-weight:bold;}
 .lottery_btn_pk10 { position: absolute; top: 0; right: 0; background: url(/images/nsc/lottery/btn_lottery_pkdh.png) no-repeat; width: 90px; height: 29px; cursor: pointer; text-indent: -9999px;display:none;}
 
 .lotteryMember { border-bottom: 1px solid #f3f3f3; padding: 5px 0; z-index: 200; }
 .lotteryMember dl { overflow: hidden; line-height: 20px; width: 580px; margin:5px 0; }
 .lotteryMember dl dt { display: inline; float: left; line-height: 24px; text-align: right; font-size: 13px; color: #969696; margin-right: 10px; margin-left:20px;}
 .lotteryMember dl dd { margin: 0px 10px 0px 0px; display: inline; float: left; line-height: 20px ; font-size: 13px; color: #2d2a2a; padding: 0 5px; cursor: pointer; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border:1px solid #fff; }
-.lotteryMember dl dd:hover { color:#ffb347  ; }
-.lotteryMember dl dd.hover { -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border:1px solid #ffb347  ; color:#ffb347  ; }
+.lotteryMember dl dd:hover { color:#4476a8  ; }
+.lotteryMember dl dd.hover { -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border:1px solid #4476a8  ; color:#4476a8  ; }
 .playf_dl { line-height: 22px; margin-left:17px; overflow: hidden; }
 .playf_dl span { /*display: inline; float: left;*/ }
 .playf_dl span.help_con { max-width: 560px; }
-.lotteryMember .fandian { color:#ffb347  ; font-size:12px; top:12px; right:10px; }
+.lotteryMember .fandian { color:#4476a8  ; font-size:12px; top:12px; right:10px; }
 .lotteryMember select { font-size:12px; border:1px solid #BFBABA; padding:3px 2px; color:#666; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
 
 .wfsm { width: 22px; height: 22px; background: url(/images/nsc/lottery/bangzhu.png) no-repeat; text-indent: -9999px; margin-right: 5px; display: inline-block; }
@@ -37,10 +37,10 @@ a:hover { color: #ffb347  ; }
 #lt_example_div,#lt_help_div { -moz-box-shadow: 0px 0px 5px #ddd; -webkit-box-shadow: 0px 0px 5px #ddd; box-shadow: 0px 0px 5px #ddd; background: #fff; border: 1px solid #ddd; color: #777; display: none; font-size: 13px; line-height: 20px; margin: 10px 0 0; overflow: hidden; padding: 8px 10px; position: absolute; text-align: left; width: 300px }
 .louhao { background: url(/images/nsc/lottery/louhao.png) no-repeat left center; padding-left: 20px; position: absolute; right: 18px; top:3px; line-height: 20px; width: 50px; height: 20px; }
 .louhao a { color: #504a5f; }
-.louhao a:hover { color: #ffb347  ; }
+.louhao a:hover { color: #4476a8  ; }
 .luzhi { background: url(/images/nsc/lottery/pk10_luzhi_icon.gif) no-repeat; position: absolute; right: 90px; top:5px; font-size: 14px; line-height: 20px; width: 53px; height: 15px; text-indent: -9999px;}
-.luzhi a { color: #ffb347  ; display: block; width: 53px; height: 15px;}
-.luzhi a:hover { color: #ffb347  ; }
+.luzhi a { color: #4476a8  ; display: block; width: 53px; height: 15px;}
+.luzhi a:hover { color: #4476a8  ; }
 /*.yx_help { background: url(/images/nsc/lottery/help.png) no-repeat left center; padding-left: 20px; position: absolute; right: 12px; top:22px; line-height: 20px; width: 50px; height: 20px; }
 .yx_help a { color: #504a5f; }*/
 
@@ -55,11 +55,11 @@ a:hover { color: #ffb347  ; }
 .lotteryView .nList li.hover { background: url(/images/nsc/lottery/yuan.png) left -38px no-repeat; color: #fff;}
 .lotteryView .quwei { text-align: center; width: 100%;}
 .lotteryView .quwei li { background: #fff; height: 40px; line-height: 40px; width: auto; border: 2px solid #c0c0c0; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; padding: 0 10px;}/*趣味*/
-.lotteryView .quwei li:hover { border: 2px solid #ffb347  ; background:none;}
-.lotteryView .quwei li.hover { background:#ffb347  ; color:#fff; border: 2px solid #ffb347  ;}
+.lotteryView .quwei li:hover { border: 2px solid #4476a8  ; background:none;}
+.lotteryView .quwei li.hover { background:#4476a8  ; color:#fff; border: 2px solid #4476a8  ;}
 .lotteryView .cList { /*width: 180px;*/ float: left; margin-left:30px;}
 .lotteryView .cList li { display: inline-block; width: 22px; height: 38px; line-height: 38px; color: #a2a1a1; font-size: 15px; text-align: center; margin-right: 5px }
-.lotteryView .cList li:hover,.lotteryView .cList li.hover { color: #ffb347  ; }
+.lotteryView .cList li:hover,.lotteryView .cList li.hover { color: #4476a8  ; }
 
 /*北京快乐8*/
 .lotteryView .each_k8 h3 { width: 40px; height: 32px; line-height: 32px; text-align: center; color: #4f4f4f; font-size: 14px}
@@ -70,8 +70,8 @@ a:hover { color: #ffb347  ; }
 .lotteryView .each_k8 .nList li:hover { background: url(/images/nsc/lottery/yuan32.png) no-repeat 0 -64px; }
 .lotteryView .each_k8 .nList li.hover { color:#fff; background: url(/images/nsc/lottery/yuan32.png) no-repeat 0 -32px; }
 .lotteryView .sp li { background: #fff; height: 40px; line-height: 40px; width: auto; border: 2px solid #c0c0c0; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; padding:10px; margin:10px;}/*趣味*/
-.lotteryView .sp li:hover { border: 2px solid #ffb347  ; background:none;}
-.lotteryView .sp li.hover { background:#ffb347  ; color:#fff; border: 2px solid #ffb347  ;}
+.lotteryView .sp li:hover { border: 2px solid #4476a8  ; background:none;}
+.lotteryView .sp li.hover { background:#4476a8  ; color:#fff; border: 2px solid #4476a8  ;}
 .lotteryView .sp li .codedesc {}
 .lotteryView .sp2 li { line-height: 20px; font-size: 18px; width:90px;}
 
@@ -173,10 +173,10 @@ a:hover { color: #ffb347  ; }
 .lotteryView_k3 ul li.double p { text-align:center; font-size:18px; color:#4f4f4f; padding-top:5px; }
 .lotteryView_k3 ul li.triple p { text-align:center; font-size:18px; color:#4f4f4f; padding-top:5px; }
 .lotteryView_k3 .each ul li { display:inline-block; background:url(/images/nsc/lottery/yuan_k3k3.png) no-repeat left -48px; width:38px; height:38px; line-height:38px; color:#4f4f4f; font-size:18px; text-align:center; margin-right:3px; }
-.lotteryView_k3 .each ul li:hover { background:url(/images/nsc/lottery/yuan_k3k3.png) no-repeat; color:#ffb347  ;}
+.lotteryView_k3 .each ul li:hover { background:url(/images/nsc/lottery/yuan_k3k3.png) no-repeat; color:#4476a8  ;}
 .lotteryView_k3 .each ul li.hover { background:url(/images/nsc/lottery/yuan_k3k3.png) no-repeat left -96px; color:#fff;}
 .lotteryView_k3 .each ul li.clean { display:inline-block; background:none; width:30px; height:38px; line-height:38px; color:#A2A1A1; font-size:15px; text-align:center; margin-left: 9px; }
-.lotteryView_k3 .each ul li.clean:hover { color:#ffb347  ;}
+.lotteryView_k3 .each ul li.clean:hover { color:#4476a8  ;}
 /*六合彩波色*/
 .lotteryView_bs { padding:0px; }
 .lotteryView_bs .bsBox { /* width:760px; */ /* overflow:hidden; */ border-top:1px solid #e0e0e0; }
@@ -189,9 +189,9 @@ a:hover { color: #ffb347  ; }
 .lotteryView_bs .bsBox dl dd span.red { margin-left:5px; background:url(/images/nsc/lottery/rgb.png) no-repeat; width:28px; height:28px; line-height:28px; color:#fff; text-align:center; font-size:14px; }
 .lotteryView_bs .bsBox dl dd span.green { margin-left:5px; background:url(/images/nsc/lottery/rgb.png) no-repeat left center; width:28px; height:28px; line-height:28px; color:#fff; text-align:center; font-size:14px; }
 .lotteryView_bs .bsBox dl dd span.blue { margin-left:5px; background:url(/images/nsc/lottery/rgb.png) no-repeat left bottom; width:28px; height:28px; line-height:28px; color:#fff; text-align:center; font-size:14px; }
-.lotteryView_bs .bsBox dl dd span.num { width:70px; text-align:center; color: #ffb347 ;height:28px; line-height:28px;}
+.lotteryView_bs .bsBox dl dd span.num { width:70px; text-align:center; color: #4476a8 ;height:28px; line-height:28px;}
 .lotteryView_bs .bsBox dl dd span.input { }
-.lotteryView_bs .bsBox dl dd span input { width:30px; height:21px; border:1px solid #ffb347 ; padding:2px; text-align:center; margin-top:2px; }
+.lotteryView_bs .bsBox dl dd span input { width:30px; height:21px; border:1px solid #4476a8 ; padding:2px; text-align:center; margin-top:2px; }
 .addOrderLeftsxtw {
     width: 380px;
     float: right;
@@ -211,9 +211,9 @@ a:hover { color: #ffb347  ; }
 .lotteryView_sxtw .sxtwBox dl dd span.red { margin-left:5px; background:url(/images/nsc/lottery/rgb.png) no-repeat; width:28px; height:28px; line-height:28px; color:#fff; text-align:center; font-size:14px; }
 .lotteryView_sxtw .sxtwBox dl dd span.green { margin-left:5px; background:url(/images/nsc/lottery/rgb.png) no-repeat left center; width:28px; height:28px; line-height:28px; color:#fff; text-align:center; font-size:14px; }
 .lotteryView_sxtw .sxtwBox dl dd span.blue { margin-left:5px; background:url(/images/nsc/lottery/rgb.png) no-repeat left bottom; width:28px; height:28px; line-height:28px; color:#fff; text-align:center; font-size:14px; }
-.lotteryView_sxtw .sxtwBox dl dd span.num { width:70px; text-align:center; height:28px; line-height:28px;color: #ffb347 ;}
+.lotteryView_sxtw .sxtwBox dl dd span.num { width:70px; text-align:center; height:28px; line-height:28px;color: #4476a8 ;}
 .lotteryView_sxtw .sxtwBox dl dd span.input { }
-.lotteryView_sxtw .sxtwBox dl dd span input { width:30px; height:21px; border:1px solid #ffb347 ; padding:2px; text-align:center; margin-top:2px; }
+.lotteryView_sxtw .sxtwBox dl dd span input { width:30px; height:21px; border:1px solid #4476a8 ; padding:2px; text-align:center; margin-top:2px; }
 .addOrderLeftsxtw {
     width: 380px;
     float: right;
@@ -233,10 +233,10 @@ a:hover { color: #ffb347  ; }
 .lotteryView_lhc .lhcBox dl dd span.red { margin-left:5px; background:url(/images/nsc/lottery/rgb.png) no-repeat; width:28px; height:28px; line-height:28px; color:#fff; text-align:center; font-size:14px; }
 .lotteryView_lhc .lhcBox dl dd span.green { margin-left:5px; background:url(/images/nsc/lottery/rgb.png) no-repeat left center; width:28px; height:28px; line-height:28px; color:#fff; text-align:center; font-size:14px; }
 .lotteryView_lhc .lhcBox dl dd span.blue { margin-left:5px; background:url(/images/nsc/lottery/rgb.png) no-repeat left bottom; width:28px; height:28px; line-height:28px; color:#fff; text-align:center; font-size:14px; }
-.lotteryView_lhc .lhcBox dl dd span.num { width:70px; text-align:center; height:28px; line-height:28px;color: #ffb347 ;}
+.lotteryView_lhc .lhcBox dl dd span.num { width:70px; text-align:center; height:28px; line-height:28px;color: #4476a8 ;}
 .lotteryView_lhc .lhcBox dl dd span.input { }
-.lotteryView_lhc .lhcBox dl dd span input { width:30px; height:21px; border:1px solid #ffb347 ; padding:2px; text-align:center; margin-top:2px; }
-.lhcwf{ color: #ffb347 ;
+.lotteryView_lhc .lhcBox dl dd span input { width:30px; height:21px; border:1px solid #4476a8 ; padding:2px; text-align:center; margin-top:2px; }
+.lhcwf{ color: #4476a8 ;
     font-size: 18px;
     display: inline;
     float: left;}
@@ -312,9 +312,9 @@ a:hover { color: #ffb347  ; }
 .lotteryView_lhc4 .lhcBox4 dl dd span.red { margin-left:5px; background:url(/images/nsc/lottery/rgb.png) no-repeat; width:28px; height:28px; line-height:28px; color:#fff; text-align:center; font-size:14px; }
 .lotteryView_lhc4 .lhcBox4 dl dd span.green { margin-left:5px; background:url(/images/nsc/lottery/rgb.png) no-repeat left center; width:28px; height:28px; line-height:28px; color:#fff; text-align:center; font-size:14px; }
 .lotteryView_lhc4 .lhcBox4 dl dd span.blue { margin-left:5px; background:url(/images/nsc/lottery/rgb.png) no-repeat left bottom; width:28px; height:28px; line-height:28px; color:#fff; text-align:center; font-size:14px; }
-.lotteryView_lhc4 .lhcBox4 dl dd span.num { width:70px; text-align:center; height:28px; line-height:28px;color: #ffb347 ;}
+.lotteryView_lhc4 .lhcBox4 dl dd span.num { width:70px; text-align:center; height:28px; line-height:28px;color: #4476a8 ;}
 .lotteryView_lhc4 .lhcBox4 dl dd span.input { }
-.lotteryView_lhc4 .lhcBox4 dl dd span input { width:30px; height:21px; border:1px solid #ffb347 ; padding:2px; text-align:center; margin-top:2px; }
+.lotteryView_lhc4 .lhcBox4 dl dd span input { width:30px; height:21px; border:1px solid #4476a8 ; padding:2px; text-align:center; margin-top:2px; }
 /*-----------------------------------------*/
 .lotteryView_lhc5 { padding:0px; }
 .lotteryView_lhc5 .lhcBox5 { /* width:760px; */ /* overflow:hidden; */ border-top:1px solid #e0e0e0; }
@@ -327,9 +327,9 @@ a:hover { color: #ffb347  ; }
 .lotteryView_lhc5 .lhcBox5 dl dd span.red { margin-left:5px; background:url(/images/nsc/lottery/rgb.png) no-repeat; width:28px; height:28px; line-height:28px; color:#fff; text-align:center; font-size:14px; }
 .lotteryView_lhc5 .lhcBox5 dl dd span.green { margin-left:5px; background:url(/images/nsc/lottery/rgb.png) no-repeat left center; width:28px; height:28px; line-height:28px; color:#fff; text-align:center; font-size:14px; }
 .lotteryView_lhc5 .lhcBox5 dl dd span.blue { margin-left:5px; background:url(/images/nsc/lottery/rgb.png) no-repeat left bottom; width:28px; height:28px; line-height:28px; color:#fff; text-align:center; font-size:14px; }
-.lotteryView_lhc5 .lhcBox5 dl dd span.num { width:70px; text-align:center; height:28px; line-height:28px;color: #ffb347 ;}
+.lotteryView_lhc5 .lhcBox5 dl dd span.num { width:70px; text-align:center; height:28px; line-height:28px;color: #4476a8 ;}
 .lotteryView_lhc5 .lhcBox5 dl dd span.input { }
-.lotteryView_lhc5 .lhcBox5 dl dd span input { width:30px; height:21px; border:1px solid #ffb347 ; padding:2px; text-align:center; margin-top:2px; }
+.lotteryView_lhc5 .lhcBox5 dl dd span input { width:30px; height:21px; border:1px solid #4476a8 ; padding:2px; text-align:center; margin-top:2px; }
 /*六合彩连码*/
 .lotteryView_lhc3 { padding:0px; }
 .lotteryView_lhc3 .lhcBox3 { /* width:760px; */ /* overflow:hidden; */ border-top:1px solid #e0e0e0; }
@@ -342,9 +342,9 @@ a:hover { color: #ffb347  ; }
 .lotteryView_lhc3 .lhcBox3 dl dd span.red { margin-left:5px; background:url(/images/nsc/lottery/rgb.png) no-repeat; width:28px; height:28px; line-height:28px; color:#fff; text-align:center; font-size:14px; }
 .lotteryView_lhc3 .lhcBox3 dl dd span.green { margin-left:5px; background:url(/images/nsc/lottery/rgb.png) no-repeat left center; width:28px; height:28px; line-height:28px; color:#fff; text-align:center; font-size:14px; }
 .lotteryView_lhc3 .lhcBox3 dl dd span.blue { margin-left:5px; background:url(/images/nsc/lottery/rgb.png) no-repeat left bottom; width:28px; height:28px; line-height:28px; color:#fff; text-align:center; font-size:14px; }
-.lotteryView_lhc3 .lhcBox3 dl dd span.num { width:70px; text-align:center; height:28px; line-height:28px;color: #ffb347 ;}
+.lotteryView_lhc3 .lhcBox3 dl dd span.num { width:70px; text-align:center; height:28px; line-height:28px;color: #4476a8 ;}
 .lotteryView_lhc3 .lhcBox3 dl dd span.input { }
-.lotteryView_lhc3 .lhcBox3 dl dd span input { width:30px; height:21px; border:1px solid #ffb347 ; padding:2px; text-align:center; margin-top:2px; }
+.lotteryView_lhc3 .lhcBox3 dl dd span input { width:30px; height:21px; border:1px solid #4476a8 ; padding:2px; text-align:center; margin-top:2px; }
 /*六合彩开奖结果*/
 .lotteryView_lhc .lhcBox ul { height:48px; line-height:48px; border-bottom:1px solid #e0e0e0; width:100%; }
 .lotteryView_lhc .lhcBox ul.nobd { border:0px; }
@@ -409,14 +409,14 @@ a:hover { color: #ffb347  ; }
 .addOrderBox .fandian { width: 185px; overflow: hidden; margin-left: 20px; }
 .addOrderBox .fandian select { display: none; }
 .fandianlist li { font-size: 12px; color: #504a5f; font-weight: bold; }
-.fandianlist li.hover { color: #ffb347  ; }
+.fandianlist li.hover { color: #4476a8  ; }
 .switchBtn { background: url(/images/nsc/lottery/wfd_bg.png) no-repeat; width: 59px; height: 29px; margin-left: 10px; }
 .switchBtn span { background: url(/images/nsc/lottery/wfd_yuan.png) no-repeat; left: 0px; top:1px; width: 25px; height: 25px; cursor: pointer; }
 .chooseMsg { color: #7c7c7c; font-size: 14px; margin-top: -4px; margin-right: 10px; width: 250px; text-align:right; display: inline; float: right;}
 .chooseMsg1 { color: #7c7c7c; font-size: 14px; margin-top: 6px; margin-right: 10px; width: 250px; text-align:right; display: inline; float: right;}
 .chooseMsg p { /* display: inline-block; */ /* margin-left: 5px; */ }
 .chooseMsg p span { font-weight:bold;}
-#lt_sel_money { color: #ffb347  ; font-weight: bold; }
+#lt_sel_money { color: #4476a8  ; font-weight: bold; }
 .addOrderBox .addBtn { margin-right: 5px; float:right; background: url(/images/nsc/lottery/tjtz.png) no-repeat; width: 98px; height: 32px; border: none; cursor: pointer; text-align: center; font-size: 16px; color: #fff; font-weight: bold;  font-family:'Microsoft Yahei';}
 .addOrderBox .addBtnDisabled { background: url(/images/nsc/lottery/tjtz_disabled.png) no-repeat; cursor: default; color:#fff; font-family:'Microsoft Yahei'; }
 /*正常高度与625高度*/
@@ -476,7 +476,7 @@ a:hover { color: #ffb347  ; }
 .recentConGG ul { overflow: hidden; }
 .recentConGG ul li { padding-left: 10px; width:195px;overflow:hidden; white-space:nowrap;text-overflow: ellipsis; height:28px; line-height:28px;}
 .recentConGG ul li a { color: #828282; font-size: 12px; width:191px;}
-.recentConGG ul li a:hover { color: #ffb347  ; }
+.recentConGG ul li a:hover { color: #4476a8  ; }
 
 .pk10_kjul li {}
 .pk10_kjul li .num_k8 { width: 120px!important;}
@@ -484,9 +484,9 @@ a:hover { color: #ffb347  ; }
 /*选购列表*/
 .lotteryBottom {  margin-bottom: 10px; -moz-box-shadow: 0px 0px 5px #ddd; -webkit-box-shadow: 0px 0px 5px #ddd; box-shadow: 0px 0px 5px #ddd; }
 .lotteryList { min-height:72px; max-height: 192px; overflow: auto; border-bottom: 1px solid #c7c7c7; background:#fff; }
-.lotteryList table tr th { height:32px; background: #ffb347 ; color: #fff; font-size: 14px; text-align: center; font-weight: normal; }
+.lotteryList table tr th { height:32px; background: #4476a8 ; color: #fff; font-size: 14px; text-align: center; font-weight: normal; }
 .lotteryList table tr th .deleteAll,.lotteryList table tr th .deleteAll:hover {color: #fff; font-size: 14px; background: url(/images/nsc/lottery/delete_all.png) no-repeat right center; display: inline-block; padding-right: 15px; }
-.lotteryList table tr td.orange { color:#ffb347  ;}
+.lotteryList table tr td.orange { color:#4476a8  ;}
 .lotteryList table tr td,.lotteryList table tr.lottery th {background: #fff; border-top: 1px dashed #e2e1df; height: 39px; text-align: center; font-size: 14px; color:#CC3333; }
 .lotteryList table tr.lottery th { border: none; border-top: 1px dashed #e2e1df; text-align:left; text-indent:20px; }
 .lotteryList table tr td a.del {display: inline-block; width: 14px; height: 14px; background: url(/images/nsc/lottery/delete_one.png) no-repeat right center; }
@@ -499,12 +499,12 @@ a:hover { color: #ffb347  ; }
 .orderNow { overflow: hidden; padding:10px 20px;background:#fff;}
 .chooseAllMsg { font-size: 14px; color: #737373; margin-top: 15px; float: left; display: inline; }
 .chooseAllMsg .num { font-weight: bold; font-size: 18px; color: #737373; }
-.chooseAllMsg .orange { color: #ffb347  ; }
+.chooseAllMsg .orange { color: #4476a8  ; }
 .chooseAllMsg p { display: inline-block; margin-right: 15px; }
 .sendChoose { margin-right: 45px; float: right; display: inline; }
 .sendChoose a,.sendChoose a:hover {background: url(/images/nsc/lottery/tz.png) no-repeat; display: block; width: 149px; height: 46px; line-height: 46px; text-align: center; color: #fff; font-size: 20px; }
 .sendChoose a.sendBtnDisabled,.sendChoose a.sendBtnDisabled:hover { background: url(/images/nsc/lottery/tz_disabled.png) no-repeat; cursor: default; }
-.checkZhui {height: 22px; color: #ffb347  ; font-size: 13px; }
+.checkZhui {height: 22px; color: #4476a8  ; font-size: 13px; }
 .fqzhBox, .qxzhBox {/* margin: 20px 15px 0 0; */ float: right; display: inline; }
 .qxzhBox {cursor: pointer; color:#CAA396; }
 .qxzhBox:hover { color:#999;}
@@ -528,7 +528,7 @@ a:hover { color: #ffb347  ; }
 .zTab ul { padding-left:142px; height:51px; background:url(/images/nsc/lottery/sc_zuihao_bg.png) no-repeat 20px 16px;}
 .zTab ul li { float:left; display:inline; width:122px; text-align:center; height: 51px; font-size:16px; line-height:54px; border-right:1px solid #e5e5e5; border-left:1px solid #e5e5e5; margin-left:-1px;}
 .zTab ul li.hover {  background:#fff url("/images/nsc/lottery/sc_zuihao_tit-currentbg.png") repeat-x top left;}
-.zTab ul li.hover a { color:#ffb347 ;}
+.zTab ul li.hover a { color:#4476a8 ;}
 .zTab ul li a { color:#333; cursor:pointer; display:block;}
 
 .zCon { height:50px; overflow:hidden; background:#fff; position:relative; }
@@ -547,7 +547,7 @@ a:hover { color: #ffb347  ; }
 .zList .header { border-top:1px solid #e7e7e7; padding:16px 20px 16px 15px; overflow:hidden; zoom:1; color:#666; font-size:13px; background:#fff;}
 .zList .header b { font-size:20px; font-weight:bold;}
 .zList .header .text_zh { float:left; padding:8px 0 0 0;}
-.zList .header .text_zh .red { color:#ffb347  ;}
+.zList .header .text_zh .red { color:#4476a8  ;}
 .zList .header .cancel_zh { background:url(/images/nsc/lottery/tjtz_disabled.png) no-repeat; width:98px; height:32px; line-height:32px; font-size:16px; text-align:center; letter-spacing:5px; color:#fff; display:block; float:right; margin:8px 22px 0; cursor:pointer;}
 .zList .header .save_zh {background: url(/images/nsc/lottery/tz.png) no-repeat; display: block; width: 149px; height: 46px; line-height: 46px; text-align: center; color: #fff; font-size: 20px; float:right; cursor:pointer;}
 .zList .header #lt_trace_count { margin-right:18px; color:#666;}
@@ -557,14 +557,14 @@ a:hover { color: #ffb347  ; }
 .zList table th.nobd { border:0px; }
 .zList table td { border-bottom:1px solid #e6e6e6; border-right:1px solid #e6e6e6; height:41px; line-height:41px; text-align:center; background:#fff;}
 .zList table td .input { width:50px; padding:5px 10px; text-align:center; border:1px solid #dddddd; background:#f5f5f5; margin-right:5px;}
-.zList table td .red { font-size:14px; color:#ffb347  ;}
+.zList table td .red { font-size:14px; color:#4476a8  ;}
 
 /*投注记录*/
 .lotteryMember .playf_dl .btn_bet-record { background:#EC7F5C url(/images/scblue/skin/blue_skin/lottery/tzjl_icon.png) no-repeat 12px -91px; display:block; float:right; padding:0 15px 0 35px; font-size:14px; color:#fff; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; margin:0 12px 0 0;}
 .lotteryMember .playf_dl .btn_bet-record:hover { background:#F15B12 url(/images/scblue/skin/blue_skin/lottery/tzjl_icon.png) no-repeat 12px -91px; color:#fff;}
 
 /*开奖官网*/
-.lotteryMember .playf_dl .draw_web_f { background-color:#ffb347 ; display:block; float:right; padding:0 7px; font-size:14px; color:#fff; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; margin:0 12px 0 0;}
+.lotteryMember .playf_dl .draw_web_f { background-color:#4476a8 ; display:block; float:right; padding:0 7px; font-size:14px; color:#fff; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; margin:0 12px 0 0;}
 .lotteryMember .playf_dl .draw_web_f:hover { background-color:#F15B12; color:#fff; }
 
 /*新玩法标签*/
