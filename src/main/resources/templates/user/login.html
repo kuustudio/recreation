@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/css/nsc/plugin/dialogUI/dialogUI.css" media="all" type="text/css" >
     <link rel="stylesheet" type="text/css" media="all" href="/js/keypad/keypad.css" />
     <link rel="stylesheet" href="/css/nsc/login.css?v=20200422" />
-    <link rel="stylesheet" href="/css/loginstyle.css" />
+    <link rel="stylesheet" href="/css/loginstyle.css?v=20200422" />
 
     <script type="text/javascript" src="/js/nsc/jquery-1.7.min.js"></script>
 
@@ -34,26 +34,28 @@
 
 <body style="background-color:#FFF;">
 
-<h1>系统登陆</h1>
+<h1></h1>
 <div class="login-form">
-    <div class="close"> </div>
+<!--    <div class="close"> </div>-->
+
     <div class="head-info">
-        <label class="lbl-1"> </label>
-        <label class="lbl-2"> </label>
-        <label class="lbl-3"> </label>
+<!--        <label class="lbl-1"> </label>-->
+<!--        <label class="lbl-2"> </label>-->
+<!--        <label class="lbl-3"> </label>-->
+        系统登录
     </div>
     <div class="clear"> </div>
-    <div class="avtar"><img src="/images/avtar.png" /></div>
+<!--    <div class="avtar"><img src="/images/avtar.png" /></div>-->
     <form action="/user/logined" method="post" onajax="userBeforeLogin" enter="true" call="userLogin" target="ajax">
         <input type="text" id="username" name="username" class="text" value="Username" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Username';}" >
         <div class="key"><input name="password" id="password" type="password" value="Password" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Password';}">
 
         </div>
 
-        <input style="margin-top:-40px;width:30%" name="vcode" id="vcode" type="text" size="4" maxlength="4"  placeholder="验证码">
-        <img id="vcodeImg" style="margin-top:-60px" alt="验证码"  title="看不清楚，点我换图" onclick="vcodeAction();">
+<!--        <input style="margin-top:-40px;width:30%" name="vcode" id="vcode" type="text" size="4" maxlength="4"  placeholder="验证码">-->
+<!--        <img id="vcodeImg" style="margin-top:-60px" alt="验证码"  title="看不清楚，点我换图" onclick="vcodeAction();">-->
 
-        <div class="signin"><input type="submit" value="Login" ></div></form>
+        <div class="signin"><input type="submit" value="登录" ></div></form>
 </div>
 <div class="copy-rights">
     <p>Copyright &copy; 2019.Company HugC All rights reserved</p>

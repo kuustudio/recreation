@@ -22,11 +22,11 @@ public class VerifyCodeAuthenticationFilter extends UsernamePasswordAuthenticati
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        String verifyCode = request.getParameter("vcode");
-        String dbVerifyCode = (String) request.getSession().getAttribute("vcode");
-        if (StringUtils.isEmpty(verifyCode) || dbVerifyCode == null || !dbVerifyCode.toUpperCase().equals(verifyCode.toUpperCase())) {
-            throw new VerifyCodeErrorException("verifyCode error");
-        }
+//        String verifyCode = request.getParameter("vcode");
+//        String dbVerifyCode = (String) request.getSession().getAttribute("vcode");
+//        if (StringUtils.isEmpty(verifyCode) || dbVerifyCode == null || !dbVerifyCode.toUpperCase().equals(verifyCode.toUpperCase())) {
+//            throw new VerifyCodeErrorException("verifyCode error");
+//        }
         return super.attemptAuthentication(request, response);
     }
 
