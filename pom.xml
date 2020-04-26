@@ -131,6 +131,12 @@
                 <package.environment>product</package.environment>
             </properties>
         </profile>
+        <profile>
+            <id>product2</id>
+            <properties>
+                <package.environment>product2</package.environment>
+            </properties>
+        </profile>
     </profiles>
 
 </project>
