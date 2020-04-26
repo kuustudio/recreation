@@ -60,7 +60,7 @@ public class Game12Schedule implements InitializingBean {
         if (!getGameType().inAction(actionTime)) {
             return true;
         }
-        String url = "https://www.369kj.com/CQShiCai/getBaseCQShiCaiList.do?lotCode=10010";
+        String url = "https://api.api861861.com/CQShiCai/getBaseCQShiCaiList.do?lotCode=10010";
         logger.info("开始爬取数据:{}", url);
         boolean successFlag = false;
         String result = HttpUtil.httpGet(url);
