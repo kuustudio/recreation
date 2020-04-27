@@ -45,7 +45,7 @@ public enum PlayedType implements IPlayed {
 
         @Override
         public BonusLimitType getBonusLimitType(String actionData) {
-            return null;
+            return L_21;
         }
     },
 
@@ -428,7 +428,7 @@ public enum PlayedType implements IPlayed {
         }
         @Override
         public BonusLimitType getBonusLimitType(String actionData) {
-            return null;
+            return L_21;
         }
     },
     P_454(454, "第二个球数字") {
@@ -453,7 +453,7 @@ public enum PlayedType implements IPlayed {
 
         @Override
         public BonusLimitType getBonusLimitType(String actionData) {
-            return null;
+            return L_21;
         }
     },
     P_455(455, "第三个球数字") {
@@ -478,7 +478,7 @@ public enum PlayedType implements IPlayed {
 
         @Override
         public BonusLimitType getBonusLimitType(String actionData) {
-            return null;
+            return L_21;
         }
     },
     P_456(456, "第四个球数字") {
@@ -503,7 +503,7 @@ public enum PlayedType implements IPlayed {
 
         @Override
         public BonusLimitType getBonusLimitType(String actionData) {
-            return null;
+            return L_21;
         }
     },
     P_457(457, "第五个球数字") {
@@ -528,7 +528,7 @@ public enum PlayedType implements IPlayed {
 
         @Override
         public BonusLimitType getBonusLimitType(String actionData) {
-            return null;
+            return L_21;
         }
     },
     P_458(458, "龙虎和") {

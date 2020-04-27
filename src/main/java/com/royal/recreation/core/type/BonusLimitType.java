@@ -14,6 +14,7 @@ public enum BonusLimitType {
     L_4(4, "小", BigDecimal.valueOf(10_0000)),
     L_5(5, "单", BigDecimal.valueOf(10_0000)),
     L_6(6, "双", BigDecimal.valueOf(10_0000)),
+    L_21(21, "猜数字", BigDecimal.valueOf(10_0000)),
     L_7(7, "二码定位", BigDecimal.valueOf(3_0000)),
     L_8(8, "三码定位", BigDecimal.valueOf(3_0000)),
     L_9(9, "二码不定位", BigDecimal.valueOf(5_0000)),
