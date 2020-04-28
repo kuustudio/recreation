@@ -22,8 +22,8 @@
         </ul>
     </div>
     <link rel="stylesheet" href="/css/nsc/reset.css" />
-    <link rel="stylesheet" href="/css/nsc/list.css?v=20200422" />
-    <link rel="stylesheet" href="/css/nsc/activity.css?v=20200422" />
+    <link rel="stylesheet" href="/css/nsc/list.css?v=1588091439" />
+    <link rel="stylesheet" href="/css/nsc/activity.css?v=1588091439" />
     <script type="text/javascript" src="/js/nsc/jquery-1.7.min.js"></script>
     <script type="text/javascript" src="/js/nsc/main.js"></script>
     <script type="text/javascript" src="/js/nsc/dialogUI/jquery.dialogUI.js"></script>
@@ -60,12 +60,13 @@
                                     </select>
                                 </td>
                             </tr>
-                            <tr sec:authorize="hasAuthority('ADMIN')">
+                            <tr sec:authorize="hasAnyAuthority('MANAGE')">
                                 <td class="tdz3_left">用户类型：</td>
                                 <td class="tdz3_right">
                                     <select name="userType"  class="team">
-                                        <option value="MEMBER">会员</option>
+                                        <option sec:authorize="hasAuthority('ADMIN')" value="MANAGE">总代理</option>
                                         <option value="AGENT">代理</option>
+                                        <option value="MEMBER">会员</option>
                                     </select>
                                 </td>
                             </tr>

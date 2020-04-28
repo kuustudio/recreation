@@ -63,8 +63,8 @@ public class KjService {
                             ((LongAdder) oldValue).add(orderInfo.getUsePoint());
                             return oldValue;
                         });
-                        statistics.computeIfPresent("fanDianMoney", (key, oldValue) -> ((BigDecimal) oldValue).add(orderInfo.getFanDianMoney()));
-                        statistics.computeIfPresent("awardMoney", (key, oldValue) -> ((BigDecimal) oldValue).add(orderInfo.getAwardMoney()));
+                        statistics.computeIfPresent("fanDianMoney", (key, oldValue) -> ((BigDecimal) oldValue).add(orderInfo.totalFanDianMoney()));
+                        statistics.computeIfPresent("awardMoney", (key, oldValue) -> ((BigDecimal) oldValue).add(orderInfo.totalAward()));
                         if (hit) {
                             statistics.computeIfPresent("bonusPropMoney", (key, oldValue) -> ((BigDecimal) oldValue).add(orderInfo.getBonusPropMoney()));
                         }

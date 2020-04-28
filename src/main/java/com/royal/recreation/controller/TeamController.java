@@ -274,7 +274,7 @@ public class TeamController extends BaseController {
     @RequestMapping("/userListSearch")
     public String userListSearch(@AuthenticationPrincipal MyUserDetails userDetails, BaseQuery baseQuery, String wxNo, Model model) {
         Mongo query = Mongo.buildMongo();
-        if (userDetails.getUserType() == UserType.AGENT) {
+        if (userDetails.getUserType() != UserType.ADMIN) {
             query.eq("pId", userDetails.getId());
         } else if (userDetails.getUserType() == UserType.ADMIN && !StringUtils.isEmpty(baseQuery.getAgentName())) {
             UserInfo agentUser = Mongo.buildMongo().eq("username", baseQuery.getAgentName()).findOne(UserInfo.class);
@@ -304,7 +304,7 @@ public class TeamController extends BaseController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public void deleteU(@AuthenticationPrincipal MyUserDetails userDetails, String id, HttpServletResponse response) {
         Mongo query = Mongo.buildMongo();
-        if (userDetails.getUserType() == UserType.AGENT) {
+        if (userDetails.getUserType() != UserType.ADMIN) {
             query.eq("pId", userDetails.getId());
         }
         query.id(id).updateFirst(update -> update.set("deleted", Boolean.TRUE), UserInfo.class);
@@ -313,7 +313,7 @@ public class TeamController extends BaseController {
     @RequestMapping("/changeStatus")
     public void changeStatus(@AuthenticationPrincipal MyUserDetails userDetails, Status status, String id, HttpServletResponse response) {
         Mongo query = Mongo.buildMongo();
-        if (userDetails.getUserType() == UserType.AGENT) {
+        if (userDetails.getUserType() != UserType.ADMIN) {
             query.eq("pId", userDetails.getId());
         }
         query.id(id).updateFirst(update -> update.set("status", status), UserInfo.class);
@@ -333,8 +333,8 @@ public class TeamController extends BaseController {
     @RequestMapping("/editUser/{id}")
     public Object editUser(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable String id, Model model) {
         Mongo query = Mongo.buildMongo();
-        if (userDetails.getUserType() == UserType.AGENT) {
-            query.eq("userType", UserType.MEMBER).eq("pId", userDetails.getId());
+        if (userDetails.getUserType() != UserType.ADMIN) {
+            query.eq("pId", userDetails.getId());
         }
 
         UserInfo userInfo = Mongo.buildMongo().id(userDetails.getId(), UserInfo.class);
@@ -353,7 +353,7 @@ public class TeamController extends BaseController {
             return responseError("有选项没有填写");
         }
         BonusSetting bonusSetting = Mongo.buildMongo().id(bonusSettingId, BonusSetting.class);
-        if (userDetails.getUserType() == UserType.AGENT) {
+        if (userDetails.getUserType() != UserType.ADMIN) {
             UserInfo userInfo = Mongo.buildMongo().id(userDetails.getId(), UserInfo.class);
             BonusSetting userBonusSetting = Mongo.buildMongo().id(userInfo.getBonusSettingId(), BonusSetting.class);
             if (userBonusSetting.getFanDianRate().compareTo(bonusSetting.getFanDianRate()) < 0) {
@@ -373,7 +373,7 @@ public class TeamController extends BaseController {
     @RequestMapping("/addUser")
     public String addUser(@AuthenticationPrincipal MyUserDetails userDetails, Model model) {
         Mongo query = Mongo.buildMongo();
-        if (userDetails.getUserType() == UserType.AGENT) {
+        if (userDetails.getUserType() != UserType.ADMIN) {
             UserInfo userInfo = Mongo.buildMongo().id(userDetails.getId(), UserInfo.class);
             BonusSetting userBonusSetting = Mongo.buildMongo().id(userInfo.getBonusSettingId(), BonusSetting.class);
             query.lte("fanDianRate", userBonusSetting.getFanDianRate());
@@ -408,7 +408,7 @@ public class TeamController extends BaseController {
             Mongo.buildMongo().id(userDetails.getId()).updateFirst(update -> update.set("status", Status.DEL), UserInfo.class);
             return responseError("越权了,兄弟");
         }
-        if (userDetails.getUserType() == UserType.AGENT) {
+        if (userDetails.getUserType() != UserType.ADMIN) {
             UserInfo agentInfo = Mongo.buildMongo().id(userDetails.getId(), UserInfo.class);
             BonusSetting agentBonusSetting = Mongo.buildMongo().id(agentInfo.getBonusSettingId(), BonusSetting.class);
             if (agentBonusSetting.getFanDianRate().compareTo(bonusSetting.getFanDianRate()) < 0) {

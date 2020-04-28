@@ -24,16 +24,17 @@ class KjServiceAction {
 
     @Transactional
     public boolean actionOne(AwardInfo awardInfo, OrderInfo orderInfo, Map<BonusLimitType, BigDecimal> limitMap) {
-        // 返点
-        if (Util.greaterZero(orderInfo.getFanDianMoney())) {
-            UserPointRecord fanDianRecord = new UserPointRecord();
-            fanDianRecord.setUserId(orderInfo.getFanDianUserId());
-            fanDianRecord.setPointRecordType(PointRecordType.FAN_DIAN);
-            fanDianRecord.setValue(orderInfo.getFanDianMoney());
-            fanDianRecord.setRemark(String.format("单号:%s", orderInfo.getOrderNo()));
-            fanDianRecord.setBusinessId(orderInfo.getId());
-            Util.insertUserPoint(fanDianRecord);
-        }
+        orderInfo.getFanDianDetails().forEach(fanDianDetail -> {
+            if (fanDianDetail.getFanDianMoney().compareTo(BigDecimal.ZERO) > 0) {
+                UserPointRecord fanDianRecord = new UserPointRecord();
+                fanDianRecord.setUserId(fanDianDetail.getFanDianUserId());
+                fanDianRecord.setPointRecordType(PointRecordType.FAN_DIAN);
+                fanDianRecord.setValue(fanDianDetail.getFanDianMoney());
+                fanDianRecord.setRemark(String.format("单号:%s", orderInfo.getOrderNo()));
+                fanDianRecord.setBusinessId(orderInfo.getId());
+                Util.insertUserPoint(fanDianRecord);
+            }
+        });
         int hit = orderInfo.getPlayedType().hit(awardInfo.getCode(), orderInfo.getActionData());
         if (hit > 0) {
             // 中奖

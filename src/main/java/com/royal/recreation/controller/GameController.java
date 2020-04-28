@@ -5,6 +5,8 @@ import com.royal.recreation.config.bean.MyUserDetails;
 import com.royal.recreation.controller.base.BaseController;
 import com.royal.recreation.core.entity.*;
 import com.royal.recreation.core.entity.base.Domain;
+import com.royal.recreation.core.entity.inner.AwardDetail;
+import com.royal.recreation.core.entity.inner.FanDianDetail;
 import com.royal.recreation.core.type.*;
 import com.royal.recreation.spring.mongo.Mongo;
 import com.royal.recreation.util.Constant;
@@ -24,10 +26,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -117,56 +116,64 @@ public class GameController extends BaseController {
         if (codeList.isEmpty()) {
             return responseError("请投注");
         }
-        UserInfo userInfo = Mongo.buildMongo().id(userDetails.getId(), UserInfo.class);
-        BonusSetting bonusSetting = Mongo.buildMongo().id(userInfo.getBonusSettingId(), BonusSetting.class);
-        BigDecimal fanDianRate;
-        BigDecimal awardRate;
-        String pUserId;
-        UserInfo pUser = Mongo.buildMongo().id(userInfo.getPId(), UserInfo.class);
-        if (pUser == null) {
-            fanDianRate = BigDecimal.ZERO;
-            awardRate = BigDecimal.ZERO;
-            pUserId = null;
-        } else {
-            BonusSetting pBonusSetting = Mongo.buildMongo().id(pUser.getBonusSettingId(), BonusSetting.class);
-            if (userDetails.getUserType() == UserType.MEMBER) {
-                if (pUser.getUserType() != UserType.AGENT) {
-                    fanDianRate = BigDecimal.ZERO;
-                    awardRate = BigDecimal.ZERO;
-                    pUserId = null;
-                } else {
-                    BigDecimal subtract = pBonusSetting.getFanDianRate().subtract(bonusSetting.getFanDianRate());
-                    fanDianRate = subtract.compareTo(BigDecimal.ZERO) > 0 ? subtract : BigDecimal.ZERO;
-                    awardRate = pBonusSetting.getAwardRate();
-                    pUserId = pUser.getId();
-                }
-            } else if (userDetails.getUserType() == UserType.AGENT) {
-                fanDianRate = BigDecimal.ZERO;
-                awardRate = bonusSetting.getAwardRate();
-                pUserId = userDetails.getId();
-            } else {
-                fanDianRate = BigDecimal.ZERO;
-                awardRate = BigDecimal.ZERO;
-                pUserId = null;
-            }
+        String userId = userDetails.getId();
+        UserInfo userInfo;
+        List<FanDianDetail> fanDianDetails = new ArrayList<>();
+        List<AwardDetail> awardDetails = new ArrayList<>();
+        while (userId != null && (userInfo = Mongo.buildMongo().id(userId, UserInfo.class)) != null && userInfo.getUserType() != UserType.ADMIN) {
+            BonusSetting bonusSetting = Mongo.buildMongo().id(userInfo.getBonusSettingId(), BonusSetting.class);
+            FanDianDetail fanDianDetail = new FanDianDetail();
+            AwardDetail awardDetail = new AwardDetail();
+            fanDianDetails.add(fanDianDetail);
+            awardDetails.add(awardDetail);
+            fanDianDetail.setUserType(userInfo.getUserType());
+            fanDianDetail.setFanDianUserId(userInfo.getId());
+            fanDianDetail.setFanDianRate(bonusSetting.getFanDianRate());
+            awardDetail.setUserType(userInfo.getUserType());
+            awardDetail.setAwardUserId(userInfo.getId());
+            awardDetail.setAwardRate(bonusSetting.getAwardRate());
+            userId = userInfo.getPId();
         }
-
+        UserInfo thisUserInfo = Mongo.buildMongo().id(userDetails.getId(), UserInfo.class);
+        BonusSetting thisBonusSetting = Mongo.buildMongo().id(thisUserInfo.getBonusSettingId(), BonusSetting.class);
         List<OrderInfo> orderInfoList = codeList.stream().map(code -> {
             Integer mode = code.getInteger("mode");
             Integer beiShu = code.getInteger("beiShu");
             String actionData = code.getString("actionData");
             Integer playedGroup = code.getInteger("playedGroup");
             Integer playedId = code.getInteger("playedId");
-//            Integer actionNum = code.getInteger("actionNum");
-//            String bonusProp = code.getString("bonusProp");
             PlayedType playedType = PlayedType.find(playedId);
             Integer actionNum = playedType.getActionNum(actionData);
-            BigDecimal bonusPropRate = playedType.getBonusPropRate(actionData, bonusSetting);
+            BigDecimal bonusPropRate = playedType.getBonusPropRate(actionData, thisBonusSetting);
             String playedName = playedType.getPlayedName(actionData);
             int usePointInt = actionNum * beiShu;
             BigDecimal usePoint = BigDecimal.valueOf(usePointInt);
+            List<FanDianDetail> thisFanDianDetails = new ArrayList<>();
+            BigDecimal lastFanDianRate = BigDecimal.ZERO;
+            for (FanDianDetail fanDianDetail : fanDianDetails) {
+                FanDianDetail newFaDianDetail = FanDianDetail.copy(fanDianDetail);
+                thisFanDianDetails.add(newFaDianDetail);
+                if (newFaDianDetail.getUserType() == UserType.MEMBER) {
+                    // 会员没有返点
+                    newFaDianDetail.setFanDianRate(BigDecimal.ZERO);
+                    newFaDianDetail.setFanDianMoney(BigDecimal.ZERO);
+                } else {
+                    newFaDianDetail.setFanDianMoney(usePoint.multiply(newFaDianDetail.getFanDianRate().subtract(lastFanDianRate)).multiply(Constant.VALUE_PERCENT));
+                }
+                lastFanDianRate = newFaDianDetail.getFanDianRate();
+            }
+            List<AwardDetail> thisAwardDetails = new ArrayList<>();
+            BigDecimal lastAwardRate = BigDecimal.ZERO;
+            for (AwardDetail awardDetail : awardDetails) {
+                AwardDetail newAwardDetail = AwardDetail.copy(awardDetail);
+                thisAwardDetails.add(newAwardDetail);
+                newAwardDetail.setAwardMoney(usePoint.multiply(newAwardDetail.getAwardRate().subtract(lastAwardRate)).multiply(Constant.VALUE_PERCENT));
+                lastAwardRate = newAwardDetail.getAwardRate();
+            }
 
             OrderInfo orderInfo = new OrderInfo();
+            orderInfo.setFanDianDetails(thisFanDianDetails);
+            orderInfo.setAwardDetails(thisAwardDetails);
             orderInfo.setOrderNo(SystemSetting.getOrderNo());
             orderInfo.setUserId(userDetails.getId());
             orderInfo.setUsername(userDetails.getUsername());
@@ -179,13 +186,7 @@ public class GameController extends BaseController {
             orderInfo.setPlayedType(playedType);
             orderInfo.setUsePoint(usePointInt);
 
-            orderInfo.setFanDianMoney(usePoint.multiply(fanDianRate).multiply(Constant.VALUE_PERCENT));
-            orderInfo.setFanDianUserId(pUserId);
-            orderInfo.setAwardMoney(awardRate.multiply(usePoint).multiply(Constant.VALUE_PERCENT));
             orderInfo.setBonusPropMoney(bonusPropRate.multiply(BigDecimal.valueOf(beiShu)));
-
-            orderInfo.setFanDianRate(fanDianRate);
-            orderInfo.setAwardRate(awardRate);
             orderInfo.setBonusPropRate(bonusPropRate);
 
             orderInfo.setMode(mode);
@@ -203,7 +204,7 @@ public class GameController extends BaseController {
             return orderInfo;
         }).collect(Collectors.toList());
         int sum = orderInfoList.stream().mapToInt(OrderInfo::getUsePoint).sum();
-        if (userInfo.getPoint().intValue() < sum) {
+        if (thisUserInfo.getPoint().intValue() < sum) {
             return responseError("积分不足,请联系管理员上分");
         }
         Mongo.buildMongo().insertAll(orderInfoList);
@@ -217,7 +218,7 @@ public class GameController extends BaseController {
             return userPointRecord;
         }).collect(Collectors.toList());
         Util.insertUserPointList(userPointRecordList);
-        if (userInfo.getPrint() != null && userInfo.getPrint()) {
+        if (thisUserInfo.getPrint()) {
             return Collections.singletonMap("ids", orderInfoList.stream().map(Domain::getId).collect(Collectors.joining(",")));
         } else {
             return "";

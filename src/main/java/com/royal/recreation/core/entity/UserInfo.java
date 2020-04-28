@@ -26,4 +26,7 @@ public class UserInfo extends Domain {
     private String pId;
     private BigDecimal point = BigDecimal.ZERO;
 
+    public Boolean getPrint() {
+        return print == null ? Boolean.FALSE : print;
+    }
 }

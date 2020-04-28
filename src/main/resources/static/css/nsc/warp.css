@@ -167,9 +167,9 @@
 .lottery_timer { width: 345px; height:77px; overflow: hidden; }
 .lottery_issue { width: 130px; padding-left: 10px; padding-top: 15px; position: relative; }
 .lottery_issue p { line-height: 23px; font-size: 12px; color: #959595; }
-.lottery_issue .soundBtn { cursor: pointer; position: absolute; width: 20px; height: 20px; right: 15px; top: 39px; }
-.lottery_issue .soundon { background: url(/images/nsc/warp/sound_on.png) no-repeat; }
-.lottery_issue .soundoff { background: url(/images/nsc/warp/sound_off.png) no-repeat; }
+.lottery_issue .soundBtn { cursor: pointer; position: absolute; width: 16px; height: 16px; right: 15px; top: 39px; }
+.soundon { background: url(/images/nsc/warp/sound_on2.png) no-repeat; }
+.soundoff { background: url(/images/nsc/warp/sound_off2.png) no-repeat; }
 
 /*彩种倒计时数字相关*/
 .lottery_timeBox { width: 205px; height:60px; overflow: hidden; padding-top: 17px; }
