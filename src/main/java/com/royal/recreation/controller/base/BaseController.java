@@ -45,9 +45,7 @@ public class BaseController {
             UserInfo userInfo = Mongo.buildMongo().eq("username", baseQuery.getUsername()).findOne(UserInfo.class);
             if (userInfo == null
                     // 等级不够
-                    || (pUser.getUserType().ordinal() >= userInfo.getUserType().ordinal())
-                    // 代理只能查自己的下级
-                    || (pUser.getUserType() == UserType.AGENT && !Objects.equals(userInfo.getPId(), pUser.getId()))) {
+                    || (pUser.getUserType().ordinal() >= userInfo.getUserType().ordinal())) {
                 // 无权限的情况
                 query.id("111111111111111111111111");
             } else {
