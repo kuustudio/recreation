@@ -24,8 +24,8 @@ import java.util.stream.Collectors;
 public class AwardSchedule {
 
     @Scheduled(
-//            cron = "0 20 0 * * ? "
-            fixedDelay = 1000 * 60 * 60
+            cron = "0 20 0 * * ? "
+//            fixedDelay = 1000 * 60 * 60
     )
     @Transactional
     public void action12() {
