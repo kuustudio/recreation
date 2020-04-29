@@ -6,6 +6,7 @@
             <thead>
             <tr class="table_b_th">
                 <td>账号</td>
+                <td>身份</td>
                 <td>上分</td>
                 <td>下分</td>
                 <td>投注支出</td>
@@ -17,7 +18,9 @@
             </thead>
             <tbody class="table_b_tr">
             <tr th:each="item:${list}">
-                <td th:text="${item['username']}"></td>
+                <td th:if="${item['userType']?.toString() != 'MEMBER' && item['username'] != '合计'}"><a  th:href="'?username=' + ${item['username']}" th:text="${item['username']}+${item['username'] == username?'(不含下级)':''}"></a></td>
+                <td th:if="${item['userType']?.toString() == 'MEMBER' || item['username'] == '合计'}" th:text="${item['username']}"></td>
+                <td th:text="${item['userType']?.desc}"></td>
                 <td th:text="${item['RECHARGE']}"></td>
                 <td th:text="${item['CASH_OUT']}"></td>
                 <td th:text="${item['BET']}">--</td>

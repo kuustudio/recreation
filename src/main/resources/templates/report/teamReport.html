@@ -77,7 +77,7 @@
                     <div class="inlineBlock">
                         <input type="text" class="input150" value="" id="datetimepicker4" name="toDate" autocomplete="false"/> <span class="image" ></span>
                     </div>
-                    <input type="button" value="查询" class="formCheck chazhao" /></div>
+                    <input type="button" value="查询" class="formCheck chazhao" /><a th:if="${username!=null}" href="?" class="chazhao">返回</a></div>
             </form>
         </div>
         <div class="biao-cont" th:replace="report/teamReportBiao"></div>

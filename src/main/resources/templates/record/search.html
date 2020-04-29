@@ -133,7 +133,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="search_br"><input type="button" value="查询" class="formCheck chazhao" /></div>
+                <div class="search_br"><input type="button" value="查询" class="formCheck chazhao" /><a th:if="${username!=null}" href="?" class="chazhao">返回</a></div>
             </form>
         </div>
         <div class="display biao-cont" th:replace="record/searchBiao"></div>
