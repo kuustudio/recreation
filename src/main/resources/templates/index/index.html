@@ -3,7 +3,7 @@
 
 <link href="/skin/main/new.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="/skin/css/index.css" type="text/css">
-<link href="/layui/Styles/sss.css?v=1588091439" rel="stylesheet" type="text/css" />
+<link href="/layui/Styles/sss.css?v=1588177553" rel="stylesheet" type="text/css" />
 <head>
     <script type="text/javascript">
         var typeId = [[${typeId}]];
@@ -18,10 +18,10 @@
     <meta content="IE=EmulateIE8" http-equiv="X-UA-Compatible" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title th:text="${T(com.royal.recreation.util.Constant).SYSTEM_NAME}"></title>
-    <link rel="stylesheet" href="/css/layui/css/layui.css?v=1588091439"  media="all">
-    <link href="/css/nsc/lottery.css?v=1588091439" rel="stylesheet" type="text/css" />
-    <link href='/skin/main/bl_ococ.css?v=1588091439' rel="stylesheet" type="text/css" />
-    <link type="text/css" rel="stylesheet" href="/skin/js/jqueryui/jquery-ui-1.8.23.custom.css?v=1588091439">
+    <link rel="stylesheet" href="/css/layui/css/layui.css?v=1588177553"  media="all">
+    <link href="/css/nsc/lottery.css?v=1588177553" rel="stylesheet" type="text/css" />
+    <link href='/skin/main/bl_ococ.css?v=1588177553' rel="stylesheet" type="text/css" />
+    <link type="text/css" rel="stylesheet" href="/skin/js/jqueryui/jquery-ui-1.8.23.custom.css?v=1588177553">
     <script type="text/javascript" src="/skin/js/jquery-1.8.3.min.js"></script>
 
     <script>var TIP=true;</script>
@@ -31,7 +31,7 @@
 
     <script type="text/javascript" src="/js/nsc/main.js"></script>
 
-    <link rel="stylesheet" href="/css/nsc/foot.css?v=1588091439">
+    <link rel="stylesheet" href="/css/nsc/foot.css?v=1588177553">
 
     <script src="/js/nsc/zr-script.js" charset="utf-8"></script>
     <script type="text/javascript" src="/js/nsc/soundBox.js"></script>
@@ -60,10 +60,10 @@
         }
     </style>
     <!-- slidebar end -->
-    <link href="/skin/main/style.css?v=1588091439" rel="stylesheet" type="text/css" />
-    <link href="/skin/main/skins.css?v=1588091439" rel="stylesheet" type="text/css" />
+    <link href="/skin/main/style.css?v=1588177553" rel="stylesheet" type="text/css" />
+    <link href="/skin/main/skins.css?v=1588177553" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/skin/main/game.js"></script>
-    <link type="text/css" rel="stylesheet" href="/skin/css/hklhc.css?v=1588091439" />
+    <link type="text/css" rel="stylesheet" href="/skin/css/hklhc.css?v=1588177553" />
     <script type="text/javascript" src="/skin/js/hklhc.js"></script>
     <script type="text/javascript" src="/skin/main/jquery.cookie.js"></script>
     <script type="text/javascript" src="/skin/main/index.pack.min.js"></script>
@@ -99,11 +99,11 @@
 
 <body>
 <link href="/css/nsc/reset.css" rel="stylesheet" type="text/css" />
-<link href="/css/nsc/warp.css?v=1588091439" rel="stylesheet" type="text/css" />
-<link href="/css/nsc/foot.css?v=1588091439" rel="stylesheet" type="text/css" />
+<link href="/css/nsc/warp.css?v=1588177553" rel="stylesheet" type="text/css" />
+<link href="/css/nsc/foot.css?v=1588177553" rel="stylesheet" type="text/css" />
 
 
-<!--link href="/css/nsc/lottery.css?v=1588091439" rel="stylesheet" type="text/css" /-->
+<!--link href="/css/nsc/lottery.css?v=1588177553" rel="stylesheet" type="text/css" /-->
 <script type='text/javascript'>
     function printkg(){
         $("[name = vehicle]:checkbox").each(function () {
@@ -231,96 +231,47 @@
                                         <h2>本期第<em style="color: #ff0000" id="cterm"><span id="current_issue" th:text="${thisNo['actionNo']}">50644168</span> </em>期</h2>
                                         <div class="shuang_anniu" style="padding:5px">
 
-                                            <div class="toggle-money show-money" style="margin-left: 30px">
-                                                积分 <span id="refff" class="money" th:text="${user.point}">0.000</span>
+                                            <div class="toggle-money show-money" style="margin-left: 30px;">
+                                                积分: <span id="refff" class="money" th:text="${user.point}">0.000</span>
                                             </div>
-                                            <div class="toggle-money hide-money">
-                                                积分 <span class="money"><b>************</b></span>
+                                            <div class="toggle-money hide-money" style="margin-left: 30px;">
+                                                积分: <span class="money"><b>************</b></span>
                                             </div>
                                         </div>
-                                        <div class="shuang_anniu" style="padding:5px">
+                                        <div class="shuang_anniu" style="text-align: left;padding-left: 36px;">
                                             <a href="javascript:void(0);" class="shuaxin" id="refreshmoney" title="刷新积分">
                                                 <i class="ic-refresh"></i>
                                             </a>
-                                            <a href="javascript:;" title="隐藏积分">
+                                            <a href="javascript:;" title="隐藏积分" style="margin-left: 20px">
                                                 <i class="ic-unlook"></i>
                                             </a>
-                                            <div class="lottery_issue" style="display: inline">
+                                            <div class="lottery_issue">
                                                 <span class="soundBtn soundClickEvent" onclick="voiceKJ();"></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="sub_mid_c">
-                                    <h2>上期开奖结果：</h2>
-                                    <!--                                    <a class="wanfa" th:href="${'/zst?typeid=' + typeId}"  target="_blank">历史开奖 </a>-->
-
-                                    <div class="result" style="background: url('/images/kj-esult-bg.png') no-repeat">
+                                    <h2 style="margin-right: 60px">上期开奖结果：</h2>
+                                    <div class="result" style="padding-left: 72px;">
                                         <ul id="num" >
                                             <li th:each="item:${lastNo['awardNo'].split(',')}"> <span style="top: 0px;" class="ball_s_ ball_s_blue ball_lenght5" th:text="${item}">6</span></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="sub_mid_r">
-                                    <div class="lottery_timeBox left" style="margin-left:30px;margin-top:-18px">
+                                    <div class="lottery_timeBox" style="margin-left:-22px;margin-top:44px">
                                         <div class="timeBox"  style='z-index:1'>
-                                            <div class="time_line"></div>
-                                            <div class="num_left">
-                                                <div class="num num_t">
-                                                    <div id="s1s"></div>
-                                                </div>
-                                                <div class="num num_b">
-                                                    <div id="s1x"></div>
-                                                </div>
-                                            </div>
-                                            <div class="num_right">
-                                                <div class="num num_t">
-                                                    <div id="s2s"></div>
-                                                </div>
-                                                <div class="num num_b">
-                                                    <div id="s2x"></div>
-                                                </div>
-                                            </div>
+                                                    <span id="s1s" style="font-size: 50px;color: #47acf2;float: left;"></span>
+                                                    <span id="s2s" style="font-size: 50px;color: #47acf2;float: left"></span>
                                         </div>
-                                        <div class="dianBox"></div>
-                                        <div class="timeBox" style='z-index:1'>
-                                            <div class="time_line"></div>
-                                            <div class="num_left">
-                                                <div class="num num_t">
-                                                    <div id="f1s"></div>
-                                                </div>
-                                                <div class="num num_b">
-                                                    <div id="f1x"></div>
-                                                </div>
-                                            </div>
-                                            <div class="num_right">
-                                                <div class="num num_t">
-                                                    <div id="f2s"></div>
-                                                </div>
-                                                <div class="num num_b">
-                                                    <div id="f2x"></div>
-                                                </div>
-                                            </div>
+                                        <div class="timeBox" style='z-index:1;margin-left: 18px;margin-right: 18px'>
+                                            <span id="f1s" style="font-size: 50px;color: #47acf2;float: left;"></span>
+                                            <span id="f2s" style="font-size: 50px;color: #47acf2;float: left"></span>
                                         </div>
-                                        <div class="dianBox"></div>
                                         <div class="timeBox" style='z-index:1'>
-                                            <div class="time_line"></div>
-                                            <div class="num_left">
-                                                <div class="num num_t">
-                                                    <div id="m1s"></div>
-                                                </div>
-                                                <div class="num num_b">
-                                                    <div id="m1x"></div>
-                                                </div>
-                                            </div>
-                                            <div class="num_right">
-                                                <div class="num num_t">
-                                                    <div id="m2s"></div>
-                                                </div>
-                                                <div class="num num_b">
-                                                    <div id="m2x"></div>
-                                                </div>
-                                            </div>
+                                            <span id="m1s" style="font-size: 50px;color: #47acf2;float: left;"></span>
+                                            <span id="m2s" style="font-size: 50px;color: #47acf2;float: left"></span>
                                         </div>
                                     </div>
 
@@ -635,7 +586,7 @@
             </div>
             <meta content="IE=EmulateIE8" http-equiv="X-UA-Compatible" />
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-            <link href="/css/nsc/warp.css?v=1588091439" rel="stylesheet" type="text/css" />
+            <link href="/css/nsc/warp.css?v=1588177553" rel="stylesheet" type="text/css" />
 
             <link href="/css/nsc/plugin/dialogUI/dialogUI.css" media="all" type="text/css" rel="stylesheet" />
             <script type="text/javascript" src="/js/nsc/common.js"></script>
@@ -650,7 +601,7 @@
                 <a href="javascript:void(0);" >打开菜单</a>
             </div>
             <!-- 切换背景功能 -->
-            <link rel="stylesheet" href="/css/nsc/bg_skin.css?v=1588091439" type="text/css">
+            <link rel="stylesheet" href="/css/nsc/bg_skin.css?v=1588177553" type="text/css">
             <div class="skin-mask"></div>
             <div class="skin-box">
                 <span class="close_box"></span>
@@ -799,7 +750,7 @@
             <script type="text/javascript" src="/js/nsc/pushstream.js"></script>
 
             <script type="text/javascript" src="/js/nsc/coreDesign.js">
-            </script><link rel="stylesheet" href="/css/nsc/foot.css?v=1588091439">
+            </script><link rel="stylesheet" href="/css/nsc/foot.css?v=1588177553">
             <script type="text/javascript" src="/images/down/swfobject.js"></script>
             <div class="login_footer"  style="background:#E8E8E8;">
 

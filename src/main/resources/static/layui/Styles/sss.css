@@ -290,7 +290,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 
 
-.ball_s_ { display: inline-block; width: 35px; height: 35px; line-height: 35px; margin-right: 6px; text-align: center; font-size: 16px; font-family: "微软雅黑"; color: #000; font-weight: bold; background: transparent url(images/balls_bg/balls_bg.png) no-repeat scroll -402px -448px; }
+.ball_s_ { display: inline-block; width: 35px; height: 35px; line-height: 35px; margin-right: 6px; text-align: center; font-size: 16px; font-family: "微软雅黑"; color: white; font-weight: bold; background: transparent url(images/balls_bg/balls_bg2.png) no-repeat scroll -402px -448px; }
 .ball_s_yellow { background-position: 0px -82px; }
 .ball_s_red { background-position: -44px -82px; }
 .ball_s_green { background-position: -87px -82px; }
@@ -404,7 +404,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 .open_form .sub_add { line-height: 28px; height: 28px; color: black; text-align: left; }
 .open_form .sub_add a { color: black; }
 
-.open_form .sub_r_open_form { background: url(images/ag_hk6_open_bg2.png) no-repeat; height: 184px; }
+.open_form .sub_r_open_form { background: url(images/ag_hk6_open_bg3.png) no-repeat; height: 184px; }
 .open_form .sub_r_open_form .sub_mid_l { color: #fff; width: 200px; float: left; margin-top: 28px; }
 .open_form .sub_r_open_form .sub_mid_l h1 { font-size: 23px; text-align: center; }
 .open_form .sub_r_open_form .sub_mid_l h2 { font-size: 14px; text-align: center; height: 30px; line-height: 30px; }
@@ -417,7 +417,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 .open_form .sub_r_open_form .sub_mid_c { width: 520px; float: left; margin-top: 23px; margin-left: 10px; }
 .open_form .sub_r_open_form .sub_mid_c h2 { color: #fff; font-size: 14px; height: 40px; line-height: 40px; text-align: right; margin-right: 30px; }
 .open_form .sub_r_open_form .sub_mid_c h2 em { font-size: 14px; height: 40px; line-height: 40px; background: #fedb6d; border-radius: 5px; margin: 0px 5px; padding: 0px 5px; }
-.open_form .sub_r_open_form .sub_mid_c .result { height: 80px; margin-top: 20px; }
+.open_form .sub_r_open_form .sub_mid_c .result { height: 80px; margin-top: 12px; }
 .open_form .sub_r_open_form .sub_mid_c .result span { display: inline-block; float: left; }
 .open_form .sub_r_open_form .sub_mid_c .result div.row { float: left; width: 480px; text-align: left; margin: 3px; }
 
@@ -465,7 +465,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 
 .sub_r_open_form .sub_mid_c .ball_lenght3 { margin-right: 30px; margin-left: 55px; }
-.sub_r_open_form .sub_mid_c .ball_lenght5 { margin-right: 20px; margin-left: 20px; }
+.sub_r_open_form .sub_mid_c .ball_lenght5 { margin-right: 10px; margin-left: 10px; }
 .sub_r_open_form .sub_mid_c .ball_lenght8 { margin-right: 5px; margin-left: 2px; }
 .sub_r_open_form .sub_mid_c .ball_lenght7 { margin-right: 8px; margin-left: 8px; }
 
