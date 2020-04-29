@@ -16,7 +16,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Objects;
+import java.util.Collections;
+import java.util.List;
 
 import static com.royal.recreation.util.DateUtil.QUERY_DATE_TIME_FORMATTER;
 import static com.royal.recreation.util.DateUtil.QUERY_DATE__FORMATTER;
@@ -27,6 +28,13 @@ public class BaseController {
     private HttpServletRequest request;
     @Autowired
     private HttpServletResponse response;
+
+    public List<UserInfo> getChildUserList(UserInfo userInfo) {
+        if (userInfo.getUserType() == UserType.MEMBER) {
+            return Collections.emptyList();
+        }
+        return Mongo.buildMongo().eq("pId", userInfo.getId()).find(UserInfo.class);
+    }
 
     public Mongo getBaseMongoQuery(MyUserDetails userDetails, BaseQuery baseQuery, Model model) {
         Mongo query = Mongo.buildMongo();

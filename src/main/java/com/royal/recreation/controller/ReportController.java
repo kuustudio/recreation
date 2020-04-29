@@ -8,7 +8,6 @@ import com.royal.recreation.core.entity.UserPointRecord;
 import com.royal.recreation.core.entity.base.Domain;
 import com.royal.recreation.core.type.PointRecordType;
 import com.royal.recreation.core.type.Status;
-import com.royal.recreation.core.type.UserType;
 import com.royal.recreation.spring.mongo.Mongo;
 import com.royal.recreation.util.Constant;
 import com.royal.recreation.util.DateUtil;
@@ -16,6 +15,7 @@ import org.bson.types.Decimal128;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.math.BigDecimal;
@@ -42,42 +42,74 @@ public class ReportController extends BaseController {
 
     @RequestMapping("/teamReportBiao")
     public String teamReportBiao(@AuthenticationPrincipal MyUserDetails userDetails, Model model, BaseQuery baseQuery) {
-        UserInfo userInfo = Mongo.buildMongo().id(userDetails.getId(), UserInfo.class);
-        List<UserInfo> queryUserList;
-        if (userDetails.getUserType() == UserType.MEMBER) {
-            queryUserList = Collections.singletonList(userInfo);
+        String username = baseQuery.getUsername();
+        UserInfo userInfo;
+        if (StringUtils.isEmpty(username)) {
+            userInfo = Mongo.buildMongo().id(userDetails.getId(), UserInfo.class);
         } else {
-            queryUserList = Mongo.buildMongo().eq("pId", userDetails.getId()).find(UserInfo.class);
-            queryUserList.add(userInfo);
-        }
-        Map<String, Object> countMap = new HashMap<>();
-        List<Map<String, Object>> result = queryUserList.stream().map(user -> {
-            Mongo query = Mongo.buildMongo();
-            queryOfDate(query, baseQuery);
-            List<UserPointRecord> list = query
-                    .eq("userId", user.getId())
-                    .or("pointRecordType", PointRecordType.RECHARGE, PointRecordType.CASH_OUT, PointRecordType.BET, PointRecordType.FAN_DIAN, PointRecordType.BONUS, PointRecordType.AWARD)
-                    .eq("status", Status.ACTIVE).find(UserPointRecord.class);
-
-            Map<String, Object> one = new HashMap<>();
-            BigDecimal profit = BigDecimal.ZERO;
-            for (UserPointRecord userPointRecord : list) {
-                PointRecordType pointRecordType = userPointRecord.getPointRecordType();
-                one.merge(pointRecordType.toString(), userPointRecord.getValue(), (o, n) -> ((BigDecimal) o).add((BigDecimal) n));
-                countMap.merge(pointRecordType.toString(), userPointRecord.getValue(), (o, n) -> ((BigDecimal) o).add((BigDecimal) n));
-                if (userPointRecord.getPointRecordType() != PointRecordType.RECHARGE && userPointRecord.getPointRecordType() != PointRecordType.CASH_OUT) {
-                    profit = profit.add(userPointRecord.getValue());
-                }
+            UserInfo pUser = Mongo.buildMongo().id(userDetails.getId(), UserInfo.class);
+            userInfo = Mongo.buildMongo().eq("username", baseQuery.getUsername()).findOne(UserInfo.class);
+            if (userInfo == null) {
+                throw new IllegalStateException();
             }
-            one.put("profit", profit);
-            countMap.merge("profit", profit, (o, n) -> ((BigDecimal) o).add((BigDecimal) n));
-            one.put("username", user.getUsername());
-            return one;
-        }).collect(Collectors.toList());
+            if (pUser.getId().equals(userInfo.getId())) {
+                userInfo = Mongo.buildMongo().id(userDetails.getId(), UserInfo.class);
+            } else if ((pUser.getUserType().ordinal() >= userInfo.getUserType().ordinal())) {
+                throw new IllegalStateException();
+            } else {
+                model.addAttribute("username", baseQuery.getUsername());
+            }
+        }
+        List<UserInfo> queryUserList = getChildUserList(userInfo);
+        Map<String, Object> countMap = new HashMap<>();
+        List<Map<String, Object>> result = queryUserList.stream().map(user -> countUserReport(user, countMap, baseQuery, true)).collect(Collectors.toList());
+        result.add(countUserReport(userInfo, countMap, baseQuery, false));
         countMap.put("username", "合计");
         result.add(countMap);
         model.addAttribute("list", result);
         return "report/teamReportBiao";
+    }
+
+    // 下级加上自己
+    private Map<String, Object> countUserReport(UserInfo userInfo, Map<String, Object> countMap, BaseQuery baseQuery, boolean hasChild) {
+        Set<PointRecordType> validRecordTypes = new HashSet<PointRecordType>() {{
+            add(PointRecordType.RECHARGE);
+            add(PointRecordType.CASH_OUT);
+            add(PointRecordType.BET);
+            add(PointRecordType.FAN_DIAN);
+            add(PointRecordType.BONUS);
+            add(PointRecordType.AWARD);
+        }};
+        Set<String> allUserIds = new HashSet<>();
+        allUserIds.add(userInfo.getId());
+        if (hasChild) {
+            Set<String> childUserIds = getChildUserList(userInfo).stream().map(Domain::getId).collect(Collectors.toSet());
+            while (!childUserIds.isEmpty()) {
+                allUserIds.addAll(childUserIds);
+                childUserIds = Mongo.buildMongo().or("pId", childUserIds.toArray()).find(UserInfo.class).stream().map(Domain::getId).collect(Collectors.toSet());
+            }
+        }
+        Mongo query = Mongo.buildMongo();
+        queryOfDate(query, baseQuery);
+        List<UserPointRecord> list = query
+                .or("userId", allUserIds.toArray())
+                .eq("status", Status.ACTIVE).find(UserPointRecord.class)
+                .stream().filter(r -> validRecordTypes.contains(r.getPointRecordType())).collect(Collectors.toList());
+        Map<String, Object> one = new HashMap<>();
+        BigDecimal profit = BigDecimal.ZERO;
+        for (UserPointRecord userPointRecord : list) {
+            PointRecordType pointRecordType = userPointRecord.getPointRecordType();
+            one.merge(pointRecordType.toString(), userPointRecord.getValue(), (o, n) -> ((BigDecimal) o).add((BigDecimal) n));
+            countMap.merge(pointRecordType.toString(), userPointRecord.getValue(), (o, n) -> ((BigDecimal) o).add((BigDecimal) n));
+            if (userPointRecord.getPointRecordType() != PointRecordType.RECHARGE && userPointRecord.getPointRecordType() != PointRecordType.CASH_OUT) {
+                profit = profit.add(userPointRecord.getValue());
+            }
+        }
+        one.put("profit", profit);
+        countMap.merge("profit", profit, (o, n) -> ((BigDecimal) o).add((BigDecimal) n));
+        one.put("username", hasChild ? userInfo.getUsername() : userInfo.getUsername());
+        one.put("userType", userInfo.getUserType());
+        return one;
     }
 
     @RequestMapping("/counts")
