@@ -29,7 +29,7 @@ public class AwardSchedule {
     )
     @Transactional
     public void action12() {
-        LocalDateTime actionTime = LocalDateTime.now();
+        LocalDateTime actionTime = LocalDateTime.now().minusDays(1);
         action(actionTime);
     }
 
