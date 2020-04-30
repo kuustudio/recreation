@@ -3,7 +3,7 @@
 
 /*侧边栏*/
 .sidebarNav { position: absolute; top:69px; left: 0px; z-index: 300; }
-.sidebar_header { width: 184px; padding-top: 141px; height: 28px; background: url(/images/nsc/warp/new.png) no-repeat; }
+.sidebar_header { width: 184px; padding-top: 141px; height: 28px; }
 .sidebar_header .sidebar_header_title { height: 28px; margin-left: 10px; width: 162px; text-align: center; font-size: 16px; color: #fff9e7; background: url(/images/nsc/warp/new.png) no-repeat center bottom; }
 
 .sidebar_con { height: 527px; }
