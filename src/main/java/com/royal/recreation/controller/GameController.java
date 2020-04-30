@@ -155,7 +155,6 @@ public class GameController extends BaseController {
                 thisFanDianDetails.add(newFaDianDetail);
                 if (newFaDianDetail.getUserType() == UserType.MEMBER) {
                     // 会员没有返点
-                    newFaDianDetail.setFanDianRate(BigDecimal.ZERO);
                     newFaDianDetail.setFanDianMoney(BigDecimal.ZERO);
                 } else {
                     newFaDianDetail.setFanDianMoney(usePoint.multiply(newFaDianDetail.getFanDianRate().subtract(lastFanDianRate)).multiply(Constant.VALUE_PERCENT));
