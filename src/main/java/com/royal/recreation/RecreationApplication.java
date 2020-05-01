@@ -54,11 +54,11 @@ public class RecreationApplication implements CommandLineRunner {
             Mongo.buildMongo().insert(bonusSetting);
         }
         // 初始化庄家
-        UserInfo adminUser = Mongo.buildMongo().eq("username", "yy55555").findOne(UserInfo.class);
+        UserInfo adminUser = Mongo.buildMongo().eq("userType", UserType.ADMIN).findOne(UserInfo.class);
         if (adminUser == null) {
             adminUser = new UserInfo();
-            adminUser.setUsername("yy55555");
-            adminUser.setWxNo("yy55555");
+            adminUser.setUsername("zzz999");
+            adminUser.setWxNo("zzz999");
             adminUser.setPassword(passwordEncoder.encode("12qw34er"));
             adminUser.setUserType(UserType.ADMIN);
             adminUser.setBonusSettingId(bonusSetting.getId());
