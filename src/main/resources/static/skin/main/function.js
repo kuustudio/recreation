@@ -1200,7 +1200,7 @@ function gameCalcAmount(){
 /**
  * 添加投注
  */
-function gameActionAddCodes(){
+function 1gameActionAddCodes(){
  
         var a = $(".bet-money");
 var b = $("#bet_tab");

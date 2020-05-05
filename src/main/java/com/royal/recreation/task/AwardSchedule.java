@@ -8,6 +8,7 @@ import com.royal.recreation.core.type.Status;
 import com.royal.recreation.spring.mongo.Mongo;
 import com.royal.recreation.util.DateUtil;
 import com.royal.recreation.util.Util;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
  * 每天凌晨发放佣金
  */
 @Component
+@Profile({"test", "pro"})
 public class AwardSchedule {
 
     @Scheduled(

@@ -25,11 +25,10 @@ public class Util {
         USER_POINT_BALANCE_LOCK.computeIfAbsent(userId, k -> new ReentrantLock()).lock();
     }
     private static void unlock(String userId) {
-        USER_POINT_BALANCE_LOCK.computeIfAbsent(userId, k -> new ReentrantLock()).unlock();
-    }
-
-    public static void removeLock(String userId) {
-        USER_POINT_BALANCE_LOCK.remove(userId);
+        USER_POINT_BALANCE_LOCK.computeIfPresent(userId, (key, oldValue) -> {
+            oldValue.unlock();
+            return null;
+        });
     }
 
     public static void insertUserPointList(List<UserPointRecord> userPointRecordList) {

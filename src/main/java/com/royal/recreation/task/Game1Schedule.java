@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -27,6 +28,7 @@ import java.util.concurrent.TimeUnit;
  * 抓取重庆时时彩数据
  */
 @Component
+@Profile({"test", "pro"})
 public class Game1Schedule implements InitializingBean {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
