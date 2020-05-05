@@ -24,10 +24,8 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 @Controller
@@ -95,9 +93,26 @@ public class GameController extends BaseController {
         Util.insertUserPoint(cancelBetRecord);
     }
 
+    private static final Map<String, Long> POST_CODE_LOCK = new ConcurrentHashMap<>();
+
     @RequestMapping("/postCode")
     @ResponseBody
     public Object postCode(@AuthenticationPrincipal MyUserDetails userDetails, PostCodeQuery query, HttpServletResponse response) {
+        try {
+            POST_CODE_LOCK.compute(userDetails.getId(), (key, oldValue) -> {
+                long currentTimeMillis = System.currentTimeMillis();
+                if (oldValue == null) {
+                    return currentTimeMillis;
+                }
+                if (currentTimeMillis - oldValue < 1000) {
+                    throw new RuntimeException("请勿重复提交");
+                }
+                return currentTimeMillis;
+            });
+        } catch (Exception e) {
+            return responseError(e.getMessage());
+        }
+
         Integer typeId = query.getPara().getInteger("type");
         GameType gameType = GameType.find(typeId);
         AwardInfo lastAward = Util.getLastAward(typeId);
