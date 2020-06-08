@@ -8,65 +8,50 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
     <title th:text="${T(com.royal.recreation.util.Constant).SYSTEM_NAME}">小票打印</title>
-    <style type="text/css">
-        * {
-            padding: 0;
-            margin: 0;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        .print_container {
-            padding: 5px;
-            width: 200px;
-        }
-    </style>
 </head>
 <body style="background-color:#fff;width: 100%">
-<div class="print_container">
+<div class="print_container" style="width: 200px">
     <div th:each="item:${list}" style="padding-bottom: 25px;">
-        <h1 th:text="${T(com.royal.recreation.util.Constant).SYSTEM_NAME}" style="font-size: 20px">游戏广场</h1>
-        <span>****************************************************</span>
-        <div class="section2" style="font-size: 12px">
-            <p th:text="${'彩种：'+item.typeName}">百度外卖</p>
-            <p th:text="${'玩法：'+item.playedName}">在线支付预约</p>
+        <h1 th:text="${T(com.royal.recreation.util.Constant).SYSTEM_NAME}" style="font-size: 20px;padding: 0;margin: 0">游戏广场</h1>
+        <span style=";padding: 0;margin: 0">****************************************************</span>
+        <div class="section2" style="font-size: 12px;padding: 0;margin: 0">
+            <p th:text="${'彩种：'+item.typeName}" style=";padding: 0;margin: 0">百度外卖</p>
+            <p th:text="${'玩法：'+item.playedName}" style=";padding: 0;margin: 0">在线支付预约</p>
         </div>
-        <span>****************************************************</span>
-        <div class="section5" style="font-size: 12px">
-            <p th:text="${'期号：'+item.actionNo}">订单备注：1111</p>
-            <p th:text="${'时间：'+item.createDateTimeShow()}">期望送达时间：5678</p>
-            <p th:text="${'单号：'+item.orderNo}">订单编号：567890</p>
-            <p th:text="${'投注号码：'+item.actionData}">姓名：小花</p>
-            <p>验真码：</p>
-            <p th:text="${item.validateCode.substring(0,16)}">姓名：小花</p>
-            <p th:text="${item.validateCode.substring(16)}">姓名：小花</p>
+        <span style=";padding: 0;margin: 0">****************************************************</span>
+        <div class="section5" style="font-size: 12px;padding: 0;margin: 0">
+            <p th:text="${'期号:'+item.actionNo}" style=";padding: 0;margin: 0">订单备注：1111</p>
+            <p th:text="${'时间:'+item.createDateTimeShow()}" style=";padding: 0;margin: 0;">期望送达时间：5678</p>
+            <p th:text="${'单号:'+item.orderNo}" style=";padding: 0;margin: 0">订单编号：567890</p>
+            <p th:text="${'投注号码:'+item.actionData}" style=";padding: 0;margin: 0">姓名：小花</p>
+            <p style=";padding: 0;margin: 0">验真码:</p>
+            <p th:text="${item.validateCode.substring(0,16)}" style=";padding: 0;margin: 0">姓名：小花</p>
+            <p th:text="${item.validateCode.substring(16)}" style=";padding: 0;margin: 0">姓名：小花</p>
         </div>
-        <span>****************************************************</span>
-        <div style="border-bottom: 2px solid #DADADA;">
-            <table style="width: 100%;">
-                <tbody>
-                <tr>
-                    <td>倍数</td>
-                    <td th:text="${item.beiShu}">2</td>
+        <span style=";padding: 0;margin: 0">****************************************************</span>
+        <div style="border-bottom: 2px solid #DADADA;;padding: 0;margin: 0">
+            <table style="width: 95%;;padding: 0;margin: 0">
+                <tbody style=";padding: 0;margin: 0">
+                <tr style=";padding: 0;margin: 0">
+                    <td style=";padding: 0;margin: 0">倍数</td>
+                    <td style=";padding: 0;margin: 0" th:text="${item.beiShu}">2</td>
                 </tr>
-                <tr>
-                    <td>注数</td>
-                    <td th:text="${item.actionNum}">2</td>
+                <tr style=";padding: 0;margin: 0">
+                    <td style=";padding: 0;margin: 0">注数</td>
+                    <td style=";padding: 0;margin: 0" th:text="${item.actionNum}">2</td>
                 </tr>
-                <tr>
-                    <td>投注</td>
-                    <td th:text="${item.usePoint}">2</td>
+                <tr style=";padding: 0;margin: 0">
+                    <td style=";padding: 0;margin: 0">投注</td>
+                    <td style=";padding: 0;margin: 0" th:text="${item.usePoint}">2</td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <span>****************************************************</span>
-    <div style="padding-bottom: 25px;">
-        <p>订单数：<span th:text="${list.size()}"></span></p>
-        <p>投注合计：<span th:text="${countUsePoint}"></span></p>
+    <span style=";padding: 0;margin: 0">****************************************************</span>
+    <div style="padding-bottom: 25px;margin: 0">
+        <p style=";padding: 0;margin: 0">订单数：<span th:text="${list.size()}"></span></p>
+        <p style=";padding: 0;margin: 0">投注合计：<span th:text="${countUsePoint}"></span></p>
     </div>
 </div>
 </div>
@@ -76,7 +61,7 @@
     function print() {
         $(".print_container").jqprint({
             debug: false,
-            importCSS: true,
+            importCSS: false,
             printContainer: true,
             operaSupport: false
         });
