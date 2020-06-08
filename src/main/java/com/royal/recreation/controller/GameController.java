@@ -13,6 +13,7 @@ import com.royal.recreation.util.Constant;
 import com.royal.recreation.util.DateUtil;
 import com.royal.recreation.util.SystemSetting;
 import com.royal.recreation.util.Util;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +33,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/game")
+@Slf4j
 public class GameController extends BaseController {
 
     @RequestMapping("/checkBuy")
@@ -120,7 +122,8 @@ public class GameController extends BaseController {
         AwardInfo lastAward = Util.getLastAward(typeId);
         LocalDateTime now = LocalDateTime.now();
         Long actionNo = query.getPara().getLong("actionNo");
-        if (actionNo - lastAward.getActionNo() != 1) {
+        if (actionNo - lastAward.getActionNo() != 1 && actionNo - lastAward.getActionNo() != 942 && actionNo - lastAward.getActionNo() != 53) {
+            log.warn("请求期号不正确:{}-{}", lastAward.getActionNo(), actionNo);
             return responseError("请求期号不正确");
         }
         LocalDateTime kjTime = lastAward.getEndTime().plusMinutes(gameType.getDuration());
