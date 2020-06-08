@@ -3,27 +3,38 @@ package com.royal.recreation.core.type;
 import com.royal.recreation.core.IGame;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
 public enum GameType implements IGame {
 
-    CQSSC(1, "重庆时时彩", 20, 5*60) {
+    CQSSC(1, "重庆时时彩", 20, 5 * 60) {
         public boolean inAction(LocalDateTime dateTime) {
             int second = LocalDateTime.now().toLocalTime().toSecondOfDay();
             return (second > 1800 && second < 11400) || (second > 2700 && second <= 85800);
         }
+
+        public long getNextNo(Long actionNo) {
+            return actionNo % 100 == 59 ? actionNo + 942 : actionNo + 1;
+        }
     },
-    XJSSC(2, "新疆时时彩", 20, 5*60) {
+    XJSSC(2, "新疆时时彩", 20, 5 * 60) {
         public boolean inAction(LocalDateTime dateTime) {
             int second = LocalDateTime.now().toLocalTime().toSecondOfDay();
             return second > 37200 || second < 7200;
+        }
+
+        public long getNextNo(Long actionNo) {
+            return actionNo % 100 == 48 ? actionNo + 53 : actionNo + 1;
         }
     },
     Australia(12, "澳洲幸运5", 5, 60) {
         public boolean inAction(LocalDateTime dateTime) {
             return true;
+        }
+
+        public long getNextNo(Long actionNo) {
+            return actionNo + 1;
         }
     };
 
@@ -68,11 +79,6 @@ public enum GameType implements IGame {
 
     public static GameType find(Integer id) {
         return data.get(id);
-    }
-
-    @Override
-    public boolean inAction(LocalDateTime dateTime) {
-        throw new IllegalStateException();
     }
 
     public static void main(String[] args) {
