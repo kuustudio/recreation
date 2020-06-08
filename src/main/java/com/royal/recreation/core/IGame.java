@@ -9,4 +9,6 @@ public interface IGame {
      */
     boolean inAction(LocalDateTime dateTime);
 
+    long getNextNo(Long actionNo);
+
 }

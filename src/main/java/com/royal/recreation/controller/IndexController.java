@@ -79,7 +79,7 @@ public class IndexController {
                 put("awardNo", lastAward.getCode());
             }});
             LocalDateTime now = LocalDateTime.now();
-            long actionNo = lastAward.getActionNo() + 1;
+            long actionNo = GameType.find(lastAward.getTypeId()).getNextNo(lastAward.getActionNo());
             LocalDateTime actionTime = lastAward.getEndTime().plusMinutes(GameType.find(typeId).getDuration());
             put("thisNo", new HashMap<String, Object>() {{
                 put("actionNo", actionNo);
@@ -105,7 +105,7 @@ public class IndexController {
             return "";
         }
 
-        long actionNo = lastAward.getActionNo() + 1;
+        long actionNo = GameType.find(lastAward.getTypeId()).getNextNo(lastAward.getActionNo());
         long diffTime = Duration.between(now, actionTime).getSeconds();
         return new HashMap<String, Object>() {{
             put("actionNo", lastAward.getActionNo());

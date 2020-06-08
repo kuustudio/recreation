@@ -46,7 +46,7 @@ public class GameController extends BaseController {
     @ResponseBody
     public Object getNo(@PathVariable int typeId) {
         AwardInfo lastAward = Mongo.buildMongo().eq("typeId", typeId).desc("actionNo").findOne(AwardInfo.class);
-        long actionNo = lastAward.getActionNo() + 1;
+        long actionNo = GameType.find(lastAward.getTypeId()).getNextNo(lastAward.getActionNo());
         LocalDateTime actionTime = lastAward.getEndTime().plusMinutes(GameType.find(typeId).getDuration());
         return new HashMap<String, Object>() {{
             put("actionNo", actionNo);
