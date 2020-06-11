@@ -1,0 +1,148 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="zh" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<div th:replace="head"></div>
+<div id="nsc_subContent" style="border:0">
+    <script type="text/javascript">
+
+        $(function() {
+            $( ".menus-li li").click(function(){
+                $( ".menus-li li").removeClass("on");
+                $(this).addClass("on");
+                $("#tabs-1,#tabs-2").hide();
+                $("#tabs-"+($(this).index()+1)).show();
+            });
+        })
+    </script>
+
+    <div id="siderbar">
+        <ul class="list clearfix">
+            <li ><a href="/team/userList">团队列表</a></li>
+            <li sec:authorize="hasAuthority('ADMIN')"><a href="/team/settingList">规则列表</a></li>
+            <li class="current"><a href="/team/addUser">添加会员</a></li>
+            <li sec:authorize="hasAuthority('ADMIN')"><a href="/team/toSystem">系统设置</a></li>
+        </ul>
+    </div>
+    <link rel="stylesheet" href="/css/nsc/reset.css" />
+    <link rel="stylesheet" href="/css/nsc/list.css" />
+    <link rel="stylesheet" href="/css/nsc/activity.css" />
+    <script type="text/javascript" src="/js/nsc/jquery-1.7.min.js"></script>
+    <script type="text/javascript" src="/js/nsc/main.js"></script>
+    <script type="text/javascript" src="/js/nsc/dialogUI/jquery.dialogUI.js"></script>
+    <link href="/css/nsc/plugin/dialogUI/dialogUI.css" media="all" type="text/css" rel="stylesheet" />
+
+    </head>
+    <body>
+
+    <div id="subContent_bet_re">
+        <!--消息框代码开始-->
+        <script src="/js/jqueryui/ui/jquery.ui.core.js"></script>
+        <script src="/js/jqueryui/ui/jquery.ui.widget.js"></script>
+        <script src="/js/jqueryui/ui/jquery.ui.tabs.js"></script>
+        <script language="javascript" type="text/javascript" src="/js/common/jquery.md5.js"></script>
+        <script type="text/javascript" src="/js/keypad/jquery.keypad.js"></script>
+        <link rel="stylesheet" type="text/css" media="all" href="/js/keypad/keypad.css"  />
+        <!--消息框代码结束-->
+
+        <div id="changeloginpass">
+            <div id="tabs">
+                <ul class="menus-li" sec:authorize="hasAuthority('ADMIN')">
+                    <li class="on">添加会员</li>
+                    <li>添加规则</li>
+                </ul>
+
+                <div id="tabs-1" style="width: 100%">
+                    <form action="/team/doAddUser" method="post" target="ajax" call="safeSetPwd">
+                        <table width="100%" border="0" cellspacing="1" cellpadding="5">
+                            <tr>
+                                <td class="tdz3_left">选择规则：</td>
+                                <td class="tdz3_right">
+                                    <select name="bonusSettingId"  class="team">
+                                        <option th:each="item:${settingList}" th:value="${item.id}" th:text="${item.settingName}">会员</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr sec:authorize="hasAuthority('ADMIN')">
+                                <td class="tdz3_left">用户类型：</td>
+                                <td class="tdz3_right">
+                                    <select name="userType"  class="team">
+                                        <option value="MEMBER">会员</option>
+                                        <option value="AGENT">代理</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">账号：</td><td class="tdz3_right"><input type="text" name="username"/></td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">微信号：</td><td class="tdz3_right"><input type="text" name="wxNo"/></td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">密码：</td><td class="tdz3_right"><input type="password" name="password"/></td>
+                            </tr>
+                        </table>
+                        <div class="list_btn_box">
+                            <input id="setpass" type="submit"  value="添加会员"  class="formChange" />
+                            <input type="reset" id="resetpass" class="formReset" value="重置" onClick="this.form.reset()" />
+                        </div>
+                    </form>
+                </div>
+                <div id="tabs-2" style="display: none;width: 100%">
+                    <form action="/team/addBonusSetting" method="post" target="ajax" call="safeSetPwd">
+                        <table width="100%" border="0" cellspacing="1" cellpadding="5">
+                            <tr>
+                                <td class="tdz3_left">规则名称：</td><td class="tdz3_right"><input type="text" name="settingName"/></td>
+                                <td class="tdz3_left"></td>
+                                <td class="tdz3_right"></td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">返点(%)：</td><td class="tdz3_right"><input type="text" name="fanDianRate"/></td>
+                                <td class="tdz3_left">佣金(%)：</td><td class="tdz3_right"><input type="text" name="awardRate"/></td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">大小单双：</td><td class="tdz3_right"><input type="text" name="a1"/></td>
+                                <td class="tdz3_left">数字：</td><td class="tdz3_right"><input type="text" name="a2"/></td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">龙虎：</td><td class="tdz3_right"><input type="text" name="a7"/></td>
+                                <td class="tdz3_left">和：</td><td class="tdz3_right"><input type="text" name="a3"/></td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">豹子：</td><td class="tdz3_right"><input type="text" name="a4"/></td>
+                                <td class="tdz3_left">顺子：</td><td class="tdz3_right"><input type="text" name="a5"/></td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">半顺,杂六：</td><td class="tdz3_right"><input type="text" name="a6"/></td>
+                                <td class="tdz3_left">对子：</td><td class="tdz3_right"><input type="text" name="a9"/></td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">三码不定位：</td><td class="tdz3_right"><input type="text" name="a10"/></td>
+                                <td class="tdz3_left">二码不定位：</td><td class="tdz3_right"><input type="text" name="a11"/></td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">二码定位：</td><td class="tdz3_right"><input type="text" name="a12"/></td>
+                                <td class="tdz3_left">三码定位：</td><td class="tdz3_right"><input type="text" name="a13"/></td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">四码定位：</td><td class="tdz3_right"><input type="text" name="a14"/></td>
+                                <td class="tdz3_left">一帆风顺：</td><td class="tdz3_right"><input type="text" name="a15"/></td>
+                            </tr>
+                            <tr>
+                                <td class="tdz3_left">好事成双：</td><td class="tdz3_right"><input type="text" name="a16"/></td>
+                                <td class="tdz3_left">三星报喜：</td><td class="tdz3_right"><input type="text" name="a17"/></td>
+                            </tr>
+                        </table>
+                        <div class="list_btn_box"><input id="setcoinP" type="submit" value="添加规则"  class="formChange" /></div>
+
+                    </form>
+                </div>
+
+            </div>
+
+        </div></div></div></div></div>
+<div th:replace="foot"></div>
+<div id="wanjinDialog"></div>
+<script type="text/javascript">
+</script>
+
+
+</body>
+</html>

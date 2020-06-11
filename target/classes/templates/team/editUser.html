@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="zh" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<form action="/team/doEditUser" method="post" target="ajax" call="safeSetPwd" th:object="${editUser}">
+    <table width="100%" border="0" cellspacing="1" cellpadding="5">
+        <tr>
+            <td class="tdz3_left">选择规则：</td>
+            <td class="tdz3_right">
+                <select name="bonusSettingId"  class="team">
+                    <option th:each="item:${settingList}" th:value="${item.id}" th:text="${item.settingName}">会员</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdz3_left">账号：</td><td class="tdz3_right">
+            <input type="hidden" th:field="*{id}"/>
+            <input type="text" th:field="*{username}" disabled/>
+        </td>
+        </tr>
+        <tr>
+            <td class="tdz3_left">微信号：</td><td class="tdz3_right"><input type="text" th:field="*{wxNo}"/></td>
+        </tr>
+    </table>
+    <div class="list_btn_box">
+        <input id="doEditUserBtn" type="submit"  value="确认"  class="formChange" style="display: none"/>
+    </div>
+</form>

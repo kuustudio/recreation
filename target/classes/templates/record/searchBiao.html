@@ -1,0 +1,81 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="display biao-cont">
+    <!--下注列表-->
+    <div>
+        <table width="100%" border="0" cellspacing="1" cellpadding="0" class="grayTable">
+            <thead>
+            <tr class="table_b_th">
+                <td>单号</td>
+                <td>投注内容</td>
+                <td>下注时间</td>
+                <td>彩种</td>
+                <td>期号</td>
+                <td>玩法</td>
+                <td>倍数 | 模式</td>
+                <td>总额</td>
+                <td>奖金</td>
+                <td>开奖号码</td>
+                <td>验真码</td>
+                <td>状态</td>
+<!--                <td>操作</td>-->
+            </tr>
+            </thead>
+            <tbody class="table_b_tr" th:if="${orderInfoList.isEmpty()}">
+            <tr><td colspan="12">暂无投注信息</td></tr>
+            </tbody>
+            <tbody class="table_b_tr" th:if="${!orderInfoList.isEmpty()}">
+            <tr th:each="item:${orderInfoList}">
+                <td th:text="${item.orderNo}">单号</td>
+                <td th:text="${item.actionData}">投注内容</td>
+                <td th:text="${item.createTimeShow()}">下注时间</td>
+                <td th:text="${item.typeName}">彩种</td>
+                <td th:text="${item.actionNo}">期号</td>
+                <td th:text="${item.playedName}">玩法</td>
+                <td th:text="${item.beiShu}">倍数 | 模式</td>
+                <td th:text="${item.usePoint}">总额</td>
+                <td th:if="${item.state == 2}">0.00</td>
+                <td th:if="${item.state != 2}" th:text="${item.bonusPropMoney}">奖金(积分)</td>
+                <td th:text="${item.code}">开奖号码</td>
+                <td class="code-list"><a th:href="${'javascript:alert('''+ item.validateCode+''');'}" class="orange">******</a></td>
+                <td th:if="${item.state == 3}">未开奖</td>
+                <td th:if="${item.state == 1 && (item.bonusLimited==null || !item.bonusLimited)}" class="orange">已派奖</td>
+                <td th:if="${item.state == 1 && item.bonusLimited!=null && item.bonusLimited}" class="orange">奖金超过限制</td>
+                <td th:if="${item.state == 2}">未中奖</td>
+                <td th:if="${item.state == 5}">撤单</td>
+<!--                <td th:if="${item.state == 3}"><a th:href="${'javascript:confirmCancel(''' + item.id +''');'}">撤单</a></td>-->
+<!--                <td th:if="${item.state != 3}">&#45;&#45;</td>-->
+            </tr>
+            </tbody>
+        </table>
+        <div class="bottompage">
+            <a th:if="${page==1}" class="disabled">首页</a>
+            <a th:if="${page!=1}" th:href="${queryString+(-page+1)}">首页</a>
+            <a th:if="${page==1}" class="disabled">上一页</a>
+            <a th:if="${page!=1}" th:href="${queryString+(-1)}">上一页</a>
+            <a th:if="${page==pages}" class="disabled">下一页</a>
+            <a th:if="${page!=pages}" th:href="${queryString+(1)}">下一页</a>
+            <a th:if="${page==pages}" class="disabled">尾页</a>
+            <a th:if="${page!=pages}" th:href="${queryString}+${-page+pages}">尾页</a>
+            <span class="disabled" th:text="${'第'+page+'页/共'+pages+'页'}">第1页/共1页</span>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function alert(msg) {
+            $.alert(msg);
+        }
+        function ddxq(num){
+            layer.open({
+                type: 2,
+                area: ['800px', '600px'],
+                zIndex:1888,
+                //fixed: false, //不固定
+                title:'订单详情',
+                scrollbar: false,//屏蔽滚动条
+                //maxmin: true,
+                content:'/record/betInfo/'+num
+            });
+            return false;
+        }
+    </script>        <!--下注列表 end -->
+</div>

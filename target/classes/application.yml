@@ -1,0 +1,20 @@
+server:
+  port: 1208
+
+spring:
+  application:
+    name: recreation
+  data:
+    mongodb:
+      uri: mongodb://royal-recreation:1waxzsq2@game.mongo:27000,game.mongo:27001,game.mongo:27002/royal-recreation?replicaSet=rs
+      repositories:
+        type: none
+      auto-index-creation: true
+  thymeleaf:
+    prefix: classpath:/templates/
+  profiles:
+    active: pro
+
+system:
+  security:
+    salt: DD063A7WQ7788ACEFAD1

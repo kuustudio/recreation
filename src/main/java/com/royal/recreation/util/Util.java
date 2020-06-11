@@ -76,6 +76,10 @@ public class Util {
         return lastAward;
     }
 
+    public static AwardInfo getLastAwardNoCheck(Integer typeId) {
+        return Mongo.buildMongo().eq("typeId", typeId).desc("actionNo").findOne(AwardInfo.class);
+    }
+
     public static boolean greaterZero(BigDecimal value) {
         return value.compareTo(BigDecimal.ZERO) > 0;
     }

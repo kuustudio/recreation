@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletResponse;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,22 +73,25 @@ public class IndexController {
     @ResponseBody
     public Map<String, Object> getQiHao(@PathVariable int typeId) {
         return new HashMap<String, Object>() {{
-            AwardInfo lastAward = Util.getLastAward(typeId);
-            put("lastNo", new HashMap<String, Object>() {{
-                put("actionNo", lastAward.getActionNo());
-                put("actionTime", lastAward.getEndTime().toLocalTime());
-                put("awardNo", lastAward.getCode());
-            }});
+            AwardInfo lastAward = Util.getLastAwardNoCheck(typeId);
             LocalDateTime now = LocalDateTime.now();
-            long actionNo = GameType.find(lastAward.getTypeId()).getNextNo(lastAward.getActionNo());
-            LocalDateTime actionTime = lastAward.getEndTime().plusMinutes(GameType.find(typeId).getDuration());
-            put("thisNo", new HashMap<String, Object>() {{
-                put("actionNo", actionNo);
-                put("actionTime", actionTime.toLocalTime());
-            }});
-            put("diffTime", Duration.between(now, actionTime).getSeconds());
-            put("validTime", actionTime.toLocalTime());
-            put("kjdTime", Constant.kjdTime);
+            if (lastAward.getEndTime().plusMinutes(GameType.find(typeId).getDuration()).isAfter(now)) {
+                put("lastNo", new HashMap<String, Object>() {{
+                    put("actionNo", lastAward.getActionNo());
+                    put("actionTime", lastAward.getEndTime().toLocalTime());
+                    put("awardNo", lastAward.getCode());
+                }});
+
+                long actionNo = GameType.find(lastAward.getTypeId()).getNextNo(lastAward.getActionNo());
+                LocalDateTime actionTime = lastAward.getEndTime().plusMinutes(GameType.find(typeId).getDuration());
+                put("thisNo", new HashMap<String, Object>() {{
+                    put("actionNo", actionNo);
+                    put("actionTime", actionTime.toLocalTime());
+                }});
+                put("diffTime", Duration.between(now, actionTime).getSeconds());
+                put("validTime", actionTime.toLocalTime());
+                put("kjdTime", Constant.kjdTime);
+            }
         }};
     }
 

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>游戏俱乐部</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <meta name="keywords" content="Flat Dark Web Login Form Responsive Templates, Iphone Widget Template, Smartphone login forms,Login form, Widget Template, Responsive Templates, a Ipad 404 Templates, Flat Responsive Templates" />
+    <link rel="stylesheet" href="/css/nsc/reset.css" />
+    <link rel="stylesheet" href="/css/nsc/plugin/dialogUI/dialogUI.css" media="all" type="text/css" >
+    <link rel="stylesheet" type="text/css" media="all" href="/js/keypad/keypad.css" />
+    <link rel="stylesheet" href="/css/nsc/login.css" />
+    <link rel="stylesheet" href="/css/loginstyle.css" />
+
+    <script type="text/javascript" src="/js/nsc/jquery-1.7.min.js"></script>
+
+    <script type="text/javascript" src="/js/common/jquery.md5.js"></script>
+    <script type="text/javascript" src="/js/nsc/dialogUI/jquery.dialogUI.js"></script>
+    <script type="text/javascript" src="/js/nsc/dialogUI/jquery.dragdrop.js"></script>
+    <script language="javascript" type="text/javascript" src="/js/common/jquery.md5.js"></script>
+
+    <script type="text/javascript" src="/js/keypad/jquery.keypad.js"></script>
+
+    <script type="text/javascript" src="/js/nsc/login.js"></script>
+    <script type="text/javascript" src="/images/down/swfobject.js"></script>
+
+    <script type="text/javascript" src="/skin/main/onload.js"></script>
+    <script type="text/javascript" src="/skin/main/reglogin.js"></script>
+
+
+
+</head>
+
+<body style="background-color:#FFF;">
+
+<h1>系统登陆</h1>
+<div class="login-form">
+    <div class="close"> </div>
+    <div class="head-info">
+        <label class="lbl-1"> </label>
+        <label class="lbl-2"> </label>
+        <label class="lbl-3"> </label>
+    </div>
+    <div class="clear"> </div>
+    <div class="avtar"><img src="/images/avtar.png" /></div>
+    <form action="/user/logined" method="post" onajax="userBeforeLogin" enter="true" call="userLogin" target="ajax">
+        <input type="text" id="username" name="username" class="text" value="Username" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Username';}" >
+        <div class="key"><input name="password" id="password" type="password" value="Password" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Password';}">
+
+        </div>
+
+        <input style="margin-top:-40px;width:30%" name="vcode" id="vcode" type="text" size="4" maxlength="4"  placeholder="验证码">
+        <img id="vcodeImg" style="margin-top:-60px" alt="验证码"  title="看不清楚，点我换图" onclick="vcodeAction();">
+
+        <div class="signin"><input type="submit" value="Login" ></div></form>
+</div>
+<div class="copy-rights">
+    <p>Copyright &copy; 2019.Company HugC All rights reserved</p>
+</div>
+<script type="text/javascript">
+    $(function () {
+        vcodeAction();
+    });
+    function vcodeAction() {
+        $("#vcodeImg")[0].src = '/user/vcode/' + (new Date()).getTime();
+    }
+</script>
+
+
+
+</body>
+
+
+
+</html>

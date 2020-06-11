@@ -1,0 +1,37 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="biao-cont">
+    <div>
+        <table width="100%" border="0" cellspacing="1" cellpadding="0" class="grayTable">
+            <thead>
+            <tr class="table_b_th">
+                <td>日期</td>
+                <td>投注支出</td>
+                <td>中奖收入</td>
+                <td>返点收入</td>
+                <td>佣金收入</td>
+                <td>总盈亏</td>
+            </tr>
+            </thead>
+            <tbody class="table_b_tr">
+            <tr th:each="item:${list}">
+                <td th:text="${item['date']}">2019-12-20</td>
+                <td th:text="${item['BET']}">--</td>
+                <td th:text="${item['BONUS']}">--</td>
+                <td th:text="${item['FAN_DIAN']}">--</td>
+                <td th:text="${item['AWARD']}">--</td>
+                <td th:text="${item['profit']}">--</td>
+            </tr>
+            <tr>
+                <td th:text="${countMap['date']}">2019-12-20</td>
+                <td th:text="${countMap['BET']}">--</td>
+                <td th:text="${countMap['BONUS']}">--</td>
+                <td th:text="${countMap['FAN_DIAN']}">--</td>
+                <td th:text="${countMap['AWARD']}">--</td>
+                <td th:text="${countMap['profit']}">--</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

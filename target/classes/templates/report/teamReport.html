@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh">
+<div th:replace="head"></div>
+<div id="nsc_subContent" style="border:0">
+    <script type="text/javascript">
+
+        $(function() {
+            $( ".menus-li li").click(function(){
+                $( ".menus-li li").removeClass("on");
+                $(this).addClass("on");
+                $("#tabs-1,#tabs-2").hide();
+                $("#tabs-"+($(this).index()+1)).show();
+            });
+        })
+    </script>
+
+    <div id="siderbar">
+        <ul class="list clearfix" th:if="${username==null}">
+            <li ><a href="/report/counts" >个人月报</a></li>
+            <li ><a href="/safe/passwd" >密码修改</a></li>
+            <li ><a href="/record/search" >投注记录</a></li>
+            <li ><a href="/report/coin" >帐变记录</a></li>
+            <li ><a href="/report/count" >盈亏报表</a></li>
+            <li class="current"><a href="/report/teamReport">团队报表</a></li>
+        </ul>
+        <ul class="list clearfix" th:if="${username!=null}">
+            <li><a th:href="'/report/counts?username='+${username}" >个人月报</a></li>
+            <li ><a th:href="'/record/search?username='+${username}" >投注记录</a></li>
+            <li ><a th:href="'/report/coin?username='+${username}">帐变记录</a></li>
+            <li ><a th:href="'/report/count?username='+${username}">盈亏报表</a></li>
+            <li  class="current"><a th:href="'/report/teamReport?username='+${username}">团队报表</a></li>
+        </ul>
+    </div>
+
+    <link rel="stylesheet" href="/css/nsc/reset.css" />
+    <link rel="stylesheet" href="/css/nsc/list.css" />
+    <link rel="stylesheet" href="/css/nsc/activity.css" />
+
+    </head>
+    <body>
+    <div id="subContent_bet_re">
+
+        <style>
+            .task_div{right:50px;}
+        </style>
+        <script type="text/javascript">
+            $(function(){
+
+                $('.chazhao').click(function(){
+                    $(this).closest('form').submit();
+                });
+
+                $('.bottompage a[href]').live('click', function(){
+                    $('.biao-cont').load($(this).attr('href'));
+                    return false;
+                });
+            });
+            function searchData(err, data){
+                if(err){
+                    alert(err);
+                }else{
+                    $('.biao-cont').html(data);
+                }
+            }
+        </script>
+        <div id="contentBox">
+            <form action="/report/teamReportBiao" target="ajax" call="searchData"  dataType="html">
+
+                <div id="searchBox" class="re">
+                    <div class="inlineBlock" th:if="${username!=null}">
+                        <label>查看账号：</label><input type="text" class="input150" value="" name="username" th:value="${username}" readonly/>
+                    </div>
+                    <div class="inlineBlock">
+                        <label>创建时间：</label><input type="text" class="input150" value="" name="fromDate" id="datetimepicker" autocomplete="false"/> <span class="image"></span>
+                    </div>
+                    <label>至</label>
+                    <div class="inlineBlock">
+                        <input type="text" class="input150" value="" id="datetimepicker4" name="toDate" autocomplete="false"/> <span class="image" ></span>
+                    </div>
+                    <input type="button" value="查询" class="formCheck chazhao" /><a th:if="${username!=null}" href="?" class="chazhao">返回</a></div>
+            </form>
+        </div>
+        <div class="biao-cont" th:replace="report/teamReportBiao"></div>
+        <link rel="stylesheet" type="text/css" href="/js/riqi/jquery.datetimepicker.css"/>
+        <script src="/js/riqi/jquery.datetimepicker.js"></script>
+        <script>
+
+            $('#datetimepicker10').datetimepicker({
+                step:5,
+                inline:true
+            });
+            $('#datetimepicker_mask').datetimepicker({
+                mask:'9999/19/39 29:59'
+            });
+            $('#datetimepicker').datetimepicker({
+                yearOffset:0,
+                lang:'ch',
+                timepicker:false,
+                format:'Y-m-d',
+                formatDate:'Y-m-d',
+            });
+            //$('#datetimepicker').datetimepicker({value:'2014/04/25 03:00',step:10});
+            //$('#datetimepicker4').datetimepicker({value:'2014/04/26 03:00',step:10});
+            $('#datetimepicker1').datetimepicker({
+                datepicker:false,
+                format:'H:i',
+                step:5
+            });
+            $('#datetimepicker2').datetimepicker({
+                yearOffset:222,
+                lang:'ch',
+                timepicker:false,
+                format:'d/m/Y',
+                formatDate:'Y/m/d',
+                minDate:'-1970/01/02', // yesterday is minimum date
+                maxDate:'+1970/01/02' // and tommorow is maximum date calendar
+            });
+            $('#datetimepicker3').datetimepicker({
+                inline:true
+            });
+            $('#datetimepicker4').datetimepicker({
+                yearOffset:0,
+                lang:'ch',
+                timepicker:false,
+                format:'Y-m-d',
+                formatDate:'Y-m-d',
+            });
+            $('#open').click(function(){
+                $('#datetimepicker4').datetimepicker('show');
+            });
+            $('#close').click(function(){
+                $('#datetimepicker4').datetimepicker('hide');
+            });
+            $('#reset').click(function(){
+                $('#datetimepicker4').datetimepicker('reset');
+            });
+            $('#datetimepicker5').datetimepicker({
+                datepicker:false,
+                allowTimes:['12:00','13:00','15:00','17:00','17:05','17:20','19:00','20:00']
+            });
+            $('#datetimepicker6').datetimepicker();
+            $('#destroy').click(function(){
+                if( $('#datetimepicker6').data('xdsoft_datetimepicker') ){
+                    $('#datetimepicker6').datetimepicker('destroy');
+                    this.value = 'create';
+                }else{
+                    $('#datetimepicker6').datetimepicker();
+                    this.value = 'destroy';
+                }
+            });
+            var logic = function( currentDateTime ){
+                if( currentDateTime.getDay()==6 ){
+                    this.setOptions({
+                        minTime:'11:00'
+                    });
+                }else
+                    this.setOptions({
+                        minTime:'8:00'
+                    });
+            };
+            $('#datetimepicker7').datetimepicker({
+                onChangeDateTime:logic,
+                onShow:logic
+            });
+            $('#datetimepicker8').datetimepicker({
+                onGenerate:function( ct ){
+                    $(this).find('.xdsoft_date')
+                        .toggleClass('xdsoft_disabled');
+                },
+                minDate:'-1970/01/2',
+                maxDate:'+1970/01/2',
+                timepicker:false
+            });
+            $('#datetimepicker9').datetimepicker({
+                onGenerate:function( ct ){
+                    $(this).find('.xdsoft_date.xdsoft_weekend')
+                        .addClass('xdsoft_disabled');
+                },
+                weekends:['01.01.2014','02.01.2014','03.01.2014','04.01.2014','05.01.2014','06.01.2014'],
+                timepicker:false
+            });
+        </script>
+    </div></div></div></div></div>
+        <div th:replace="foot"></div>
+</body>
+</html>
