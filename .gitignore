@@ -6,4 +6,4 @@
 .xml
 .yml
 */target/**
-*/*/target/**
+**/target/**
