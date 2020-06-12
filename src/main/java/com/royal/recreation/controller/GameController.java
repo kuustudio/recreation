@@ -102,6 +102,7 @@ public class GameController extends BaseController {
     @RequestMapping("/postCode")
     @ResponseBody
     public Object postCode(@AuthenticationPrincipal MyUserDetails userDetails, PostCodeQuery query, HttpServletResponse response) {
+        log.info("postCode=====开始=====[{}]--[{}]", userDetails.getUsername(), query);
         try {
             POST_CODE_LOCK.compute(userDetails.getId(), (key, oldValue) -> {
                 long currentTimeMillis = System.currentTimeMillis();
@@ -119,22 +120,25 @@ public class GameController extends BaseController {
 
         Integer typeId = query.getPara().getInteger("type");
         GameType gameType = GameType.find(typeId);
-        AwardInfo lastAward = Util.getLastAward(typeId);
+        AwardInfo lastAward = Util.getLastAwardNoCheck(typeId);
         LocalDateTime now = LocalDateTime.now();
-        Long actionNo = query.getPara().getLong("actionNo");
-        if (actionNo - lastAward.getActionNo() != 1 && actionNo - lastAward.getActionNo() != 942 && actionNo - lastAward.getActionNo() != 53) {
-            log.warn("请求期号不正确:{}-{}", lastAward.getActionNo(), actionNo);
+        long actionNo = query.getPara().getLongValue("actionNo");
+        if (gameType.getNextNo(lastAward.getActionNo()) != actionNo) {
+            log.warn("postCode=====请求期号不正确=====[{}]--[{}]", lastAward.getActionNo(), actionNo);
             return responseError("请求期号不正确");
         }
         LocalDateTime kjTime = lastAward.getEndTime().plusMinutes(gameType.getDuration());
         if (Duration.between(now, kjTime).getSeconds() < Constant.kjdTime) {
-            return responseError("已封盘");
+            log.warn("postCode=====已封盘=====[{}]--[{}]", now, kjTime);
+            return responseError(String.format("%s开始封盘,已封盘%s秒", kjTime.toLocalTime().minusSeconds(Constant.kjdTime).toString(), Duration.between(kjTime, now).getSeconds() + Constant.kjdTime));
         }
         if (!gameType.inAction(kjTime)) {
+            log.warn("postCode=====该彩种尚未开始=====[{}]", gameType.getName());
             return responseError("该彩种尚未开始");
         }
         List<JSONObject> codeList = query.getCode();
         if (codeList.isEmpty()) {
+            log.warn("postCode=====请投注=====[{}]", query);
             return responseError("请投注");
         }
         String userId = userDetails.getId();
@@ -225,6 +229,7 @@ public class GameController extends BaseController {
         }).collect(Collectors.toList());
         int sum = orderInfoList.stream().mapToInt(OrderInfo::getUsePoint).sum();
         if (thisUserInfo.getPoint().intValue() < sum) {
+            log.warn("postCode=====积分不足,请联系管理员上分=====[{}]--[{}]", thisUserInfo.getPoint(), sum);
             return responseError("积分不足,请联系管理员上分");
         }
         Mongo.buildMongo().insertAll(orderInfoList);
@@ -238,6 +243,7 @@ public class GameController extends BaseController {
             return userPointRecord;
         }).collect(Collectors.toList());
         Util.insertUserPointList(userPointRecordList);
+        log.info("postCode=====下注成功=====[{}]--[{}]", thisUserInfo.getUsername(), sum);
         if (thisUserInfo.getPrint()) {
             return Collections.singletonMap("ids", orderInfoList.stream().map(Domain::getId).collect(Collectors.joining(",")));
         } else {
