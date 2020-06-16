@@ -12,12 +12,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
@@ -27,6 +30,7 @@ import java.util.concurrent.TimeUnit;
  * 抓取欧洲幸运5数据
  */
 @Component
+@Profile({"test", "pro"})
 public class Game12Schedule implements InitializingBean {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -62,6 +66,57 @@ public class Game12Schedule implements InitializingBean {
         if (!getGameType().inAction(actionTime)) {
             return true;
         }
+        return action1(actionTime) || action2(actionTime);
+    }
+
+    private boolean action1(LocalDateTime actionTime) {
+        boolean successFlag = false;
+        String url = "https://88888kai.com/Open/CurrentOpen.aspx?code=10076&_=0.4794571300382";
+        logger.info("开始爬取数据:{}", url);
+        String result = null;
+        try {
+            result = HttpUtil.httpGet(url);
+            if (StringUtils.isEmpty(result)) {
+                return false;
+            }
+            JSONObject json = JSON.parseObject(result);
+            JSONArray dataArr = json.getJSONArray("list");
+            for (Object obj : dataArr) {
+                JSONObject data = (JSONObject) obj;
+                LocalDateTime endTime = LocalDateTime.of(LocalDate.now(), LocalTime.parse(data.getString("c_d").substring(13), DateTimeFormatter.ofPattern("HH:mm:ss"))).plusSeconds(20);
+                Long actionNo = data.getLong("c_t");
+                String code = data.getString("c_r");
+
+                if (actionTime != null && Duration.between(endTime, actionTime).getSeconds() < 5 * 60) {
+                    successFlag = true;
+                }
+                AwardInfo oldAwardInfo = Mongo.buildMongo().eq("actionNo", actionNo).eq("typeId", 12).findOne(AwardInfo.class);
+                if (oldAwardInfo == null) {
+                    oldAwardInfo = new AwardInfo();
+                    oldAwardInfo.setTypeId(12);
+                    oldAwardInfo.setActionNo(actionNo);
+
+                    oldAwardInfo.setCode(code);
+                    oldAwardInfo.setEndTime(endTime);
+                    oldAwardInfo.setStartTime(endTime.minusMinutes(5));
+                    oldAwardInfo.setAction(false);
+                    Mongo.buildMongo().insert(oldAwardInfo);
+                    logger.info("成功获得中奖信息{}=={}", oldAwardInfo.getActionNo(), oldAwardInfo.getCode());
+                    kjService.action(12);
+                } else {
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            logger.info("数据:{}", result);
+            logger.info("action12出现异常", e);
+        } finally {
+            logger.info("执行结果:{}", successFlag);
+        }
+        return successFlag;
+    }
+
+    private boolean action2(LocalDateTime actionTime) {
         boolean successFlag = false;
         List<String> urls = Arrays.asList("https://api.api861861.com/CQShiCai/getBaseCQShiCaiList.do?lotCode=10010",
                 "https://www.369kj.com/CQShiCai/getBaseCQShiCaiList.do?lotCode=10010");
