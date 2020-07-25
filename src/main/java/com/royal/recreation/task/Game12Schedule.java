@@ -83,15 +83,16 @@ public class Game12Schedule implements InitializingBean {
             JSONArray dataArr = json.getJSONArray("list");
             for (Object obj : dataArr) {
                 JSONObject data = (JSONObject) obj;
-                LocalDateTime endTime = LocalDateTime.of(LocalDate.now(), LocalTime.parse(data.getString("c_d").substring(13), DateTimeFormatter.ofPattern("HH:mm:ss"))).plusSeconds(20);
+                String cd = data.getString("c_d");
+                LocalDateTime endTime = LocalDateTime.of(LocalDate.parse(LocalDateTime.now().getYear() + "/" + cd.substring(0, 5), DateTimeFormatter.ofPattern("yyyy/M/d")), LocalTime.parse(cd.substring(13), DateTimeFormatter.ofPattern("HH:mm:ss"))).plusSeconds(20);
                 Long actionNo = data.getLong("c_t");
                 String code = data.getString("c_r");
 
-                if (actionTime != null && Duration.between(endTime, actionTime).getSeconds() < 5 * 60) {
+                if (actionTime != null && Duration.between(endTime, actionTime).getSeconds() < 5 * 60 && !successFlag) {
                     successFlag = true;
                 }
                 AwardInfo oldAwardInfo = Mongo.buildMongo().eq("actionNo", actionNo).eq("typeId", 12).findOne(AwardInfo.class);
-                if (oldAwardInfo == null) {
+                if (oldAwardInfo == null && successFlag) {
                     oldAwardInfo = new AwardInfo();
                     oldAwardInfo.setTypeId(12);
                     oldAwardInfo.setActionNo(actionNo);
@@ -136,11 +137,11 @@ public class Game12Schedule implements InitializingBean {
                     Long actionNo = data.getLong("preDrawIssue");
                     String code = data.getString("preDrawCode");
 
-                    if (actionTime != null && Duration.between(endTime, actionTime).getSeconds() < 5 * 60) {
+                    if (actionTime != null && Duration.between(endTime, actionTime).getSeconds() < 5 * 60  && !successFlag) {
                         successFlag = true;
                     }
                     AwardInfo oldAwardInfo = Mongo.buildMongo().eq("actionNo", actionNo).eq("typeId", 12).findOne(AwardInfo.class);
-                    if (oldAwardInfo == null) {
+                    if (oldAwardInfo == null && successFlag) {
                         oldAwardInfo = new AwardInfo();
                         oldAwardInfo.setTypeId(12);
                         oldAwardInfo.setActionNo(actionNo);
