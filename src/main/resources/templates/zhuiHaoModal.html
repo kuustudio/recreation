@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="zh">
+<div>
+    <input type="hidden" id="typeId" th:value="${typeId}">
+    <input type="hidden" id="beiShu" th:value="${beiShu}">
+    <input type="hidden" id="actionData" th:value="${actionData}">
+    <input type="hidden" id="playedId" th:value="${playedId}">
+    <table>
+        <tr>
+            <td style="width: 20%">期号</td>
+            <td style="width: 40%">开奖时间</td>
+            <td style="width: 20%">选择期号</td>
+        </tr>
+        <tbody>
+        <tr th:each="item:${actionInfoList}">
+            <td th:text="${item.actionNo}"></td>
+            <td th:text="${item.endTimeShow()}"></td>
+            <td><input type="checkbox" name="zhuiHao" th:value="${item.actionNo}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

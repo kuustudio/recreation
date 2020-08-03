@@ -14,6 +14,8 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
+import static com.royal.recreation.util.DateUtil.DATE_TIME_FORMATTER;
+
 @Data
 @Document(collection = "order_info")
 public class OrderInfo extends Domain {
@@ -70,6 +72,10 @@ public class OrderInfo extends Domain {
             result = result.add(awardDetail.getAwardMoney());
         }
         return result;
+    }
+
+    public String actionTimeShow() {
+        return this.actionTime.format(DATE_TIME_FORMATTER);
     }
 
 }
