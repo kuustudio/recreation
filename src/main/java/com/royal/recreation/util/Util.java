@@ -1,5 +1,6 @@
 package com.royal.recreation.util;
 
+import com.royal.recreation.core.ActionInfo;
 import com.royal.recreation.core.entity.AwardInfo;
 import com.royal.recreation.core.entity.CapitalPool;
 import com.royal.recreation.core.entity.UserInfo;
@@ -9,7 +10,9 @@ import com.royal.recreation.spring.mongo.Mongo;
 
 import java.math.BigDecimal;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -78,6 +81,11 @@ public class Util {
 
     public static AwardInfo getLastAwardNoCheck(Integer typeId) {
         return Mongo.buildMongo().eq("typeId", typeId).desc("actionNo").findOne(AwardInfo.class);
+    }
+
+    public static List<ActionInfo> actionInfoList(Integer typeId) {
+        AwardInfo lastAward = getLastAwardNoCheck(typeId);
+        return GameType.find(typeId).actionInfoList(lastAward.getActionNo(), lastAward.getEndTime(), LocalDateTime.of(LocalDate.now().plusDays(1), LocalTime.MIN));
     }
 
     public static boolean greaterZero(BigDecimal value) {

@@ -1,6 +1,7 @@
 package com.royal.recreation.controller;
 
 import com.royal.recreation.config.bean.MyUserDetails;
+import com.royal.recreation.core.ActionInfo;
 import com.royal.recreation.core.entity.AwardInfo;
 import com.royal.recreation.core.entity.BonusSetting;
 import com.royal.recreation.core.entity.OrderInfo;
@@ -21,13 +22,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletResponse;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
 public class IndexController {
+
+    @RequestMapping("/index/zhuiHaoModal")
+    public String zhuiHaoModal(int typeId, int beiShu, int actionData, int playedId, Model model) {
+        List<ActionInfo> actionInfoList = Util.actionInfoList(typeId);
+        model.addAttribute("actionInfoList", actionInfoList);
+        model.addAttribute("typeId", typeId);
+        model.addAttribute("beiShu", beiShu);
+        model.addAttribute("actionData", actionData);
+        model.addAttribute("playedId", playedId);
+        return "zhuiHaoModal";
+    }
 
     @RequestMapping("/")
     public String index(@AuthenticationPrincipal MyUserDetails userDetails, Model model, Integer typeId) {

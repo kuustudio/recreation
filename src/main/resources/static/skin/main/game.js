@@ -135,7 +135,7 @@ $(function(){
 			$.alert('只能针对一个方案发起追号！');
 			return false;
 		}
-		setGameZhuiHao(bet.data('code'));
+		setGameZhuiHao2(bet.data('code'));
 		return false;
 	});
 	$('.touzhu-bottom :checkbox[name=fpEnable]')

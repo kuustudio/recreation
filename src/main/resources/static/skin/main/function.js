@@ -688,7 +688,7 @@ function randomSelectCode(len, codes){
 }
 
 function setGameZhuiHao(data){
-	var fpcount=1,$feipan=$(':checkbox[name=fpEnable]'); 
+	var fpcount=1,$feipan=$(':checkbox[name=fpEnable]');
 	if($feipan.prop('checked')) fpcount=2;
 	$.get('/index/zhuiHaoModal', function(html){
 		$(html).dialog({
@@ -698,9 +698,9 @@ function setGameZhuiHao(data){
 			modal:true,
 			stack:false,
 			dialogClass:'zhui-hao-modal',
-			
+
 			buttons:{
-				
+
 				"确定追号":function(){
 					var data=[];
 					$('tbody :checkbox:checked', this).each(function(){
@@ -708,12 +708,12 @@ function setGameZhuiHao(data){
 						$tr=$this.closest('tr');
 						data.push([$('td:eq(1)', $tr).text(), $('.beishu', $tr).val(), $('td:eq(4)', $tr).text()].join('|'));
 					});
-					
+
 					if(!data.length){
 						$.alert('追号至少选一期');
 						return false;
 					}
-					
+
 					$('.fqzhBox :checkbox[name=zhuiHao]').data({
 						zhuiHao:data.join(';'),
 						zhuiHaoMode:$(this).closest('.zhui-hao-modal').find(':checkbox[name=zhuiHaoMode]:first')[0].checked?1:0
@@ -727,23 +727,97 @@ function setGameZhuiHao(data){
 					gameCalcAmount();
 				}
 			},
-			
+
 			open:function(event, ui){
 				var $this=$(this),
 				price=Math.round(data.mode * data.actionNum * fpcount * 100)/100;
-				
+
 				$this.attr('rel', price);
 				$this.attr('src', '/index/zhuiHaoQs/'+game.type+'/'+price+'/');
-				
+
 				$('.tr-cont', this).load($this.attr('src')+10);
 				$this.closest('.zhui-hao-modal').find('select:first').change(function(){
 					$('tbody', $this).load($this.attr('src')+this.value);
 				});
 			}
 		});
-		
+
 	});
-	
+
+
+}
+
+function setGameZhuiHao2(data){
+	$.get('/index/zhuiHaoModal?typeId='+data.type +'&beiShu='+data.beiShu+"&actionData="+data.actionData+'&playedId='+data.playedId, function(html){
+		$(html).dialog({
+			title:'追号',
+			minWidth:600,
+			height:400,
+			modal:true,
+			stack:false,
+			dialogClass:'zhui-hao-modal',
+
+			buttons:{
+
+				"确定追号":function(){
+					var data=[];
+					$('tbody :checkbox:checked', this).each(function () {
+						data.push($(this).val());
+					});
+
+					if(!data.length){
+						$.alert('追号至少选一期');
+						return false;
+					}
+					var codes = data.join(",");
+					var typeId = $("#typeId").val();
+					var beiShu = $("#beiShu").val();
+					var actionData = $("#actionData").val();
+					var playedId = $("#playedId").val();
+					$.ajax('/game/addCode', {
+						data:{
+							codes:codes,
+							typeId:typeId,
+							beiShu:beiShu,
+							actionData:actionData,
+							playedId:playedId,
+						},
+
+						type:'post',
+						dataType:'json',
+						error:function(xhr, textStatus, errorThrown){
+							gamePostedCode(errorThrown||textStatus);
+						},
+						success:function(data, textStatus, xhr){
+							destroyWait();
+							gamePostedCode(null, data);
+
+							$("#cannel_chckbox").attr("checked",false);//提交初始化
+							if(data){
+								if($("#vehicle").attr("checked"))
+									showBetInfos(data);
+								//$.alert(d);
+
+							}
+						},
+						complete:function(xhr, textStatus){
+
+							var errorMessage=xhr.getResponseHeader('X-Error-Message');
+							if(errorMessage) gamePostedCode(decodeURIComponent(errorMessage));
+						}
+					});
+					$( this ).dialog( "destroy" );
+				}
+			},
+			open:function(event, ui){
+				if (!$("#typeId").val()) {
+					$( this ).dialog( "destroy" );
+				}
+			}
+		});
+
+	});
+
 
 }
 

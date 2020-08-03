@@ -33,7 +33,6 @@ import java.util.regex.Pattern;
  * 抓取欧洲幸运5数据
  */
 @Component
-@Profile({"test", "pro"})
 public class Game12Schedule implements InitializingBean {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());

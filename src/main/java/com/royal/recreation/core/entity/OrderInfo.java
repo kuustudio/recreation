@@ -10,6 +10,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import static com.royal.recreation.util.DateUtil.DATE_TIME_FORMATTER;
+
 @Data
 @Document(collection = "order_info")
 public class OrderInfo extends Domain {
@@ -58,5 +60,10 @@ public class OrderInfo extends Domain {
     private Integer state;
     private BonusLimitType bonusLimitType;
     private Boolean bonusLimited = Boolean.FALSE;
+
+
+    public String actionTimeShow() {
+        return this.actionTime.format(DATE_TIME_FORMATTER);
+    }
 
 }

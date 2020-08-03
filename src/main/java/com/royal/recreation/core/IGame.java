@@ -1,6 +1,7 @@
 package com.royal.recreation.core;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface IGame {
 
@@ -9,6 +10,8 @@ public interface IGame {
      */
     boolean inAction(LocalDateTime dateTime);
 
-    long getNextNo(Long actionNo);
+    long getNextNo(long actionNo);
+
+    List<ActionInfo> actionInfoList(long currentNo, LocalDateTime currentEndTime, LocalDateTime maxEndTime);
 
 }
