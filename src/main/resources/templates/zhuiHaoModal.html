@@ -4,13 +4,15 @@
     <input type="hidden" id="beiShu" th:value="${beiShu}">
     <input type="hidden" id="actionData" th:value="${actionData}">
     <input type="hidden" id="playedId" th:value="${playedId}">
-    <table>
-        <tr>
+    <table width="100%" border="0" cellspacing="1" cellpadding="0" class="grayTable">
+        <thead>
+        <tr class="table_b_th">
             <td style="width: 20%">期号</td>
             <td style="width: 40%">开奖时间</td>
             <td style="width: 20%">选择期号</td>
         </tr>
-        <tbody>
+        </thead>
+        <tbody class="table_b_tr">
         <tr th:each="item:${actionInfoList}">
             <td th:text="${item.actionNo}"></td>
             <td th:text="${item.endTimeShow()}"></td>

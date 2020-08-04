@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -30,7 +31,8 @@ import java.util.Map;
 public class IndexController {
 
     @RequestMapping("/index/zhuiHaoModal")
-    public String zhuiHaoModal(int typeId, int beiShu, int actionData, int playedId, Model model) {
+    public String zhuiHaoModal(int beiShu, int actionData, int playedId, Model model, HttpSession session) {
+        Integer typeId = (Integer) session.getAttribute("typeId");
         List<ActionInfo> actionInfoList = Util.actionInfoList(typeId);
         model.addAttribute("actionInfoList", actionInfoList);
         model.addAttribute("typeId", typeId);
@@ -41,7 +43,7 @@ public class IndexController {
     }
 
     @RequestMapping("/")
-    public String index(@AuthenticationPrincipal MyUserDetails userDetails, Model model, Integer typeId) {
+    public String index(@AuthenticationPrincipal MyUserDetails userDetails, Model model, Integer typeId, HttpSession session) {
         LocalDateTime now = LocalDateTime.now();
         List<OrderInfo> orderInfoList = Mongo.buildMongo().eq("userId", userDetails.getId()).eq("time", DateUtil.dateTimeToTime(now)).eq("status", Status.ACTIVE).desc("_id").find(OrderInfo.class);
         UserInfo userInfo = Mongo.buildMongo().id(userDetails.getId(), UserInfo.class);
@@ -53,6 +55,8 @@ public class IndexController {
         model.addAttribute("typeId", typeId);
         model.addAttribute("typeName", GameType.find(typeId).getName());
         model.addAllAttributes(getQiHao(typeId));
+
+        session.setAttribute("typeId", typeId);
         return "index/index";
     }
 
