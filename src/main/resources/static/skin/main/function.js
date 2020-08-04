@@ -810,7 +810,8 @@ function setGameZhuiHao2(data){
 				}
 			},
 			open:function(event, ui){
-				if (!$("#typeId").val()) {
+				if ($("#typeId").val()) {
+				} else {
 					$( this ).dialog( "destroy" );
 				}
 			}
